@@ -30,6 +30,6 @@
 28. [Module Authority](#module-authority)
 
 
-## Top Level Graph
+## 1. Top Level Graph
 ![Image of Top Level Schema](top_level.png "Top Level Schema")
 
