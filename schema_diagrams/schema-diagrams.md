@@ -31,4 +31,4 @@
 
 
 ## Top Level Graph
-![Image of Top Level Schema](0.top_level.png "Top Level Schema")
+![Image of Top Level Schema](0. top_level.png "Top Level Schema")
