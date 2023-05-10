@@ -34,7 +34,7 @@
 ![Image of Top Level Schema](top_level.png "Top Level Schema")
 
 ## 1. Title Info
-![Image of Title Info](TitlInfo.png "Title Info")
+![Image of Title Info](TitleInfo.png "Title Info")
 
 ## 2. Name
 ![Image of Name](Name.png "Name")
