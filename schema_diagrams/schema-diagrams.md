@@ -1,8 +1,8 @@
 # Table of Contents
-- 0. [Top Level Graph](#top-level-graph)
-- 1. [Title Info](#title-info)
-- 2. [Name](#name)
-- 3. [Type of Resource](#type-of-resource)
+0. [Top Level Graph](#top-level-graph)
+1. [Title Info](#title-info)
+2. [Name](#name)
+3. [Type of Resource](#type-of-resource)
 - 4. [Genre](#genre)
 - 5. [Origin Info](#origin-info)
 - 6. [Language](#language)
