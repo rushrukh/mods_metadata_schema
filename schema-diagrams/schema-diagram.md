@@ -30,90 +30,90 @@
 28. [Module Authority](#module-authority)
 
 
-## 0. Top Level Graph
+## Top Level Graph
 ![Image of Top Level Schema](top_level.png "Top Level Schema")
 
-## 1. Title Info
+## Title Info
 ![Image of Title Info](TitleInfo.png "Title Info")
 
 ## Name
 ![Image of Name](Name.png "Name")
 
-## 3. Type of Resource
+## Type of Resource
 ![Image of Type of Resource](TypeOfResource.png "Type of Resource")
 
-## 4. Genre
+## Genre
 ![Image of Genre](Genre.png "Genre")
 
-## 5. Origin Info
+## Origin Info
 ![Image of Origin Info](OriginInfo.png "Origin Info")
 
-## 6. Language
+## Language
 ![Image of Language](Language.png "Language")
 
-## 7. Physical Description
+## Physical Description
 ![Image of Physical Description](PhysicalDescription.png "Physical Description")
 
-## 8. Abstract
+## Abstract
 ![Image of Abstract](Abstract.png "Abstract")
 
-## 9. Table of Content
+## Table of Content
 ![Image of Table of Content](TableOfContent.png "Table of Content")
 
-## 10. Target Audience
+## Target Audience
 ![Image of Target Audience](TargetAudience.png "Target Audience")
 
-## 11. Notes
+## Notes
 ![Image of Notes](Notes.png "Notes")
 
-## 12. Subject
+## Subject
 ![Image of Subject](Subject.png "Subject")
 
-## 13. Classification
+## Classification
 ![Image of Classification](Classification.png "Classification")
 
-## 14. Related Item
+## Related Item
 ![Image of Related Item](RelatedItem.png "Related Item")
 
-## 15. Identifier
+## Identifier
 ![Image of Identifier](Identifier.png "Identifier")
 
-## 16. Location
+## Location
 ![Image of Location](Location.png "Location")
 
-## 17. Access Condition
+## Access Condition
 ![Image of Access Condition](AccessCondition.png "Access Condition")
 
-## 18. Part
+## Part
 ![Image of Part](Part.png "Part")
 
-## 19. Extension (Needs Work)
+## Extension (Needs Work)
 ![Image of Extension](Extension.png "Extension")
 
-## 20. Record Info
+## Record Info
 ![Image of Record Info](RecordInfo.png "Record Info")
 
-## 21. Module Role
+## Module Role
 ![Image of Module Role](M1_Role_module.png "Module Role")
 
-## 22. Module Language Attributes
+## Module Language Attributes
 ![Image of Module Language Attributes](M2_Language_attributes.png "Module Language Attributes")
 
-## 23. Module Link Attributes
+## Module Link Attributes
 ![Image of Module Link Attributes](M3_Link_attribute.png "Module Link Attributes")
 
-## 24. Module Date Info
+## Module Date Info
 ![Image of Module Date Info](M4_DateInfo_module.png "Module Date Info")
 
-## 25. Module Place
+## Module Place
 ![Image of Module Place](M5_place_module.png "Module Place")
 
-## 26. Module Geographic Subject
+## Module Geographic Subject
 ![Image of Module Geographic ](M6_geographic_subject.png "Module Geographic ")
 
-## 27. Module Cartographic
+## Module Cartographic
 ![Image of Module Cartographic](M7_cartographic_module.png "Module Cartographic")
 
-## 28. Module Authority
+## Module Authority
 ![Image of Module Authority](M8_authority_module.png "Module Authority")
 
