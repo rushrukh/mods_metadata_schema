@@ -36,7 +36,7 @@
 ## 1. Title Info
 ![Image of Title Info](TitleInfo.png "Title Info")
 
-## 2. Name
+## Name
 ![Image of Name](Name.png "Name")
 
 ## 3. Type of Resource
