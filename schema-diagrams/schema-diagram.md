@@ -118,5 +118,5 @@
 ## Module Authority
 ![Image of Module Authority](M8_authority_module.png "Module Authority")
 
-## Module Alt Format
+## Module Alt Format Attributes
 ![Image of Module Alt Format Attributes](M9_AltFormat_Attributes.png "Module Alt Format Attributes")
