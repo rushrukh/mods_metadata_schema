@@ -28,6 +28,7 @@
 26. [Module Geographic Subject](#module-geographic-subject)
 27. [Module Cartographics](#module-cartographics)
 28. [Module Authority](#module-authority)
+29. [Module Alt Format Attributes](#module-alt-format-attributes)
 
 
 ## Top Level Graph
@@ -116,3 +117,6 @@
 
 ## Module Authority
 ![Image of Module Authority](M8_authority_module.png "Module Authority")
+
+## Module Alt Format
+![Image of Module Alt Format Attributes](M9_AltFormat_Attributes.png "Module Alt Format Attributes")
