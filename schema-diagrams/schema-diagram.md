@@ -29,6 +29,10 @@
 27. [Module Cartographics](#module-cartographics)
 28. [Module Authority](#module-authority)
 29. [Module Alt Format Attributes](#module-alt-format-attributes)
+30. [Module Geographic Subelement](#module-geographic-subelement)
+31. [Module-Organization](#module-organization)
+32. [Module-Other-Type-Attributes](#module-other-type-attributes)
+33. [Module-Element-Class](#module-element-class)
 
 
 ## Top Level Graph
@@ -120,3 +124,15 @@
 
 ## Module Alt Format Attributes
 ![Image of Module Alt Format Attributes](M9_AltFormat_Attributes.png "Module Alt Format Attributes")
+
+## Module Geographic Subelement
+![Image of Module Geographic Subelement](M10_geographic_subelement.png "Module Geographic Subelement")
+
+## Module Organization
+![Image of Module Organization](M11_Organization_module.png "Module Organization")
+
+## Module Other Type Attributes
+![Image of Module Other Type Attributes](M12_Other_Type_Attributes.png "Module Other Type Attributes")
+
+## Module Element Class
+![Image of Module Element Class](M13_element_class.png "Module Element Class")
