@@ -1,0 +1,26 @@
+TitleInfo hasTitle Title sd sr e ie qsf iqsf
+Title hasValue xsd:string [Need Help]
+Title hasLanguageAttributes LanguageAttributes [Need Help]
+TitleInfo hasSubTitle SubTitle sd sr ie iqsf st
+SubTitle hasValue xsd:string [Need Help]
+SubTitle hasLanguageAttributes LanguageAttributes [Need Help]
+TitleInfo hasPartNumber PartNumber sd sr ie iqsf st
+PartNumber hasValue xsd:string [Need Help]
+PartNumber hasLanguageAttributes LanguageAttributes [Need Help]
+TitleInfo hasPartName PartName sd sr ie iqsf st
+PartName hasValue xsd:string [Need Help]    
+PartName hasLanguageAttributes LanguageAttributes   [Need Help]
+TitleInfo hasIgnorableTitlePart NonSort sd sr ie iqsf st
+NonSort hasValue xsd:string [Need Help]
+NonSort hasSpaceHandlingTechnique SpaceHandlingTechnique.txt    [Need Help]
+NonSort hasLanguageAttributes LanguageAttributes [Need Help]
+
+
+TitleInfo isContentSuppliedExternally xsd:boolean [Need Help]
+TitleInfo isPrimaryInstance usage.txt [Need Help]
+TitleInfo hasAltFormatAttributes AltFormatAttributes [Need Help]
+TitleInfo hasAuthorityInfo AuthorityInfo [Need Help]
+TitleInfo sco Element
+
+TitleInfo hasTitleInfoType TitleInfoType.txt [Need Help]
+TitleInfo hasTitleInfoType OtherTypeInfo [Need Help]
