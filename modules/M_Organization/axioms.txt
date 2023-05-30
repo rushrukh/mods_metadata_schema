@@ -1,0 +1,6 @@
+Organization providesAgentRole AgentRole r uie if st
+Organization hasName Name r e uie f if st
+Organization hasStandardizedName Name r uie f if st
+Organization hasLinkAttributes LinkAttributes r uie f if st
+
+AgentRole hasRoleUnderName Name sd r st

@@ -1,0 +1,7 @@
+Thing hasGeographicSubelement GeographicSubelement r uie if st
+
+GeographicSubelement hasAuthorityInfo AuthorityInfo r uie f if st
+GeographicSubelement hasLanguageAttributes LanguageAttributes r uie f if st
+GeographicSubelement hasLevelInHierarchy xsd:int r st 
+GeographicSubelement hasExistencePeriod xsd:string r st 
+GeographicSubelement hasType xsd:string r st

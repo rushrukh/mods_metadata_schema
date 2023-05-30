@@ -1,0 +1,5 @@
+Item hasAuthorityInfo AuthorityInfo r uie f if st
+
+AuthorityInfo hasAuthorityName xsd:string r st
+AuthorityInfo hasAuthorityURI xsd:anyURI r st
+AuthorityInfo hasValueURI xsd:anyURI r st

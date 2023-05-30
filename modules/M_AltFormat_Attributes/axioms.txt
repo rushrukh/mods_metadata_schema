@@ -1,0 +1,4 @@
+Thing hasAltFormatAttributes AltFormatAttributes r uie if st
+
+AltFormatAttributes hasAlternativeFormat xsd:anyURI
+AltFormatAttributes hasContentType xsd:string

@@ -1,0 +1,57 @@
+Thing hasGeographicSubject GeographicSubject r uie if st
+
+GeographicSubject hasContinent Continent d r ie if st
+Continent hasValue Continent.txt r e st 
+Continent hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasCountry Country d r ie if st
+Country hasValue Country.txt r e st
+Country hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasProvince Province d r ie if st
+Province hasValue Province.txt r e st
+Province hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasRegions Regions d r ie if st
+Regions hasValue Regions.txt r e st
+Regions hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasState State d r ie if st
+State hasValue State.txt r e st
+State hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubjec hasTerritory Territory d r ie if st
+Territory hasValue Territory.txt r e st
+Territory hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasCountry County d r ie if st
+County hasValue County.txt r e st
+County hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasCity City d r ie if st
+City hasValue City.txt r e st
+City hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasCitySection CitySection d r ie if st
+CitySection hasValue CitySection.txt r e st
+CitySection hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasIsland Island d r ie if st
+Island hasValue Island.txt r e st
+Island hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasArea Area d r ie if st
+Area hasValue Area.txt r e st
+Area hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasExtraTerrestrialArea ExtraTerrestrialArea d r ie if st
+ExtraTerrestrialArea hasValue ExtraTerrestrialArea.txt r e st
+ExtraTerrestrialArea hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasGeographicCode GeographicCode d r ie if st
+GeographicCode hasValue xsd:string r e st
+GeographicCode hasGeographicSubelement GeographicSubelement r ie if st
+
+GeographicSubject hasValue xsd:string r e st
+
+GeographicSubject hasAuthorityInfo AuthorityInfo r uie if st

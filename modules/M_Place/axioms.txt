@@ -1,0 +1,15 @@
+Thing hasAssociatedPlace Place r uie if st
+
+Place hasPlaceTerm PlaceTerm d r e ie iqsf st
+
+PlaceTerm hasPlaceTermType PlaceTermType.txt r st
+PlaceTerm hasLanguageAttributes LanguageAttributes r uie f if st
+PlaceTerm hasAuthorityInfo AuthorityInfo r uie f if st
+PlaceTerm hasValue xsd:string r e st
+
+Place hasCartographicSpecifications Cartographics r ie iqsf st
+Cartographics hasAuthorityInfo AuthorityInfo r uie f if st
+
+Place hasPlaceIdentifier xsd:string r st
+
+Place isContentSuppliedExternally xsd:boolean r st

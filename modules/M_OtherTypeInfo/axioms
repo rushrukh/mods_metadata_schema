@@ -1,0 +1,6 @@
+Thing hasOtherTypeInfo OtherTypeInfo r uie if st
+
+OtherTypeInfo hasType xsd:string r e st
+OtherTypeInfo hasTypeAuthority xsd:string r st
+OtherTypeInfo hasTypeAuthorityURI xsd:anyURI r st
+OtherTypeInfo hasTypeURI xsd:anyURI r st

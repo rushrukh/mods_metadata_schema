@@ -1,0 +1,5 @@
+Thing sco ElementInfo
+
+ElementInfo hasDisplayLabel xsd:string r st
+ElementInfo hasLinkAttributes LinkAttributes r uie f if st
+ElementInfo hasLanguageAttributes LanguageAttributes r uie f if st

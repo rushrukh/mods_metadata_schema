@@ -1,0 +1,19 @@
+Thing hasCartographicSpecifications Cartographics r uie if st
+
+Cartographics hasCoordinates Coordinates d r e ie if st
+Coordinates hasLanguageAttributes LanguageAttributes r uie f if st
+Coordinates hasValue xsd:string r e st
+
+Cartographics hasScale Scale d r ie if st
+Scale hasLanguageAttributes LanguageAttributes r uie f if st
+Scale hasValue xsd:string r e st
+
+Cartographics hasProjection Projection d r ie if st
+Projection hasLanguageAttributes LanguageAttributes r uie f if st
+Projection hasValue xsd:string r e st
+
+Cartographics hasCartographicExtension CartographicExtension d r ie if st
+CartographicExtension hasLanguageAttributes LanguageAttributes r uie f if st
+CartographicExtension hasValue xsd:string r e st
+
+Cartographics hasAuthorityInfo AuthorityInfo r uie f if st

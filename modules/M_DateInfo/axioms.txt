@@ -1,0 +1,11 @@
+Thing hasDateInfo DateInfo r ie if st
+
+DateInfo hasDateAttributes DateAttributes r e uie f if st 
+DateInfo hasLanguageAttributes LanguageAttributes r uie f if st
+DateInfo isOfType DateInfoType.txt r e st
+
+DateAttributes hasDateQualifier Qualifier.txt r st
+DateAttributes hasDateEncodingType DateEncoding.txt r st
+DateAttributes isKeyDate xsd:boolean r st 
+DateAttributes isStartOrEndPoint Point.txt r st 
+DateAttributes hasAlternativeCalendar Calendar.txt r st
