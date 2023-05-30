@@ -1,0 +1,36 @@
+Item hasTitleInfo TitleInfo r e uie if st
+
+TitleInfo hasTitle Title d r e ie if st
+Title hasValue xsd:string r e st
+Title hasLanguageAttributes LanguageAttributes r uie f if st
+
+TitleInfo hasSubTitle SubTitle d r ie if st
+SubTitle hasValue xsd:string r e st
+SubTitle hasLanguageAttributes LanguageAttributes r uie f if st
+
+TitleInfo hasPartNumber PartNumber d r ie if st
+PartNumber hasValue xsd:string r e st
+PartNumber hasLanguageAttributes LanguageAttributes r uie f if st
+
+TitleInfo hasPartName PartName d r ie if st
+PartName hasValue xsd:string r e st
+PartName hasLanguageAttributes LanguageAttributes r uie f if st
+
+TitleInfo hasIgnorableTitlePart NonSort d r ie if st
+NonSort hasValue xsd:string r e st
+NonSort hasSpaceHandlingTechnique SpaceHandlingTechnique.txt r e st
+NonSort hasLanguageAttributes LanguageAttributes r uie f if st
+
+TitleInfo isContentSuppliedExternally xsd:boolean r st
+TitleInfo isPrimaryInstance Usage.txt r st
+TitleInfo hasAltFormatAttributes AltFormatAttributes r uie f if st
+TitleInfo hasAuthorityInfo AuthorityInfo r uie f if st
+TitleInfo sco Element
+
+TitleInfo hasTitleInfoType TitleInfoType.txt r ie st
+TitleInfo hasTitleInfoType OtherTypeInfo r ie st 
+
+/*
+TitleInfo may not have any type. If it has, it will be either TitleInfoType
+or OtherTypeInfo.
+*/

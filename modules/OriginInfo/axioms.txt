@@ -1,0 +1,21 @@
+Item hasOriginInfo OriginInfo r uie if st
+
+OriginInfo hasEdition Edition r ie f if st
+Edition hasValue xsd:string r e st
+Edition hasLanguageAttributes LanguageAttributes r uie f if st
+Edition isContentSuppliedExternally xsd:boolean r st
+
+OriginInfo hasPublicationFrequency Frequency r ie if st
+Frequency hasAuthorityInfo AuthorityInfo r uie f if st
+Frequency hasLanguageAttributes LanguageAttributes r uie f if st
+Frequency hasValue xsd:string r e st
+
+OriginInfo hasAssoicatedPlace Place r ie if st  
+OriginInfo hasAgent Name r uie if st
+OriginInfo hasDateInfo DateInfo r uie if st
+OriginInfo hasEventType xsd:string r st
+OriginInfo hasEventTypeURI xsd:anyURI r st
+OriginInfo hasIssuanceMethod IssuanceType.txt r st
+
+OriginInfo sco Element
+

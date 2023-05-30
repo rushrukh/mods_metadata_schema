@@ -1,0 +1,8 @@
+Item hasLanguage Language r uie if st
+
+Language isAssociatedWithResourcePart xsd:string r st
+Language hasLanguageTerm Term r e uie if st
+Language hasScriptTerm Term r uie if st
+Language isPrimaryInstance Usage.txt r st
+
+Language sco Element
