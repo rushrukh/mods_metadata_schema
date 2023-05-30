@@ -1,0 +1,8 @@
+Item hasNote Note r uie if st
+
+Note hasAlternativeFormatAttributes AltFormatAttributes r uie f if st
+Note hasNoteType xsd:string r st
+Note hasValue xsd:string r e st
+Note hasNoteTypeURI xsd:anyURI r st
+
+Note sco Element

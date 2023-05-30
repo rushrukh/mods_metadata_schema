@@ -1,0 +1,54 @@
+Item isAvailableAt Location r uie if st
+
+Location hasPhysicalLocation PhysicalLocation d r ie if st
+PhysicalLocation sco Element
+PhysicalLocation hasLocationType xsd:string r st
+PhysicalLocation hasAuthorityInfo AuthorityInfo r uie f if st
+PhysicalLocation hasValue xsd:string r e st
+
+Location hasShelfLocator ShelfLocator r ie if st
+ShelfLocator hasValue xsd:string r e st
+ShelfLocator hasLanguageAttributes LanguageAttributes r uie f if st
+
+Location hasUrl Url r ie if st
+Url hasResourceTypeUponAccess ResourceType.txt r st
+Url hasNote xsd:string r st
+Url hasDiplayLabel xsd:string r st
+Url isPrimaryInstance Usage.txt r st
+Url hasDateLastAccessed DateAttributes r uie f if st
+Url hasValue xsd:anyURI r e st
+
+Location hasModsAssociatedCopySpecificInformation HoldingSimple r ie if st
+HoldingSimple hasCopyInformation CopyInformation r e ie if st
+
+CopyInformation isOfForm Form d r ie if st
+Form hasLanguageAttributes LanguageAttributes r uie f if st
+Form hasAuthorityInfo AuthorityInfo r uie f if st
+Form hasFormType xsd:string r st
+
+CopyInformation hasSublocation SubLocation d r ie if st 
+SubLocation hasLanguageAttributes LanguageAttributes r uie f if st
+SubLocation hasValue xsd:string r e st
+
+CopyInformation hasShelfLocator ShelfLocator r ie if st
+ShelfLocator hasValue xsd:string r e st
+ShelfLocator hasLanguageAttributes LanguageAttributes r uie f if st
+
+CopyInformation hasElectronicLocator xsd:anyURI r st
+
+CopyInformation hasNote Note r uie if st 
+Note sco Element
+Note hasValue xsd:string r e st 
+
+CopyInformation hasAssociatedEnumerationAndChronology EnumerationAndChronology d r ie if st
+EnumerationAndChronology hasUnitType UnitType.txt r e st
+EnumerationAndChronology hasLanguageAttributes LanguageAttributes r uie f if st
+EnumerationAndChronology hasValue xsd:string r e st
+
+CopyInformation hasItemIdentifier ItemIdentifier r ie f if st
+ItemIdentifier hasIdentifierType xsd:string r st
+ItemIdentifier hasValue xsd:string r e st
+
+Location hasModsExternalCopySpecificInformation r st
+
+Location sco Element

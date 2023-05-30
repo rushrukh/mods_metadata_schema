@@ -1,0 +1,8 @@
+Item hasTableOfContent TableOfContents r uie if st
+
+TableOfContents hasAlternativeFormatAttributes AlternativeFormatAttributes r uie f if st
+TableOfContents isContentShareable xsd:boolean r st
+TableOfContents hasValue xsd:string r e st 
+TableOfContents hasTableOfContentsType xsd:string r st 
+
+TableOfContents sco Element

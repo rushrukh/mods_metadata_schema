@@ -1,0 +1,8 @@
+Thing providesAgentRole AgentRole r uie if st
+
+AgentRole hasRoleUnderName Name sd r st 
+
+Agent assumesAgentRole AgentRole sd r ie iqsf st 
+Agent hasName Name d r e ie iqsf st
+
+Name hasNameAsString xsd:string r e st

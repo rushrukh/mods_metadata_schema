@@ -1,0 +1,5 @@
+Item hasRelatedItem RelatedItem r uie if st
+
+RelatedItem isRelatedTo Item r e ie if st
+RelatedItem hasRelatedItemType RelatedItemType.txt r st
+RelatedItem hasRelatedItemType OtherTypeInfo r st

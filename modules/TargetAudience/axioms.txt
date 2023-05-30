@@ -1,0 +1,7 @@
+Item hasTargetAudience TargetAudience r uie if st
+
+TargetAudience hasAlternativeFormatAttributes AltFormatAttributes r uie f if st
+TargetAudience hasAuthorityInfo AuthorityInfo r uie f if st
+TargetAudience hasValue xsd:string r e st
+
+TargetAudience sco Element

@@ -1,0 +1,8 @@
+Item hasAccessCondition AccessCondition r uie if st
+
+AccessCondition hasAuthorityInfo AuthorityInfo r uie f if st
+AccessCondition hasAltFormatAttributes AltFormatAttributes r uie f if st
+AccessCondition hasRestrictionType xsd:string r st
+AccessCondition hasValue xsd:string r e st
+
+AccessCondition sco Element

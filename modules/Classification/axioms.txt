@@ -1,0 +1,9 @@
+Item hasClassfication Classification r uie if st
+
+Classification hasAuthorityInfo AuthorityInfo r uie f if st
+Classification isPrimaryInstance Usage.txt r st
+Classification hasEdition xsd:string r st 
+Classification hasValue xsd:string r e st
+Classification hasClassificationValueGenerator xsd:string r st
+
+Classification sco Element

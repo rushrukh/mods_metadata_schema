@@ -1,0 +1,8 @@
+Item hasAbstract Abstract r uie if st
+
+Abstract hasAlternativeFormatAttributes AltFormatAttributes r uie f if st
+Abstract isContentShareable xsd:boolean r st
+Abstract hasValue xsd:string r e st
+Abstract hasAbstractType xsd:string r st
+
+Abstract sco Element

@@ -1,0 +1,27 @@
+Item hasSubject Subject r uie if st
+
+Subject hasTopic Topic d r ie if st
+Topic hasAuthorityInfo AuthorityInfo r uie f if st
+Topic hasLanguageAttributes LanguageAttributes r uie f if st
+Topic hasValue xsd:string r e st
+
+Subject hasTemporalReference TemporalReference d r ie if st
+TemporalReference hasDateATtribute DateAttributes r uie f if st
+TemporalReference hasAuthorityInfo AuthorityInfo r uie f if st
+TemporalReference hasLanguageAttributes LanguageAttributes r uie f if st
+
+Subject isAssociatedWithOccupation Occupation d r ie if st
+Occupation hasValue xsd:string r e st
+Occupation hasAuthorityInfo AuthorityInfo r uie f if st
+Occupation hasLanguageAttributes LanguageAttributes r uie f if st
+
+Subject hasAuthorityInfo AuthorityInfo r uie f if st
+Subject hasTitleInfo TitleInfo r uie if st
+Subject hasName Name r uie if st
+Subject hasGenre Genre r uie if st
+Subject hasGeographicSubject GeographicSubject r uie if st
+Subject hasCartographicData Carographics r uie if st
+
+Subject isPrimaryInstance Usage.txt r st
+
+Subject sco Element

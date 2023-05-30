@@ -1,0 +1,6 @@
+Item hasExtension Extension r uie if st
+
+Extension hasTypeOfExtension xsd:string r st
+Extension hasExtensionInfo xsd:string r e st
+
+Extension sco Element

@@ -1,0 +1,33 @@
+Item hasRecordInfo RecordInfo r uie if st
+
+RecordInfo hasRecordContentSource RecordContentSource d r ie if st
+RecordContentSource hasAuthorityInfo AuthorityInfo r uie f if st
+RecordContentSource hasLanguageAttributes LanguageAttributes r uie f if st
+RecordContentSource hasValue xsd:string r e st
+
+RecordInfo hasRecordCreationDateInfo DateInfo d r ie f if st
+
+RecordInfo hasRecordChangeDateInfo DateInfo d r ie if st
+
+Record hasRecordIdentifier RecordIdentifier d r ie if st
+RecordIdentifier hasLanguageAttributes LanguageAttributes r uie f if st
+RecordIdentifier hasSource Source.txt r st
+RecordIdentifier hasRecordIdentifierValue xsd:string r e st
+
+RecordInfo hasRecordOrigin RecordOrigin d r ie if st
+RecordOrigin hasLanguageAttributes LanguageAttributes r uie f if st
+RecordOrigin hasRecordOriginValue xsd:string r e st
+
+RecordInfo hasRecordInfoNote RecordInfoNote d r ie if st
+RecordInfoNote sco Element
+RecordInfoNote isPrimaryInstance Usage.txt r st
+RecordInfoNote hasTypeURI xsd:anyURI r st
+RecordInfoNote hasNoteType xsd:string r st
+
+RecordInfo hasDescriptionStandard DescriptionStandard d r ie if st
+DescriptionStandard hasAuthorityInfo AuthorityInfo r uie f if st
+DescriptionStandard hasValue DescriptionStandard.txt r e st
+
+RecordInfo isPrimaryInstance Usage.txt r st 
+RecordInfo hasLanguageOfCataloging Language r ie f if st
+RecordInfo sco Element

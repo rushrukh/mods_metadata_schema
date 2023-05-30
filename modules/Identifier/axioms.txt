@@ -1,0 +1,8 @@
+Item hasIdentifier Identifier r uie if st
+
+Identifier hasIdentifierTypeURI xsd:anyURI r st
+Identifier hasIdentifierType IdentifierType.txt r st
+Identifier hasValidity xsd:boolean r st
+Identifier hasValue xsd:string r e st
+
+Identifier sco Element
