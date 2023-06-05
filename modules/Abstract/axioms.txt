@@ -5,4 +5,5 @@ Abstract isContentShareable xsd:boolean r st
 Abstract hasValue xsd:string r e st
 Abstract hasAbstractType xsd:string r st
 
-Abstract sco Element
+Abstract sco ElementInfo
+Abstract sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
