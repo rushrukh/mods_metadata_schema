@@ -5,4 +5,5 @@ AccessCondition hasAltFormatAttributes AltFormatAttributes r uie f if st
 AccessCondition hasRestrictionType xsd:string r st
 AccessCondition hasValue xsd:string r e st
 
-AccessCondition sco Element
+AccessCondition sco ElementInfo
+AccessCondition sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

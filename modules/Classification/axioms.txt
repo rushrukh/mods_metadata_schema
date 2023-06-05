@@ -6,4 +6,6 @@ Classification hasEdition xsd:string r st
 Classification hasValue xsd:string r e st
 Classification hasClassificationValueGenerator xsd:string r st
 
-Classification sco Element
+Classification sco ElementInfo
+Classification sco not (ex hasLinkAttributes. ex hasXlink.Top)
+Classification sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
