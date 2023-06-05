@@ -6,3 +6,5 @@ Identifier hasValidity xsd:boolean r st
 Identifier hasValue xsd:string r e st
 
 Identifier sco Element
+Identifier sco not (ex hasLinkAttributes. ex hasXlink.Top)
+Identifier sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
