@@ -19,15 +19,19 @@ RecordOrigin hasLanguageAttributes LanguageAttributes r uie f if st
 RecordOrigin hasRecordOriginValue xsd:string r e st
 
 RecordInfo hasRecordInfoNote RecordInfoNote d r ie if st
-RecordInfoNote sco Element
 RecordInfoNote isPrimaryInstance Usage.txt r st
-RecordInfoNote hasTypeURI xsd:anyURI r st
-RecordInfoNote hasNoteType xsd:string r st
+RecordInfoNote sco Note
 
 RecordInfo hasDescriptionStandard DescriptionStandard d r ie if st
 DescriptionStandard hasAuthorityInfo AuthorityInfo r uie f if st
+DescriptionStandard hasLanguageAttributes LanguageAttributes r uie f if st
 DescriptionStandard hasValue DescriptionStandard.txt r e st
 
 RecordInfo isPrimaryInstance Usage.txt r st 
-RecordInfo hasLanguageOfCataloging Language r ie f if st
-RecordInfo sco Element
+RecordInfo hasLanguageOfCataloging LanguageOfCatologing r ie f if st
+LanguageOfCatologing sco Language
+LanguageOfCatologing sco not (ex hasLanguageAttributes.Top) # Needs to be discussed
+
+RecordInfo sco ElementInfo
+RecordInfo sco not (ex hasLinkAttributes. ex hasXlink.Top)
+RecordInfo sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

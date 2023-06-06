@@ -16,12 +16,9 @@ Extent hasLanguageAttributes LanguageAttributes r uie f if st
 Extent isContentSuppliedExternally xsd:boolean r st
 
 PhysicalDescription hasGeneralInformation Note d r ie if st
-Note hasNoteType xsd:string r st
-Note hasTypeURI xsd:anyURI r st
-Note hasValue xsd:string r e st
-Note sco Element
 
 PhysicalDescription hasReformattingQuality ReformattingQuality.txt r st
 PhysicalDescription hasDigitalOriginMethod DigitalOrigin.txt r st
 
-PhysicalDescription sco Element
+PhysicalDescription sco ElementInfo
+PhysicalDescription sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
