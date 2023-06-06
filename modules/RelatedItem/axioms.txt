@@ -3,3 +3,7 @@ Item hasRelatedItem RelatedItem r uie if st
 RelatedItem isRelatedTo Item r e ie if st
 RelatedItem hasRelatedItemType RelatedItemType.txt r st
 RelatedItem hasRelatedItemType OtherTypeInfo r st
+
+RelatedItem hasLinkAttributes LinkAttributes r uie f if st
+RelatedItem sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
+RelatedItem sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

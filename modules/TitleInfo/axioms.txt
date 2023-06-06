@@ -32,5 +32,5 @@ TitleInfo hasTitleInfoType OtherTypeInfo r ie st
 
 /*
 TitleInfo may not have any type. If it has, it will be either TitleInfoType
-or OtherTypeInfo.
+or OtherTypeInfo. 
 */
