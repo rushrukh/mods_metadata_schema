@@ -6,4 +6,6 @@ TypeOfResource isCollection xsd:boolean r st
 TypeOfResource isManuscript xsd:boolean r st
 TypeOfResource hasValue xsd:string r e st
 
-TypeOfResource sco Element
+TypeOfResource sco ElementInfo
+TypeOfResource sco not (ex hasLinkAttributes. ex hasXlink.Top)
+TypeOfResource sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
