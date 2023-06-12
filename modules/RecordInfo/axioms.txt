@@ -33,5 +33,5 @@ LanguageOfCatologing sco Language
 LanguageOfCatologing sco not (ex hasLanguageAttributes.Top) # Needs to be discussed
 
 RecordInfo sco ElementInfo
-RecordInfo sco not (ex hasLinkAttributes. ex hasXlink.Top)
-RecordInfo sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# RecordInfo sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# RecordInfo sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

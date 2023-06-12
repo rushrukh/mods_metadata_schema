@@ -21,4 +21,4 @@ PhysicalDescription hasReformattingQuality ReformattingQuality.txt r st
 PhysicalDescription hasDigitalOriginMethod DigitalOrigin.txt r st
 
 PhysicalDescription sco ElementInfo
-PhysicalDescription sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# PhysicalDescription sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

@@ -6,4 +6,4 @@ TableOfContents hasValue xsd:string r e st
 TableOfContents hasTableOfContentsType xsd:string r st 
 
 TableOfContents sco ElementInfo
-TableOfContents sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# TableOfContents sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

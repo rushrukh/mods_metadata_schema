@@ -47,5 +47,5 @@ Part hasResourcePartType xsd:string r st
 Part hasOrder xsd:int r st
 
 Part sco ElementInfo
-Part sco not (ex hasLinkAttributes. ex hasXlink.Top)
-Part sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# Part sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# Part sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

@@ -5,5 +5,5 @@ RelatedItem hasRelatedItemType RelatedItemType.txt r st
 RelatedItem hasRelatedItemType OtherTypeInfo r st
 
 RelatedItem hasLinkAttributes LinkAttributes r uie f if st
-RelatedItem sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
-RelatedItem sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# RelatedItem sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
+# RelatedItem sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

@@ -4,7 +4,7 @@ Extension hasTypeOfExtension xsd:string r st
 Extension hasExtensionInfo xsd:string r e st
 
 Extension sco ElementInfo
-Extension sco not (ex hasLinkAttributes. ex hasXlink.Top)
-Extension sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
-Extension sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
-Extension sco not (ex hasLanguageAttributes)
+# Extension sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# Extension sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
+# Extension sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# Extension sco not (ex hasLanguageAttributes)

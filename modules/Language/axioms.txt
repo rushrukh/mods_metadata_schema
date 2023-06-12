@@ -6,7 +6,7 @@ Language hasScriptTerm Term r uie if st
 Language isPrimaryInstance Usage.txt r st
 
 Language sco ElementInfo
-Language sco not (ex hasLinkAttributes. ex hasXlink.Top)
-Language sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# Language sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# Language sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
 
-Language sco not (ex hasScriptTerm. ex hasAltRepGroup.Top)
+# Language sco not (ex hasScriptTerm. ex hasAltRepGroup.Top)

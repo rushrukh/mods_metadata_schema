@@ -5,4 +5,4 @@ Note hasValue xsd:string r e st
 Note hasNoteTypeURI xsd:anyURI r st
 
 Note sco ElementInfo
-Note sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# Note sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

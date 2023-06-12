@@ -1,4 +1,4 @@
 Thing hasAltFormatAttributes AltFormatAttributes r uie if st
 
-AltFormatAttributes hasAlternativeFormat xsd:anyURI
-AltFormatAttributes hasContentType xsd:string
+AltFormatAttributes hasAlternativeFormat xsd:anyURI r e st
+AltFormatAttributes hasContentType xsd:string r st

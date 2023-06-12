@@ -23,5 +23,5 @@ OriginInfo hasEventTypeURI xsd:anyURI r st
 OriginInfo hasIssuanceMethod IssuanceType.txt r st
 
 OriginInfo sco ElementInfo
-OriginIfno sco not (ex hasLinkAttributes. ex hasXlink.Top)
-OriginIfno sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# OriginIfno sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# OriginIfno sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

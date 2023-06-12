@@ -18,15 +18,15 @@ Occupation hasLanguageAttributes LanguageAttributes r uie f if st
 
 Subject hasAuthorityInfo AuthorityInfo r uie f if st
 
-Subject hasTitleInfo TitleInfo r uie if st
-TitleInfo sco not (ex isPrimaryInstance.Top)
-TitleInfo sco not (ex isContentSuppliedExternally.Top)
-TitleInfo sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
-TitleInfo sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+Subject hasTitleInfo TitleInfo d r ie if st
+# TitleInfo sco not (ex isPrimaryInstance.Top)
+# TitleInfo sco not (ex isContentSuppliedExternally.Top)
+# TitleInfo sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
+# TitleInfo sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
 
 Subject hasName Name r uie if st
-Name sco not (ex hasAssociatedName.Top)
-Name sco not (ex hasEtal.Top)
+# Name sco not (ex hasAssociatedName.Top)
+# Name sco not (ex hasEtal.Top)
 
 Subject hasGenre Genre r uie if st
 
@@ -37,4 +37,4 @@ Subject hasCartographicSpecifications Carographics r uie if st
 Subject isPrimaryInstance Usage.txt r st
 
 Subject sco ElementInfo
-Subject sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# Subject sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

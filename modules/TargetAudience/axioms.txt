@@ -5,6 +5,5 @@ TargetAudience hasAuthorityInfo AuthorityInfo r uie f if st
 TargetAudience hasValue xsd:string r e st
 
 TargetAudience sco ElementInfo
-TargetAudience sco not (ex hasLinkAttributes. ex hasXlink.Top)
-TargetAudience sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
-# TargetAudience sco not (ex hasAltFormatAttributes. ex hasContentType.Top) Not adding this because it might make sense to have a ContentType
+# TargetAudience sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# TargetAudience sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

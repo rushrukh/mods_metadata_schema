@@ -7,5 +7,5 @@ TypeOfResource isManuscript xsd:boolean r st
 TypeOfResource hasValue xsd:string r e st
 
 TypeOfResource sco ElementInfo
-TypeOfResource sco not (ex hasLinkAttributes. ex hasXlink.Top)
-TypeOfResource sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# TypeOfResource sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# TypeOfResource sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
