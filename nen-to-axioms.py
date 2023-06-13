@@ -80,10 +80,7 @@ def create_cardinality_node(pred, card_type, cardinality, ont_o, g):
 def nen_to_axioms(input_dir):
 	
     input_file = input_dir + '/axioms.txt'
-
-    if not os.path.exists(input_dir + '/output'):
-        os.makedirs(input_dir + '/output')
-    output_file = input_dir + '/output/output.ttl'
+    output_file = input_dir + '/graph.ttl'
 
     g = init_kg()
 
