@@ -27,8 +27,8 @@ Name hasAuthorityInfo AuthorityInfo r uie f if st
 Name sco ElementInfo
 
 Organization hasName Name r e uie f if st
-Organization hasLinkAttributes LinkAttributes r uie f if st # Needs Discussion
-Organization providesAgentRole AgentRole r uie if st # Needs Discussion
+Organization hasLinkAttributes LinkAttributes r uie f if st
+Organization providesAgentRole AgentRole r uie if st
 
 AgentRole hasRoleUnderName Name sd r st
 AgentRole hasLanguageAttributes LanguageAttributes r uie f if st

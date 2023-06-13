@@ -88,10 +88,15 @@ def nen_to_axioms(input_dir):
     g = init_kg()
 
     with open(input_file, "r") as f:
-        views = [line.strip() for line in f.readlines() if not line[0] == "#"]
-	
+        views = [line.strip() for line in f.readlines() if (line.strip() and (line[0] != "#"))]
+
         for view in views:
-            s, p, o, *ax_types = view.split(" ")
+            try:
+                s, p, o, *ax_types = view.split(" ")
+            except ValueError as e:
+                #  print(f"{e} at {view} in {input_file}")
+                 raise Exception(f"Error at {view} in {input_file}")
+
             ## create uris
             ont_s = ont_ns[s]
             ont_o = ont_ns[o]
@@ -101,7 +106,7 @@ def nen_to_axioms(input_dir):
             else:
                 ont_p = ont_ns[p]
                 for line_no, ax_type in enumerate(ax_types, start=1):
-                    if ax_type not in ["dj", "d", "sd", "r", "sr", "e", "ie", "f", "qf", "sf", "qsf", "if", "iqf", "isf", "iqsf", "st"]:
+                    if ax_type not in ["dj", "d", "sd", "r", "sr", "e", "ie", "uie", "f", "qf", "sf", "qsf", "if", "iqf", "isf", "iqsf", "st"]:
                         raise Exception(f"Illegal axiom type at Line {line_no}: {ax_type}.")
 
                     if ax_type == "dj":
@@ -138,6 +143,9 @@ def nen_to_axioms(input_dir):
                         inverse_p = create_inverse_prop(ont_p, g)
                         rhs = create_restriction_node(inverse_p, ont_o, "exists", g)
                         g.add( (ont_s, sco, rhs) )
+
+                    if ax_type == "uie":
+                        pass
                     
                     # Functional
                     if ax_type == "f":
@@ -185,7 +193,7 @@ def nen_to_axioms(input_dir):
                     
                     # Structural Tautology
                     if ax_type == "st":
-                        rhs = create_cardinality_node(ont_p, 0, ont_o, g)
+                        rhs = create_cardinality_node(ont_p, "min", 0, ont_o, g)
                         g.add( (ont_s, sco, rhs) )
 
     temp = g.serialize(format="turtle", encoding="utf-8", destination=output_file)
@@ -200,9 +208,7 @@ def get_all_axioms():
     input_dirs = [f.path for f in os.scandir(base_dir) if f.is_dir()]
 
     # 3. Get OWL file for each input_dir
-
     for input_dir in input_dirs:
          nen_to_axioms(input_dir)
-
 
 get_all_axioms()

@@ -1,0 +1,79 @@
+@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+kastle-ont:Organization rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LinkAttributes ;
+            owl:onProperty kastle-ont:hasLinkAttributes ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasName ;
+            owl:someValuesFrom kastle-ont:Name ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasName ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:AgentRole ;
+            owl:onProperty kastle-ont:providesAgentRole ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasStandardizedName ] .
+
+kastle-ont:AgentRole rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasRoleUnderName ] .
+
+owl:Thing rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLinkAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasStandardizedName ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLinkAttributes ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasName ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasName ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:providesAgentRole ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasRoleUnderName ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasStandardizedName ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LinkAttributes ;
+            owl:onProperty kastle-ont:hasLinkAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasStandardizedName ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:AgentRole ;
+            owl:onProperty kastle-ont:providesAgentRole ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasName ] .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:AgentRole ;
+    owl:onProperty kastle-ont:hasRoleUnderName ;
+    owl:someValuesFrom kastle-ont:AgentRole .
+
