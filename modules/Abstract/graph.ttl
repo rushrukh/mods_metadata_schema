@@ -2,6 +2,32 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+                    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+                    @prefix xml: <http://www.w3.org/XML/1998/namespace> .
+                    @prefix modl: <https://archive.org/services/purl/domain/modular_ontology_design_library> .
+                    @prefix opla-cp: <http://ontologydesignpatterns.org/opla-cp#> .
+                    @prefix opla-sd: <http://ontologydesignpatterns.org/opla-sd#> .
+                    @prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> . 
+<https://kastle-labl.org/lod/ontology/> rdf:type owl:Ontology ;
+                                                                opla-core:hasPatternName "Abstract Pattern" ;
+                                                                opla-cp:addressesScenario """Use Case
+                                                                Use Case Description"""^^xsd:string ;
+                                                                opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
+                                                                                            "cq2"^^xsd:string ;
+                                                                opla-sd:hasConnections """Item hasAbstract Abstract r uie if st
+Abstract hasAlternativeFormatAttributes AltFormatAttributes r uie f if st
+Abstract isContentShareable xsd:boolean r st
+Abstract hasValue xsd:string r e st
+Abstract hasAbstractType xsd:string r st
+Abstract sco ElementInfo"""^^xsd:string ;
+                                                                opla-sd:hasSchemaDiagramFileName "Abstract.png"^^xsd:string ;
+                                                                dc:contributor "Cogan Shimizu" ,
+                                                                            "Pascal Hitzler" ,
+                                                                            "Rushrukh Rayan" ;
+                                                                dc:creator "Cogan Shimizu" ,
+                                                                        "Pascal Hitzler" ,
+                                                                        "Rushrukh Rayan" .
 
 kastle-ont:Item rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
@@ -9,6 +35,14 @@ kastle-ont:Item rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasAbstract ] .
 
 kastle-ont:Abstract rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
+            owl:onProperty kastle-ont:isContentShareable ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasAbstractType ],
+        [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasValue ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
         [ a owl:Restriction ;
@@ -18,26 +52,26 @@ kastle-ont:Abstract rdfs:subClassOf [ a owl:Restriction ;
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasAbstractType ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:isContentShareable ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasValue ],
         kastle-ont:ElementInfo .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:isContentShareable ],
+            owl:allValuesFrom kastle-ont:Abstract ;
+            owl:onProperty kastle-ont:hasAbstract ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasAbstractType ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Abstract ;
-            owl:onProperty kastle-ont:hasAbstract ],
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAbstract ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
+            owl:onProperty kastle-ont:isContentShareable ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasValue ],
@@ -47,13 +81,5 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasAlternativeFormatAttributes ] ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:AltFormatAttributes ;
-            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAbstract ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
             owl:onProperty kastle-ont:hasAlternativeFormatAttributes ] .
 
