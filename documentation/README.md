@@ -1,1 +1,1 @@
-*** Documentation -- all modules + axioms + schema diagrams *** 
+ Documentation -- all modules + axioms + schema diagrams
