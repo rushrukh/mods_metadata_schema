@@ -28,9 +28,9 @@ DescriptionStandard hasLanguageAttributes LanguageAttributes r uie f if st
 DescriptionStandard hasValue DescriptionStandard.txt r e st
 
 RecordInfo isPrimaryInstance Usage.txt r st 
-RecordInfo hasLanguageOfCataloging LanguageOfCatologing r ie f if st
-LanguageOfCatologing sco Language
-LanguageOfCatologing sco not (ex hasLanguageAttributes.Top) # Needs to be discussed
+RecordInfo hasLanguageOfCataloging LanguageOfCataloging r ie f if st
+LanguageOfCataloging sco Language
+# LanguageOfCataloging sco not (ex hasLanguageAttributes.Top)
 
 RecordInfo sco ElementInfo
 # RecordInfo sco not (ex hasLinkAttributes. ex hasXlink.Top)
