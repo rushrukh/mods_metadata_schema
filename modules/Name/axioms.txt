@@ -4,7 +4,7 @@ Item hasAssociatedPrimaryName Name r uie f if st
 Name hasNamePart NamePart d r e ie if st
 NamePart hasValue xsd:string r e st
 NamePart hasNamePartType NamePartType.txt r st
-NamePart sco Element
+NamePart sco ElementInfo
 
 Name hasNameIdentifier NameIdentifier d r ie if st
 NameIdentifier sco Identifier
@@ -24,7 +24,7 @@ Etal hasLanguageAttributes LanguageAttributes r uie f if st
 Name hasNameType NameType.txt r st
 Name isPrimaryInstance Usage.txt r st
 Name hasAuthorityInfo AuthorityInfo r uie f if st
-Name sco Element
+Name sco ElementInfo
 
 Organization hasName Name r e uie f if st
 Organization hasLinkAttributes LinkAttributes r uie f if st
@@ -34,3 +34,8 @@ AgentRole hasRoleUnderName Name sd r st
 AgentRole hasLanguageAttributes LanguageAttributes r uie f if st
 AgentRole hasAuthorityInfo AuthorityInfo r uie f if st
 AgentRole hasRoleType RoleType.txt r st
+
+# NamePart sco (ex hasLinkAttributes. ex hasID.Top)
+# NamePart sco (ex hasLinkAttributes. ex hasIDRef.Top)
+# NamePart sco (ex hasLinkAttributes. ex hasXlink.Top)
+# NamePart sco (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

@@ -1,0 +1,109 @@
+@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+                    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+                    @prefix xml: <http://www.w3.org/XML/1998/namespace> .
+                    @prefix modl: <https://archive.org/services/purl/domain/modular_ontology_design_library> .
+                    @prefix opla-cp: <http://ontologydesignpatterns.org/opla-cp#> .
+                    @prefix opla-sd: <http://ontologydesignpatterns.org/opla-sd#> .
+                    @prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> . 
+<https://kastle-labl.org/lod/ontology/> rdf:type owl:Ontology ;
+                                                                opla-core:hasPatternName "Role Module Pattern" ;
+                                                                opla-cp:addressesScenario """Use Case
+                                                                Use Case Description"""^^xsd:string ;
+                                                                opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
+                                                                                            "cq2"^^xsd:string ;
+                                                                opla-sd:hasConnections """Thing providesAgentRole AgentRole r uie if st
+AgentRole hasRoleUnderName Name sd r st
+Agent assumesAgentRole AgentRole sd r ie iqsf st
+Agent hasName Name d r e ie iqsf st
+Name hasNameAsString xsd:string r e st"""^^xsd:string ;
+                                                                opla-sd:hasSchemaDiagramFileName "M_Role.png"^^xsd:string ;
+                                                                dc:contributor "Cogan Shimizu" ,
+                                                                            "Pascal Hitzler" ,
+                                                                            "Rushrukh Rayan" ;
+                                                                dc:creator "Cogan Shimizu" ,
+                                                                        "Pascal Hitzler" ,
+                                                                        "Rushrukh Rayan" .
+
+kastle-ont:Thing rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:AgentRole ;
+            owl:onProperty kastle-ont:providesAgentRole ] .
+
+owl:Thing rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasRoleUnderName ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasName ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:providesAgentRole ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:AgentRole ;
+            owl:onProperty kastle-ont:providesAgentRole ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasNameAsString ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:AgentRole ;
+            owl:onProperty kastle-ont:assumesAgentRole ] .
+
+kastle-ont:Agent rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:AgentRole ;
+            owl:onProperty [ owl:inverseOf kastle-ont:assumesAgentRole ] ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:AgentRole ;
+            owl:onProperty kastle-ont:assumesAgentRole ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasName ] ;
+            owl:someValuesFrom kastle-ont:Name ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:assumesAgentRole ] ;
+            owl:someValuesFrom kastle-ont:AgentRole ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasName ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasName ;
+            owl:someValuesFrom kastle-ont:Name ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Name ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasName ] ] .
+
+kastle-ont:Name rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasNameAsString ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasNameAsString ] .
+
+kastle-ont:AgentRole rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Name ;
+            owl:onProperty kastle-ont:hasRoleUnderName ] .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:AgentRole ;
+    owl:onProperty kastle-ont:hasRoleUnderName ;
+    owl:someValuesFrom kastle-ont:AgentRole .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:Agent ;
+    owl:onProperty kastle-ont:assumesAgentRole ;
+    owl:someValuesFrom kastle-ont:Agent .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:Agent ;
+    owl:onProperty kastle-ont:hasName ;
+    owl:someValuesFrom owl:Thing .
+

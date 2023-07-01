@@ -7,9 +7,9 @@ PlaceTerm hasLanguageAttributes LanguageAttributes r uie f if st
 PlaceTerm hasAuthorityInfo AuthorityInfo r uie f if st
 PlaceTerm hasValue xsd:string r e st
 
-Place hasCartographicSpecifications Cartographics r ie iqsf st
+Place hasCartographicSpecifications Cartographics r uie iqsf st
 Cartographics hasAuthorityInfo AuthorityInfo r uie f if st
 
-Place hasPlaceIdentifier xsd:string r st
+Place hasPlaceIdentifier xsd:anyURI r st
 
 Place isContentSuppliedExternally xsd:boolean r st

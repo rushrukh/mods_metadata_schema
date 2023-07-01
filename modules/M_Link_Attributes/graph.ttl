@@ -1,0 +1,84 @@
+@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+                    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+                    @prefix xml: <http://www.w3.org/XML/1998/namespace> .
+                    @prefix modl: <https://archive.org/services/purl/domain/modular_ontology_design_library> .
+                    @prefix opla-cp: <http://ontologydesignpatterns.org/opla-cp#> .
+                    @prefix opla-sd: <http://ontologydesignpatterns.org/opla-sd#> .
+                    @prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> . 
+<https://kastle-labl.org/lod/ontology/> rdf:type owl:Ontology ;
+                                                                opla-core:hasPatternName "Link Attributes Module Pattern" ;
+                                                                opla-cp:addressesScenario """Use Case
+                                                                Use Case Description"""^^xsd:string ;
+                                                                opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
+                                                                                            "cq2"^^xsd:string ;
+                                                                opla-sd:hasConnections """Thing hasLinkAttributes LinkAttributes r uie f if st
+LinkAttributes hasID xsd:string r st
+LinkAttributes hasIDRef xsd:string r st
+LinkAttributes hasXlink xsd:string r st
+LinkAttributes hasAltRepGroup xsd:string r st
+LinkAttributes hasNameTitleGroup xsd:string r st"""^^xsd:string ;
+                                                                opla-sd:hasSchemaDiagramFileName "M_Link_Attributes.png"^^xsd:string ;
+                                                                dc:contributor "Cogan Shimizu" ,
+                                                                            "Pascal Hitzler" ,
+                                                                            "Rushrukh Rayan" ;
+                                                                dc:creator "Cogan Shimizu" ,
+                                                                        "Pascal Hitzler" ,
+                                                                        "Rushrukh Rayan" .
+
+kastle-ont:Thing rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LinkAttributes ;
+            owl:onProperty kastle-ont:hasLinkAttributes ] .
+
+owl:Thing rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLinkAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasNameTitleGroup ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasXlink ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLinkAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasIDRef ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasAltRepGroup ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LinkAttributes ;
+            owl:onProperty kastle-ont:hasLinkAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasID ] .
+
+kastle-ont:LinkAttributes rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasXlink ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasID ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasIDRef ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasAltRepGroup ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasNameTitleGroup ] .
+

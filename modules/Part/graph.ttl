@@ -1,0 +1,486 @@
+@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+                    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+                    @prefix xml: <http://www.w3.org/XML/1998/namespace> .
+                    @prefix modl: <https://archive.org/services/purl/domain/modular_ontology_design_library> .
+                    @prefix opla-cp: <http://ontologydesignpatterns.org/opla-cp#> .
+                    @prefix opla-sd: <http://ontologydesignpatterns.org/opla-sd#> .
+                    @prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> . 
+<https://kastle-labl.org/lod/ontology/> rdf:type owl:Ontology ;
+                                                                opla-core:hasPatternName "Part Pattern" ;
+                                                                opla-cp:addressesScenario """Use Case
+                                                                Use Case Description"""^^xsd:string ;
+                                                                opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
+                                                                                            "cq2"^^xsd:string ;
+                                                                opla-sd:hasConnections """Item hasPartOfReource Part r uie if st
+Part hasDetail Detail r uie if st
+Detail hasDetailType xsd:string r st
+Detail hasHierarchicalLevel xsd:int r st
+Detail hasPartNumber PartNumber r uie if st
+PartNumber hasValue xsd:int r e st
+PartNumber hasLanguageAttributes LanguageAttributes r uie f if st
+Detail hasCaption Caption r uie if st
+Caption hasLanguageAttributes LanguageAttributes r uie f if st
+Caption hasValue xsd:string r e st
+Detail hasPartTitle PartTitle r uie if st
+PartTitle hasValue xsd:string r e st
+PartTitle hasLanguageAttributes LanguageAttributes r uie f if st
+Part hasExtent Extent r uie if st
+Extent hasUnit xsd:string r st
+Extent hasStartValue Start r e ie f if st
+Start hasValue xsd:int r e st
+Start hasLanguageAttributes LanguageAttributes r uie f if st
+Extent hasEndValue End r e ie f if st
+End hasValue xsd:int r e st
+End hasLanguageAttributes LanguageAttributes r uie f if st
+Extent hasTotalValue Total r ie f if st
+Total hasValue xsd:int r e st
+Total hasLanguageAttributes LanguageAttributes r uie f if st
+Extent hasListOfUnits ListOfUnits r ie if st
+ListOfUnits hasValue xsd:string r e st
+ListOfUnits hasLanguageAttributes LanguageAttributes r uie f if st
+Part hasRelevantDateInfo DateInfo r uie if st
+Part hasText Text r uie if st
+Text hasDisplayLabel xsd:string r st
+Text hasLanguageAttributes LanguageAttributes r uie f if st
+Text hasTextType xsd:string r st
+Text hasValue xsd:string r e st
+Part hasResourcePartType xsd:string r st
+Part hasOrder xsd:int r st
+Part sco ElementInfo"""^^xsd:string ;
+                                                                opla-sd:hasSchemaDiagramFileName "Part.png"^^xsd:string ;
+                                                                dc:contributor "Cogan Shimizu" ,
+                                                                            "Pascal Hitzler" ,
+                                                                            "Rushrukh Rayan" ;
+                                                                dc:creator "Cogan Shimizu" ,
+                                                                        "Pascal Hitzler" ,
+                                                                        "Rushrukh Rayan" .
+
+kastle-ont:Item rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Part ;
+            owl:onProperty kastle-ont:hasPartOfReource ] .
+
+kastle-ont:Caption rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ] .
+
+kastle-ont:Detail rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasHierarchicalLevel ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Caption ;
+            owl:onProperty kastle-ont:hasCaption ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasDetailType ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:PartTitle ;
+            owl:onProperty kastle-ont:hasPartTitle ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:PartNumber ;
+            owl:onProperty kastle-ont:hasPartNumber ] .
+
+kastle-ont:Extent rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:End ;
+            owl:onProperty kastle-ont:hasEndValue ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasStartValue ] ;
+            owl:someValuesFrom kastle-ont:Start ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasEndValue ] ;
+            owl:someValuesFrom kastle-ont:End ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Total ;
+            owl:onProperty kastle-ont:hasTotalValue ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasUnit ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasTotalValue ] ;
+            owl:someValuesFrom kastle-ont:Total ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:ListOfUnits ;
+            owl:onProperty kastle-ont:hasListOfUnits ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasStartValue ;
+            owl:someValuesFrom kastle-ont:Start ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasListOfUnits ] ;
+            owl:someValuesFrom kastle-ont:ListOfUnits ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Start ;
+            owl:onProperty kastle-ont:hasStartValue ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasEndValue ;
+            owl:someValuesFrom kastle-ont:End ] .
+
+kastle-ont:Part rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:DateInfo ;
+            owl:onProperty kastle-ont:hasRelevantDateInfo ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Detail ;
+            owl:onProperty kastle-ont:hasDetail ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasOrder ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasResourcePartType ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Extent ;
+            owl:onProperty kastle-ont:hasExtent ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Text ;
+            owl:onProperty kastle-ont:hasText ],
+        kastle-ont:ElementInfo .
+
+kastle-ont:PartNumber rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ] .
+
+kastle-ont:PartTitle rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ] .
+
+kastle-ont:Text rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasTextType ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasDisplayLabel ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValue ] .
+
+kastle-ont:ListOfUnits rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValue ] .
+
+kastle-ont:Total rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ] .
+
+kastle-ont:End rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasValue ] .
+
+kastle-ont:Start rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasValue ] .
+
+owl:Thing rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasStartValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasPartNumber ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasText ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasEndValue ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:PartTitle ;
+            owl:onProperty kastle-ont:hasPartTitle ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasResourcePartType ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:DateInfo ;
+            owl:onProperty kastle-ont:hasRelevantDateInfo ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasCaption ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasUnit ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasDetailType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasDetail ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasStartValue ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasListOfUnits ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:ListOfUnits ;
+            owl:onProperty kastle-ont:hasListOfUnits ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Detail ;
+            owl:onProperty kastle-ont:hasDetail ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasRelevantDateInfo ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:End ;
+            owl:onProperty kastle-ont:hasEndValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasDisplayLabel ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasPartOfReource ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasTotalValue ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Caption ;
+            owl:onProperty kastle-ont:hasCaption ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Text ;
+            owl:onProperty kastle-ont:hasText ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasTextType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasPartTitle ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Total ;
+            owl:onProperty kastle-ont:hasTotalValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasHierarchicalLevel ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Start ;
+            owl:onProperty kastle-ont:hasStartValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:PartNumber ;
+            owl:onProperty kastle-ont:hasPartNumber ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Part ;
+            owl:onProperty kastle-ont:hasPartOfReource ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasExtent ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasEndValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Extent ;
+            owl:onProperty kastle-ont:hasExtent ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:int> ;
+            owl:onProperty kastle-ont:hasOrder ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasTotalValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ] .
+

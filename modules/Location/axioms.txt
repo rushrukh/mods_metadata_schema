@@ -1,7 +1,6 @@
 Item isAvailableAt Location r uie if st
 
 Location hasPhysicalLocation PhysicalLocation d r ie if st
-PhysicalLocation sco Element
 PhysicalLocation hasLocationType xsd:string r st
 PhysicalLocation hasAuthorityInfo AuthorityInfo r uie f if st
 PhysicalLocation hasValue xsd:string r e st
@@ -15,7 +14,7 @@ Url hasResourceTypeUponAccess ResourceType.txt r st
 Url hasNote xsd:string r st
 Url hasDiplayLabel xsd:string r st
 Url isPrimaryInstance Usage.txt r st
-Url hasDateLastAccessed DateAttributes r uie f if st
+Url hasDateLastAccessed xsd:string r st
 Url hasValue xsd:anyURI r e st
 
 Location hasModsAssociatedCopySpecificInformation HoldingSimple r ie if st
@@ -36,9 +35,7 @@ ShelfLocator hasLanguageAttributes LanguageAttributes r uie f if st
 
 CopyInformation hasElectronicLocator xsd:anyURI r st
 
-CopyInformation hasNote Note r uie if st 
-Note sco Element
-Note hasValue xsd:string r e st 
+CopyInformation hasNote Note r uie if st  
 
 CopyInformation hasAssociatedEnumerationAndChronology EnumerationAndChronology d r ie if st
 EnumerationAndChronology hasUnitType UnitType.txt r e st
@@ -51,4 +48,12 @@ ItemIdentifier hasValue xsd:string r e st
 
 Location hasModsExternalCopySpecificInformation r st
 
-Location sco Element
+Location sco ElementInfo
+# Location sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# Location sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+
+PhysicalLocation sco ElementInfo
+# PhysicalLocation sco not (ex hasLinkAttributes. ex hasID.Top)
+# PhysicalLocation sco not (ex hasLinkAttributes. ex hasIDRef.Top)
+# PhysicalLocation sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
+# PhysicalLocation sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

@@ -10,12 +10,18 @@ Frequency hasAuthorityInfo AuthorityInfo r uie f if st
 Frequency hasLanguageAttributes LanguageAttributes r uie f if st
 Frequency hasValue xsd:string r e st
 
+OriginInfo hasDisplayDate DisplayDate r uie f if st
+DisplayDate hasValue xsd:string r e st
+DisplayDate isContentSuppliedExternally xsd:boolean r st
+DisplayDate hasLanguageAttributes LanguageAttributes r uie f if st
+
 OriginInfo hasAssoicatedPlace Place r ie if st  
-OriginInfo hasAgent Name r uie if st
+OriginInfo hasAssociatedAgentRole AgentRole r uie if st
 OriginInfo hasDateInfo DateInfo r uie if st
 OriginInfo hasEventType xsd:string r st
 OriginInfo hasEventTypeURI xsd:anyURI r st
 OriginInfo hasIssuanceMethod IssuanceType.txt r st
 
-OriginInfo sco Element
-
+OriginInfo sco ElementInfo
+# OriginIfno sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# OriginIfno sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

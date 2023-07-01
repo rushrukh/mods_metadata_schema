@@ -25,12 +25,7 @@ TitleInfo isContentSuppliedExternally xsd:boolean r st
 TitleInfo isPrimaryInstance Usage.txt r st
 TitleInfo hasAltFormatAttributes AltFormatAttributes r uie f if st
 TitleInfo hasAuthorityInfo AuthorityInfo r uie f if st
-TitleInfo sco Element
+TitleInfo sco ElementInfo
 
 TitleInfo hasTitleInfoType TitleInfoType.txt r ie st
-TitleInfo hasTitleInfoType OtherTypeInfo r ie st 
-
-/*
-TitleInfo may not have any type. If it has, it will be either TitleInfoType
-or OtherTypeInfo.
-*/
+TitleInfo hasTitleInfoType OtherTypeInfo r ie st

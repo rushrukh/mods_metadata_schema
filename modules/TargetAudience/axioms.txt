@@ -4,4 +4,6 @@ TargetAudience hasAlternativeFormatAttributes AltFormatAttributes r uie f if st
 TargetAudience hasAuthorityInfo AuthorityInfo r uie f if st
 TargetAudience hasValue xsd:string r e st
 
-TargetAudience sco Element
+TargetAudience sco ElementInfo
+# TargetAudience sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# TargetAudience sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

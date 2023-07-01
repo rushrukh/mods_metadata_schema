@@ -5,4 +5,6 @@ Genre hasAuthorityInfo AuthorityInfo r uie f if st
 Genre hasValue xsd:string r e st
 Genre hasGenreType xsd:string r st
 
-Genre sco Element
+Genre sco ElementInfo
+# Genre sco not (ex hasLinkAttributes. ex Xlink.Top)
+# Genre sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

@@ -1,7 +1,7 @@
 Item hasPhysicalDescription PhysicalDescription r uie if st
 
 PhysicalDescription hasPhysicalRepresentationOf Form d r ie if st
-Form hasFormType FormType.txt r st
+Form hasFormType FormType.txt d st
 Form hasAuthorityInfo AuthorityInfo r uie f if st
 Form hasLanguageAttributes LanguageAttributes r uie f if st
 
@@ -16,12 +16,9 @@ Extent hasLanguageAttributes LanguageAttributes r uie f if st
 Extent isContentSuppliedExternally xsd:boolean r st
 
 PhysicalDescription hasGeneralInformation Note d r ie if st
-Note hasNoteType xsd:string r st
-Note hasTypeURI xsd:anyURI r st
-Note hasValue xsd:string r e st
-Note sco Element
 
 PhysicalDescription hasReformattingQuality ReformattingQuality.txt r st
 PhysicalDescription hasDigitalOriginMethod DigitalOrigin.txt r st
 
-PhysicalDescription sco Element
+PhysicalDescription sco ElementInfo
+# PhysicalDescription sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
