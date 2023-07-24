@@ -36,8 +36,16 @@ kastle-ont:Item rdfs:subClassOf [ a owl:Restriction ;
 
 kastle-ont:TableOfContents rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:AlternativeFormatAttributes ;
+            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasTableOfContentsType ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
+            owl:onProperty kastle-ont:isContentShareable ],
         [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasValue ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
@@ -45,41 +53,33 @@ kastle-ont:TableOfContents rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:AlternativeFormatAttributes ;
-            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:isContentShareable ],
         kastle-ont:ElementInfo .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasTableOfContentsType ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasTableOfContent ] ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasAlternativeFormatAttributes ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:AlternativeFormatAttributes ;
-            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
-        [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
             owl:onProperty kastle-ont:isContentShareable ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:TableOfContents ;
+            owl:onProperty kastle-ont:hasTableOfContent ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:AlternativeFormatAttributes ;
+            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasValue ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasTableOfContent ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:TableOfContents ;
-            owl:onProperty kastle-ont:hasTableOfContent ] .
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasTableOfContentsType ] .
 

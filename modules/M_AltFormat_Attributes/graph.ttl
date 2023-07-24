@@ -32,12 +32,12 @@ kastle-ont:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasAltFormatAttributes ] .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
+            owl:onProperty kastle-ont:hasAlternativeFormat ],
+        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasAltFormatAttributes ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasAlternativeFormat ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:AltFormatAttributes ;
             owl:onProperty kastle-ont:hasAltFormatAttributes ],

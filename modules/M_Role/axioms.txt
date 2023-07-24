@@ -1,8 +1,8 @@
-Thing providesAgentRole AgentRole r uie if st
+Thing providesAgentRole AgentRole r
 
-AgentRole hasRoleUnderName Name sd r st 
+AgentRole hasRoleUnderName Name r st
 
-Agent assumesAgentRole AgentRole sd r ie iqsf st 
-Agent hasName Name d r e ie iqsf st
+Agent assumesAgentRole AgentRole st sd iqsf sr
+Agent hasName Name r e iqsf
 
-Name hasNameAsString xsd:string r e st
+Name hasNameAsString xsd:string e

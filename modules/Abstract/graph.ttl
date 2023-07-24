@@ -36,15 +36,15 @@ kastle-ont:Item rdfs:subClassOf [ a owl:Restriction ;
 
 kastle-ont:Abstract rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:isContentShareable ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasAbstractType ],
         [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasValue ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
+            owl:onProperty kastle-ont:isContentShareable ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:AltFormatAttributes ;
@@ -56,11 +56,20 @@ kastle-ont:Abstract rdfs:subClassOf [ a owl:Restriction ;
         kastle-ont:ElementInfo .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Abstract ;
-            owl:onProperty kastle-ont:hasAbstract ],
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
+            owl:onProperty kastle-ont:isContentShareable ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAlternativeFormatAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Abstract ;
+            owl:onProperty kastle-ont:hasAbstract ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:AltFormatAttributes ;
             owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
@@ -68,18 +77,9 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAbstract ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:isContentShareable ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
+            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAlternativeFormatAttributes ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:AltFormatAttributes ;
-            owl:onProperty kastle-ont:hasAlternativeFormatAttributes ] .
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAbstract ] ] .
 

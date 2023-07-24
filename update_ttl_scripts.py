@@ -32,7 +32,7 @@ module_name_dict = {
     'PhysicalDescription': 'Physical Description Pattern',
     'RecordInfo': 'Record Info Pattern',
     'RelatedItem': 'Related Item Pattern',
-    'Subject': 'Subject Pattern',
+    'PrimaryTopic': 'Subject Pattern',
     'TableOfContents': 'Table of Contents Pattern',
     'TargetAudience': 'Target Audience Pattern',
     'TitleInfo': 'Title Info Pattern',
