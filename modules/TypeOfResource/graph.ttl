@@ -15,12 +15,12 @@
                                                                 Use Case Description"""^^xsd:string ;
                                                                 opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
                                                                                             "cq2"^^xsd:string ;
-                                                                opla-sd:hasConnections """Item hasTypeOfResource TypeOfResource r uie if st
+                                                                opla-sd:hasConnections """MODSItem hasTypeOfResource TypeOfResource r uie if st
 TypeOfResource hasAuthorityInfo AuthorityInfo r uie f if st
 TypeOfResource isPrimaryInstance Usage.txt r st
 TypeOfResource isCollection xsd:boolean r st
 TypeOfResource isManuscript xsd:boolean r st
-TypeOfResource hasValue xsd:string r e st
+TypeOfResource hasResourceTypeValue xsd:string r e st
 TypeOfResource sco ElementInfo"""^^xsd:string ;
                                                                 opla-sd:hasSchemaDiagramFileName "TypeOfResource.png"^^xsd:string ;
                                                                 dc:contributor "Cogan Shimizu" ,
@@ -30,22 +30,23 @@ TypeOfResource sco ElementInfo"""^^xsd:string ;
                                                                         "Pascal Hitzler" ,
                                                                         "Rushrukh Rayan" .
 
-kastle-ont:Item rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:TypeOfResource ;
             owl:onProperty kastle-ont:hasTypeOfResource ] .
 
 kastle-ont:TypeOfResource rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasResourceTypeValue ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
             owl:onProperty kastle-ont:isManuscript ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
+            owl:onClass kastle-ont:AuthorityInfo ;
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Usage.txt ;
@@ -55,39 +56,38 @@ kastle-ont:TypeOfResource rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
             owl:onProperty kastle-ont:isCollection ],
         [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
+            owl:onProperty kastle-ont:hasResourceTypeValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
         kastle-ont:ElementInfo .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:isCollection ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:TypeOfResource ;
-            owl:onProperty kastle-ont:hasTypeOfResource ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:isManuscript ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Usage.txt ;
-            owl:onProperty kastle-ont:isPrimaryInstance ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasResourceTypeValue ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasTypeOfResource ] ],
         [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
+            owl:onProperty kastle-ont:isCollection ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Usage.txt ;
+            owl:onProperty kastle-ont:isPrimaryInstance ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:TypeOfResource ;
+            owl:onProperty kastle-ont:hasTypeOfResource ],
+        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ] .
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
+            owl:onProperty kastle-ont:isManuscript ] .
 

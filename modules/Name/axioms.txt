@@ -1,8 +1,8 @@
-Item hasAssociatedName Name r uie if st
-Item hasAssociatedPrimaryName Name r uie f if st
+MODSItem hasAssociatedName Name r uie if st
+MODSItem hasAssociatedPrimaryName Name r uie f if st
 
 Name hasNamePart NamePart d r e ie if st
-NamePart hasValue xsd:string r e st
+NamePart hasNamePartValue xsd:string r e st
 NamePart hasNamePartType NamePartType.txt r st
 NamePart sco ElementInfo
 
@@ -10,15 +10,15 @@ Name hasNameIdentifier NameIdentifier d r ie if st
 NameIdentifier sco Identifier
 
 Name hasDisplayForm DisplayForm d r ie f if st 
-DisplayForm hasValue xsd:string r e st
+DisplayForm hasDisplayFormValue xsd:string r e st
 DisplayForm hasLanguageAttributes LanguageAttributes r uie f if st
 
 Name hasDescription Description r uie if st
-Description hasValue xsd:string r e st
+Description hasDescriptionValue xsd:string r e st
 Description hasLanguageAttributes LanguageAttributes r uie f if st
 
 Name hasEtal Etal r ie if st
-Etal hasValue xsd:string r e st
+Etal hasEtalValue xsd:string r e st
 Etal hasLanguageAttributes LanguageAttributes r uie f if st
 
 Name hasNameType NameType.txt r st

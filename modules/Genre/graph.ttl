@@ -15,10 +15,10 @@
                                                                 Use Case Description"""^^xsd:string ;
                                                                 opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
                                                                                             "cq2"^^xsd:string ;
-                                                                opla-sd:hasConnections """Item hasGenre Genre r uie if st
+                                                                opla-sd:hasConnections """MODSItem hasGenre Genre r uie if st
 Genre isPrimaryInstance Usage.txt r st
 Genre hasAuthorityInfo AuthorityInfo r uie f if st
-Genre hasValue xsd:string r e st
+Genre hasGenreValue xsd:string r e st
 Genre hasGenreType xsd:string r st
 Genre sco ElementInfo"""^^xsd:string ;
                                                                 opla-sd:hasSchemaDiagramFileName "Genre.png"^^xsd:string ;
@@ -29,57 +29,57 @@ Genre sco ElementInfo"""^^xsd:string ;
                                                                         "Pascal Hitzler" ,
                                                                         "Rushrukh Rayan" .
 
-kastle-ont:Item rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Genre ;
             owl:onProperty kastle-ont:hasGenre ] .
 
 kastle-ont:Genre rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasValue ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasGenreType ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasGenreValue ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Usage.txt ;
+            owl:onProperty kastle-ont:isPrimaryInstance ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasGenreValue ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:AuthorityInfo ;
             owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasGenreType ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Usage.txt ;
-            owl:onProperty kastle-ont:isPrimaryInstance ],
         kastle-ont:ElementInfo .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasGenreValue ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Usage.txt ;
             owl:onProperty kastle-ont:isPrimaryInstance ],
         [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGenre ] ],
+        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Genre ;
             owl:onProperty kastle-ont:hasGenre ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:AuthorityInfo ;
             owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasGenreType ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGenre ] ] .
+            owl:onProperty kastle-ont:hasGenreType ] .
 

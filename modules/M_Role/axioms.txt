@@ -1,8 +1,5 @@
 Thing providesAgentRole AgentRole r
-
 AgentRole hasRoleUnderName Name r st
-
 Agent assumesAgentRole AgentRole st sd iqsf sr
 Agent hasName Name r e iqsf
-
 Name hasNameAsString xsd:string e

@@ -206,6 +206,7 @@ def get_all_axioms():
 
     # 3. Get OWL file for each input_dir
     for input_dir in input_dirs:
-         nen_to_axioms(input_dir)
+         if(input_dir != base_dir + 'AllModule'):
+            nen_to_axioms(input_dir)
 
 get_all_axioms()

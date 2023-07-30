@@ -15,13 +15,13 @@
                                                                 Use Case Description"""^^xsd:string ;
                                                                 opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
                                                                                             "cq2"^^xsd:string ;
-                                                                opla-sd:hasConnections """Item isAvailableAt Location r uie if st
+                                                                opla-sd:hasConnections """MODSItem isAvailableAt Location r uie if st
 Location hasPhysicalLocation PhysicalLocation d r ie if st
 PhysicalLocation hasLocationType xsd:string r st
 PhysicalLocation hasAuthorityInfo AuthorityInfo r uie f if st
-PhysicalLocation hasValue xsd:string r e st
+PhysicalLocation hasPhysicalLocationValue xsd:string r e st
 Location hasShelfLocator ShelfLocator r ie if st
-ShelfLocator hasValue xsd:string r e st
+ShelfLocator hasShelfLocatorValue xsd:string r e st
 ShelfLocator hasLanguageAttributes LanguageAttributes r uie f if st
 Location hasUrl Url r ie if st
 Url hasResourceTypeUponAccess ResourceType.txt r st
@@ -29,7 +29,7 @@ Url hasNote xsd:string r st
 Url hasDiplayLabel xsd:string r st
 Url isPrimaryInstance Usage.txt r st
 Url hasDateLastAccessed xsd:string r st
-Url hasValue xsd:anyURI r e st
+Url hasUrlValue xsd:anyURI r e st
 Location hasModsAssociatedCopySpecificInformation HoldingSimple r ie if st
 HoldingSimple hasCopyInformation CopyInformation r e ie if st
 CopyInformation isOfForm Form d r ie if st
@@ -38,19 +38,19 @@ Form hasAuthorityInfo AuthorityInfo r uie f if st
 Form hasFormType xsd:string r st
 CopyInformation hasSublocation SubLocation d r ie if st
 SubLocation hasLanguageAttributes LanguageAttributes r uie f if st
-SubLocation hasValue xsd:string r e st
+SubLocation hasSubLocationValue xsd:string r e st
 CopyInformation hasShelfLocator ShelfLocator r ie if st
-ShelfLocator hasValue xsd:string r e st
+ShelfLocator hasShelfLocatorValue xsd:string r e st
 ShelfLocator hasLanguageAttributes LanguageAttributes r uie f if st
 CopyInformation hasElectronicLocator xsd:anyURI r st
 CopyInformation hasNote Note r uie if st
 CopyInformation hasAssociatedEnumerationAndChronology EnumerationAndChronology d r ie if st
 EnumerationAndChronology hasUnitType UnitType.txt r e st
 EnumerationAndChronology hasLanguageAttributes LanguageAttributes r uie f if st
-EnumerationAndChronology hasValue xsd:string r e st
+EnumerationAndChronology hasEnumerationAndChronologyValue xsd:string r e st
 CopyInformation hasItemIdentifier ItemIdentifier r ie f if st
 ItemIdentifier hasIdentifierType xsd:string r st
-ItemIdentifier hasValue xsd:string r e st
+ItemIdentifier hasItemIdentifierValue xsd:string r e st
 Location hasModsExternalCopySpecificInformation r st
 Location sco ElementInfo
 PhysicalLocation sco ElementInfo"""^^xsd:string ;
@@ -62,14 +62,19 @@ PhysicalLocation sco ElementInfo"""^^xsd:string ;
                                                                         "Pascal Hitzler" ,
                                                                         "Rushrukh Rayan" .
 
-kastle-ont:Item rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Location ;
             owl:onProperty kastle-ont:isAvailableAt ] .
 
 kastle-ont:EnumerationAndChronology rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasEnumerationAndChronologyValue ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:UnitType.txt ;
+            owl:onProperty kastle-ont:hasUnitType ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:LanguageAttributes ;
@@ -78,22 +83,17 @@ kastle-ont:EnumerationAndChronology rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasUnitType ;
             owl:someValuesFrom kastle-ont:UnitType.txt ],
         [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:UnitType.txt ;
-            owl:onProperty kastle-ont:hasUnitType ] .
+            owl:onProperty kastle-ont:hasEnumerationAndChronologyValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ] .
 
 kastle-ont:Form rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:AuthorityInfo ;
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
@@ -104,45 +104,37 @@ kastle-ont:HoldingSimple rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass kastle-ont:CopyInformation ;
             owl:onProperty kastle-ont:hasCopyInformation ],
         [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasCopyInformation ] ;
+            owl:onProperty kastle-ont:hasCopyInformation ;
             owl:someValuesFrom kastle-ont:CopyInformation ],
         [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasCopyInformation ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasCopyInformation ] ;
             owl:someValuesFrom kastle-ont:CopyInformation ] .
 
 kastle-ont:ItemIdentifier rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
+            owl:onProperty kastle-ont:hasIdentifierType ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasIdentifierType ],
+            owl:onProperty kastle-ont:hasItemIdentifierValue ],
         [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasValue ;
+            owl:onProperty kastle-ont:hasItemIdentifierValue ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ] .
 
 kastle-ont:Location rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasModsAssociatedCopySpecificInformation ] ;
             owl:someValuesFrom kastle-ont:HoldingSimple ],
         [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Url ;
-            owl:onProperty kastle-ont:hasUrl ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasUrl ] ;
+            owl:someValuesFrom kastle-ont:Url ],
         [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasShelfLocator ] ;
             owl:someValuesFrom kastle-ont:ShelfLocator ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:ShelfLocator ;
-            owl:onProperty kastle-ont:hasShelfLocator ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:PhysicalLocation ;
-            owl:onProperty kastle-ont:hasPhysicalLocation ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasUrl ] ;
-            owl:someValuesFrom kastle-ont:Url ],
+            owl:onClass kastle-ont:r ;
+            owl:onProperty kastle-ont:hasModsExternalCopySpecificInformation ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:HoldingSimple ;
@@ -152,8 +144,16 @@ kastle-ont:Location rdfs:subClassOf [ a owl:Restriction ;
             owl:someValuesFrom kastle-ont:PhysicalLocation ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:r ;
-            owl:onProperty kastle-ont:hasModsExternalCopySpecificInformation ],
+            owl:onClass kastle-ont:PhysicalLocation ;
+            owl:onProperty kastle-ont:hasPhysicalLocation ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Url ;
+            owl:onProperty kastle-ont:hasUrl ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:ShelfLocator ;
+            owl:onProperty kastle-ont:hasShelfLocator ],
         kastle-ont:ElementInfo .
 
 kastle-ont:PhysicalLocation rdfs:subClassOf [ a owl:Restriction ;
@@ -163,210 +163,165 @@ kastle-ont:PhysicalLocation rdfs:subClassOf [ a owl:Restriction ;
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasLocationType ],
+            owl:onProperty kastle-ont:hasPhysicalLocationValue ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
+            owl:onProperty kastle-ont:hasLocationType ],
         [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasValue ;
+            owl:onProperty kastle-ont:hasPhysicalLocationValue ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
         kastle-ont:ElementInfo .
 
 kastle-ont:SubLocation rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasSubLocationValue ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
         [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ] .
+            owl:onProperty kastle-ont:hasSubLocationValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ] .
 
 kastle-ont:Url rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasValue ],
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasDateLastAccessed ],
         [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasValue ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:ResourceType.txt ;
+            owl:onProperty kastle-ont:hasResourceTypeUponAccess ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasUrlValue ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Usage.txt ;
+            owl:onProperty kastle-ont:isPrimaryInstance ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasDiplayLabel ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:ResourceType.txt ;
-            owl:onProperty kastle-ont:hasResourceTypeUponAccess ],
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
+            owl:onProperty kastle-ont:hasUrlValue ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasNote ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasDateLastAccessed ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Usage.txt ;
-            owl:onProperty kastle-ont:isPrimaryInstance ] .
+            owl:onProperty kastle-ont:hasNote ] .
 
 kastle-ont:ShelfLocator rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasShelfLocatorValue ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasShelfLocatorValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasShelfLocatorValue ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
+            owl:onProperty kastle-ont:hasShelfLocatorValue ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ] .
+            owl:onProperty kastle-ont:hasLanguageAttributes ] .
 
 kastle-ont:CopyInformation rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasShelfLocator ] ;
+            owl:someValuesFrom kastle-ont:ShelfLocator ],
+        [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:isOfForm ] ;
             owl:someValuesFrom kastle-ont:Form ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:SubLocation ;
-            owl:onProperty kastle-ont:hasSublocation ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:EnumerationAndChronology ;
-            owl:onProperty kastle-ont:hasAssociatedEnumerationAndChronology ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasSublocation ] ;
-            owl:someValuesFrom kastle-ont:SubLocation ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Note ;
-            owl:onProperty kastle-ont:hasNote ],
         [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasAssociatedEnumerationAndChronology ] ;
             owl:someValuesFrom kastle-ont:EnumerationAndChronology ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:ItemIdentifier ;
+            owl:onProperty kastle-ont:hasItemIdentifier ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
             owl:onProperty kastle-ont:hasElectronicLocator ],
         [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasShelfLocator ] ;
-            owl:someValuesFrom kastle-ont:ShelfLocator ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasSublocation ] ;
+            owl:someValuesFrom kastle-ont:SubLocation ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasItemIdentifier ] ;
+            owl:someValuesFrom kastle-ont:ItemIdentifier ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:EnumerationAndChronology ;
+            owl:onProperty kastle-ont:hasAssociatedEnumerationAndChronology ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Note ;
+            owl:onProperty kastle-ont:hasNote ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Form ;
             owl:onProperty kastle-ont:isOfForm ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:ItemIdentifier ;
-            owl:onProperty kastle-ont:hasItemIdentifier ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasItemIdentifier ] ;
-            owl:someValuesFrom kastle-ont:ItemIdentifier ],
+            owl:onClass kastle-ont:ShelfLocator ;
+            owl:onProperty kastle-ont:hasShelfLocator ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:ShelfLocator ;
-            owl:onProperty kastle-ont:hasShelfLocator ] .
+            owl:onClass kastle-ont:SubLocation ;
+            owl:onProperty kastle-ont:hasSublocation ] .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasModsAssociatedCopySpecificInformation ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
+            owl:allValuesFrom kastle-ont:HoldingSimple ;
+            owl:onProperty kastle-ont:hasModsAssociatedCopySpecificInformation ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:AuthorityInfo ;
             owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasItemIdentifierValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
+            owl:onProperty kastle-ont:hasElectronicLocator ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasCopyInformation ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Url ;
-            owl:onProperty kastle-ont:hasUrl ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAssociatedEnumerationAndChronology ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasDateLastAccessed ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
+            owl:allValuesFrom kastle-ont:AuthorityInfo ;
             owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:isOfForm ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:ItemIdentifier ;
-            owl:onProperty kastle-ont:hasItemIdentifier ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:SubLocation ;
-            owl:onProperty kastle-ont:hasSublocation ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Location ;
-            owl:onProperty kastle-ont:isAvailableAt ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasIdentifierType ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:ResourceType.txt ;
             owl:onProperty kastle-ont:hasResourceTypeUponAccess ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
+            owl:onProperty kastle-ont:hasUrlValue ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:CopyInformation ;
-            owl:onProperty kastle-ont:hasCopyInformation ],
+            owl:allValuesFrom kastle-ont:ItemIdentifier ;
+            owl:onProperty kastle-ont:hasItemIdentifier ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Form ;
-            owl:onProperty kastle-ont:isOfForm ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:UnitType.txt ;
-            owl:onProperty kastle-ont:hasUnitType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasShelfLocator ] ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
@@ -374,63 +329,144 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:HoldingSimple ;
-            owl:onProperty kastle-ont:hasModsAssociatedCopySpecificInformation ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:allValuesFrom kastle-ont:Note ;
             owl:onProperty kastle-ont:hasNote ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasShelfLocator ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:isAvailableAt ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Usage.txt ;
-            owl:onProperty kastle-ont:isPrimaryInstance ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:PhysicalLocation ;
-            owl:onProperty kastle-ont:hasPhysicalLocation ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:ShelfLocator ;
             owl:onProperty kastle-ont:hasShelfLocator ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:isOfForm ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasSublocation ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:UnitType.txt ;
+            owl:onProperty kastle-ont:hasUnitType ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasModsAssociatedCopySpecificInformation ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasShelfLocatorValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasFormType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasPhysicalLocationValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:CopyInformation ;
+            owl:onProperty kastle-ont:hasCopyInformation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasDiplayLabel ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:EnumerationAndChronology ;
+            owl:onProperty kastle-ont:hasAssociatedEnumerationAndChronology ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAssociatedEnumerationAndChronology ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasCopyInformation ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:SubLocation ;
+            owl:onProperty kastle-ont:hasSublocation ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:isAvailableAt ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasShelfLocatorValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Usage.txt ;
+            owl:onProperty kastle-ont:isPrimaryInstance ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasPhysicalLocation ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:ShelfLocator ;
+            owl:onProperty kastle-ont:hasShelfLocator ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Location ;
+            owl:onProperty kastle-ont:isAvailableAt ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasNote ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasItemIdentifier ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasShelfLocator ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Form ;
+            owl:onProperty kastle-ont:isOfForm ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Url ;
+            owl:onProperty kastle-ont:hasUrl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasDateLastAccessed ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasIdentifierType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasSubLocationValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasUrl ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasEnumerationAndChronologyValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
@@ -440,71 +476,30 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass owl:Thing ;
             owl:onProperty kastle-ont:hasItemIdentifier ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:ShelfLocator ;
-            owl:onProperty kastle-ont:hasShelfLocator ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasSublocation ] ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:EnumerationAndChronology ;
-            owl:onProperty kastle-ont:hasAssociatedEnumerationAndChronology ],
+            owl:allValuesFrom kastle-ont:PhysicalLocation ;
+            owl:onProperty kastle-ont:hasPhysicalLocation ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasElectronicLocator ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasDiplayLabel ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasLocationType ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasPhysicalLocation ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasShelfLocator ] ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValue ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasItemIdentifier ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasFormType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Note ;
-            owl:onProperty kastle-ont:hasNote ] .
+            owl:onProperty kastle-ont:hasLocationType ] .
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:CopyInformation ;
-    owl:onProperty kastle-ont:hasAssociatedEnumerationAndChronology ;
-    owl:someValuesFrom owl:Thing .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:Location ;
-    owl:onProperty kastle-ont:hasPhysicalLocation ;
+    owl:onProperty kastle-ont:isOfForm ;
     owl:someValuesFrom owl:Thing .
 
 [] a owl:Restriction ;
@@ -514,6 +509,11 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:CopyInformation ;
-    owl:onProperty kastle-ont:isOfForm ;
+    owl:onProperty kastle-ont:hasAssociatedEnumerationAndChronology ;
+    owl:someValuesFrom owl:Thing .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:Location ;
+    owl:onProperty kastle-ont:hasPhysicalLocation ;
     owl:someValuesFrom owl:Thing .
 

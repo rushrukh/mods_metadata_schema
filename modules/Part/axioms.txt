@@ -1,51 +1,51 @@
-Item hasPartOfReource Part r uie if st
+MODSItem hasPartOfReource PartOfReource r uie if st
 
-Part hasDetail Detail r uie if st
-Detail hasDetailType xsd:string r st
-Detail hasHierarchicalLevel xsd:int r st
+PartOfReource hasRelatedPartDetail RelatedPartDetail r uie if st
+RelatedPartDetail hasDetailType xsd:string r st
+RelatedPartDetail hasHierarchicalLevel xsd:int r st
 
-Detail hasPartNumber PartNumber r uie if st
-PartNumber hasValue xsd:int r e st
+RelatedPartDetail hasPartNumber PartNumber r uie if st
+PartNumber hasPartNumberValue xsd:int r e st
 PartNumber hasLanguageAttributes LanguageAttributes r uie f if st
 
-Detail hasCaption Caption r uie if st
+RelatedPartDetail hasCaption Caption r uie if st
 Caption hasLanguageAttributes LanguageAttributes r uie f if st
-Caption hasValue xsd:string r e st
+Caption hasCaptionValue xsd:string r e st
 
-Detail hasPartTitle PartTitle r uie if st
-PartTitle hasValue xsd:string r e st
+RelatedPartDetail hasPartTitle PartTitle r uie if st
+PartTitle hasPartTitleValue xsd:string r e st
 PartTitle hasLanguageAttributes LanguageAttributes r uie f if st
 
-Part hasExtent Extent r uie if st
-Extent hasUnit xsd:string r st
+PartOfReource hasMeasuredExtent MeasuredExtent r uie if st
+MeasuredExtent hasUnit xsd:string r st
 
-Extent hasStartValue Start r e ie f if st
-Start hasValue xsd:int r e st
-Start hasLanguageAttributes LanguageAttributes r uie f if st
+MeasuredExtent hasExtentStart ExtentStart r e ie f if st
+ExtentStart hasExtentStartValue xsd:int r e st
+ExtentStart hasLanguageAttributes LanguageAttributes r uie f if st
 
-Extent hasEndValue End r e ie f if st
-End hasValue xsd:int r e st
-End hasLanguageAttributes LanguageAttributes r uie f if st
+MeasuredExtent hasExtentEnd ExtentEnd r e ie f if st
+ExtentEnd hasExtentEndValue xsd:int r e st
+ExtentEnd hasLanguageAttributes LanguageAttributes r uie f if st
 
-Extent hasTotalValue Total r ie f if st
-Total hasValue xsd:int r e st
-Total hasLanguageAttributes LanguageAttributes r uie f if st
+MeasuredExtent hasTotalExtent TotalExtent r ie f if st
+TotalExtent hasTotalExtentValue xsd:int r e st
+TotalExtent hasLanguageAttributes LanguageAttributes r uie f if st
 
-Extent hasListOfUnits ListOfUnits r ie if st
-ListOfUnits hasValue xsd:string r e st
+MeasuredExtent hasListOfUnits ListOfUnits r ie if st
+ListOfUnits hasListOfUnitsValue xsd:string r e st
 ListOfUnits hasLanguageAttributes LanguageAttributes r uie f if st
 
-Part hasRelevantDateInfo DateInfo r uie if st
+PartOfReource hasRelevantDateInfo DateInfo r uie if st
 
-Part hasText Text r uie if st
+PartOfReource hasText Text r uie if st
 Text hasDisplayLabel xsd:string r st
 Text hasLanguageAttributes LanguageAttributes r uie f if st
 Text hasTextType xsd:string r st
-Text hasValue xsd:string r e st
+Text hasTextValue xsd:string r e st
 
-Part hasResourcePartType xsd:string r st
-Part hasOrder xsd:int r st
+PartOfReource hasResourcePartType xsd:string r st
+PartOfReource hasOrder xsd:int r st
 
-Part sco ElementInfo
-# Part sco not (ex hasLinkAttributes. ex hasXlink.Top)
-# Part sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+PartOfReource sco ElementInfo
+# PartOfReource sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# PartOfReource sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

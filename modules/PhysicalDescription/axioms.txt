@@ -1,24 +1,24 @@
-Item hasPhysicalDescription PhysicalDescription r uie if st
+MODSItem hasPhysicalDescription ResourcePhysicalDescription r uie if st
 
-PhysicalDescription hasPhysicalRepresentationOf Form d r ie if st
-Form hasFormType FormType.txt d st
-Form hasAuthorityInfo AuthorityInfo r uie f if st
-Form hasLanguageAttributes LanguageAttributes r uie f if st
+ResourcePhysicalDescription hasPhysicalRepresentationOf PhysicalForm d r ie if st
+PhysicalForm hasFormType FormType.txt d st
+PhysicalForm hasAuthorityInfo AuthorityInfo r uie f if st
+PhysicalForm hasLanguageAttributes LanguageAttributes r uie f if st
 
-PhysicalDescription hasDigitalRepresentationOfType InternetMediaType d r ie if st
-InternetMediaType hasValue InternetMediaType.txt r e st
+ResourcePhysicalDescription hasDigitalRepresentationOfType InternetMediaType d r ie if st
+InternetMediaType hasMediaType InternetMediaType.txt r e st
 InternetMediaType hasLanguageAttributes LanguageAttributes r uie f if st
 
-PhysicalDescription hasAmountDescription Extent r uie if st
-Extent hasValue xsd:string r e st
-Extent hasUnit Unit.txt r st
-Extent hasLanguageAttributes LanguageAttributes r uie f if st
-Extent isContentSuppliedExternally xsd:boolean r st
+ResourcePhysicalDescription hasAmountDescription PhysicalExtent r uie if st
+PhysicalExtent hasExtentValue xsd:string r e st
+PhysicalExtent hasExtentUnit Unit.txt r st
+PhysicalExtent hasLanguageAttributes LanguageAttributes r uie f if st
+PhysicalExtent isContentSuppliedExternally xsd:boolean r st
 
-PhysicalDescription hasGeneralInformation Note d r ie if st
+ResourcePhysicalDescription hasGeneralInformation Note d r ie if st
 
-PhysicalDescription hasReformattingQuality ReformattingQuality.txt r st
-PhysicalDescription hasDigitalOriginMethod DigitalOrigin.txt r st
+ResourcePhysicalDescription hasReformattingQuality ReformattingQuality.txt r st
+ResourcePhysicalDescription hasDigitalOriginMethod DigitalOrigin.txt r st
 
-PhysicalDescription sco ElementInfo
-# PhysicalDescription sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+ResourcePhysicalDescription sco ElementInfo
+# ResourcePhysicalDescription sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

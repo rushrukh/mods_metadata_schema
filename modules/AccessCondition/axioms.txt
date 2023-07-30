@@ -1,9 +1,7 @@
-Item hasAccessCondition AccessCondition r uie if st
-
+MODSItem hasAccessCondition AccessCondition r uie if st
 AccessCondition hasAuthorityInfo AuthorityInfo r uie f if st
 AccessCondition hasAltFormatAttributes AltFormatAttributes r uie f if st
 AccessCondition hasRestrictionType xsd:string r st
-AccessCondition hasValue xsd:string r e st
-
+AccessCondition hasAccessConditionValue xsd:string r e st
 AccessCondition sco ElementInfo
 # AccessCondition sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

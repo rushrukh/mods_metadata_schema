@@ -16,7 +16,7 @@
                                                                 opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
                                                                                             "cq2"^^xsd:string ;
                                                                 opla-sd:hasConnections """Thing hasOtherTypeInfo OtherTypeInfo r uie if st
-OtherTypeInfo hasType xsd:string r e st
+OtherTypeInfo hasTypeAsString xsd:string r e st
 OtherTypeInfo hasTypeAuthority xsd:string r st
 OtherTypeInfo hasTypeAuthorityURI xsd:anyURI r st
 OtherTypeInfo hasTypeURI xsd:anyURI r st"""^^xsd:string ;
@@ -34,36 +34,28 @@ kastle-ont:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasOtherTypeInfo ] .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasTypeURI ],
-        [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasTypeAuthority ],
         [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasTypeAsString ],
+        [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
             owl:onProperty kastle-ont:hasTypeAuthorityURI ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasType ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:OtherTypeInfo ;
             owl:onProperty kastle-ont:hasOtherTypeInfo ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasOtherTypeInfo ] ] .
+            owl:onProperty [ owl:inverseOf kastle-ont:hasOtherTypeInfo ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
+            owl:onProperty kastle-ont:hasTypeURI ] .
 
 kastle-ont:OtherTypeInfo rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasTypeAuthority ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasType ;
+            owl:onProperty kastle-ont:hasTypeAsString ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasTypeURI ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
@@ -71,5 +63,13 @@ kastle-ont:OtherTypeInfo rdfs:subClassOf [ a owl:Restriction ;
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasType ] .
+            owl:onProperty kastle-ont:hasTypeAsString ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasTypeAuthority ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
+            owl:onProperty kastle-ont:hasTypeURI ] .
 

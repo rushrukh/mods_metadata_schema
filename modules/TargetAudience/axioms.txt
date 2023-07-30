@@ -1,8 +1,8 @@
-Item hasTargetAudience TargetAudience r uie if st
+MODSItem hasTargetAudience TargetAudience r uie if st
 
 TargetAudience hasAlternativeFormatAttributes AltFormatAttributes r uie f if st
 TargetAudience hasAuthorityInfo AuthorityInfo r uie f if st
-TargetAudience hasValue xsd:string r e st
+TargetAudience hasValuAsString xsd:string r e st
 
 TargetAudience sco ElementInfo
 # TargetAudience sco not (ex hasLinkAttributes. ex hasXlink.Top)

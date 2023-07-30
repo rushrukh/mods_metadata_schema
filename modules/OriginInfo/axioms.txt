@@ -1,17 +1,17 @@
-Item hasOriginInfo OriginInfo r uie if st
+MODSItem hasOriginInfo OriginInfo r uie if st
 
 OriginInfo hasEdition Edition r ie f if st
-Edition hasValue xsd:string r e st
+Edition hasEditionValue xsd:string r e st
 Edition hasLanguageAttributes LanguageAttributes r uie f if st
 Edition isContentSuppliedExternally xsd:boolean r st
 
 OriginInfo hasPublicationFrequency Frequency r ie if st
 Frequency hasAuthorityInfo AuthorityInfo r uie f if st
 Frequency hasLanguageAttributes LanguageAttributes r uie f if st
-Frequency hasValue xsd:string r e st
+Frequency hasFrequencyValue xsd:string r e st
 
 OriginInfo hasDisplayDate DisplayDate r uie f if st
-DisplayDate hasValue xsd:string r e st
+DisplayDate hasDateValue xsd:string r e st
 DisplayDate isContentSuppliedExternally xsd:boolean r st
 DisplayDate hasLanguageAttributes LanguageAttributes r uie f if st
 

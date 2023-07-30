@@ -1,25 +1,25 @@
-Item hasTitleInfo TitleInfo r e uie if st
+MODSItem hasTitleInfo TitleInfo r e uie if st
 
 TitleInfo hasTitle Title d r e ie if st
-Title hasValue xsd:string r e st
+Title hasTitleValue xsd:string r e st
 Title hasLanguageAttributes LanguageAttributes r uie f if st
 
 TitleInfo hasSubTitle SubTitle d r ie if st
-SubTitle hasValue xsd:string r e st
+SubTitle hasSubTitleValue xsd:string r e st
 SubTitle hasLanguageAttributes LanguageAttributes r uie f if st
 
 TitleInfo hasPartNumber PartNumber d r ie if st
-PartNumber hasValue xsd:string r e st
+PartNumber hasPartNumberValue xsd:string r e st
 PartNumber hasLanguageAttributes LanguageAttributes r uie f if st
 
 TitleInfo hasPartName PartName d r ie if st
-PartName hasValue xsd:string r e st
+PartName hasPartNameValue xsd:string r e st
 PartName hasLanguageAttributes LanguageAttributes r uie f if st
 
-TitleInfo hasIgnorableTitlePart NonSort d r ie if st
-NonSort hasValue xsd:string r e st
-NonSort hasSpaceHandlingTechnique SpaceHandlingTechnique.txt r e st
-NonSort hasLanguageAttributes LanguageAttributes r uie f if st
+TitleInfo hasIgnorableTitlePart IgnorableTitlePart d r ie if st
+IgnorableTitlePart hasIgnorableTitlePartValue xsd:string r e st
+IgnorableTitlePart hasSpaceHandlingTechnique SpaceHandlingTechnique.txt r e st
+IgnorableTitlePart hasLanguageAttributes LanguageAttributes r uie f if st
 
 TitleInfo isContentSuppliedExternally xsd:boolean r st
 TitleInfo isPrimaryInstance Usage.txt r st

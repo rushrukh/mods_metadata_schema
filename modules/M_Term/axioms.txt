@@ -1,5 +1,4 @@
 Thing hasTerm Term r uie if st
-
 Term hasTermType TermType.txt r uie f if st
 Term hasAuthorityInfo AuthorityInfo r uie f if st
 Term hasLanguageAttributes LanguageAttributes r uie f if st

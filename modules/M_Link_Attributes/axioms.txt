@@ -1,5 +1,4 @@
 Thing hasLinkAttributes LinkAttributes r uie f if st
-
 LinkAttributes hasID xsd:string r st
 LinkAttributes hasIDRef xsd:string r st
 LinkAttributes hasXlink xsd:string r st

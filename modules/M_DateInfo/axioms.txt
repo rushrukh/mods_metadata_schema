@@ -1,10 +1,8 @@
 Thing hasDateInfo DateInfo r ie if st
-
 DateInfo hasDateAttributes DateAttributes r e uie f if st 
 DateInfo hasLanguageAttributes LanguageAttributes r uie f if st
 DateInfo isOfType DateInfoType.txt r e st
-DateInfo hasValue xsd:string r e st
-
+DateInfo hasDateValue xsd:string r e st
 DateAttributes hasDateQualifier Qualifier.txt r st
 DateAttributes hasDateEncodingType DateEncoding.txt r st
 DateAttributes isKeyDate xsd:boolean r st 

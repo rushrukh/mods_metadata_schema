@@ -1,0 +1,8 @@
+MODSItem hasMODSExtension MODSExtension r uie if st
+MODSExtension hasTypeOfMODSExtension xsd:string r st
+MODSExtension hasMODSExtensionInfo xsd:string r e st
+MODSExtension sco ElementInfo
+# MODSExtension sco not (ex hasLinkAttributes. ex hasXlink.Top)
+# MODSExtension sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
+# MODSExtension sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
+# MODSExtension sco not (ex hasLanguageAttributes.Top)

@@ -6,7 +6,7 @@ module_name_dict = {
     'Abstract': 'Abstract Pattern',
     'AccessCondition': 'Access Condition Pattern',
     'Classification': 'Classification Pattern',
-    'Extension': 'Extension Pattern',
+    'MODSExtension': 'MODSExtension Pattern',
     'Genre': 'Genre Pattern',
     'Identifier': 'Identifier Pattern',
     'Language': 'Language Pattern',
@@ -29,10 +29,10 @@ module_name_dict = {
     'Note': 'Note Pattern',
     'OriginInfo': 'Origin Info Pattern',
     'Part': 'Part Pattern',
-    'PhysicalDescription': 'Physical Description Pattern',
+    'PhysicalDescription': 'Resource Physical Description Pattern',
     'RecordInfo': 'Record Info Pattern',
     'RelatedItem': 'Related Item Pattern',
-    'PrimaryTopic': 'Subject Pattern',
+    'PrimaryTopic': 'Primary Topic Pattern',
     'TableOfContents': 'Table of Contents Pattern',
     'TargetAudience': 'Target Audience Pattern',
     'TitleInfo': 'Title Info Pattern',
@@ -98,17 +98,18 @@ def update_existing_ttl_files():
     module_paths = get_paths_to_module()
 
     for module_path in module_paths:
-        current_module = module_path.split('/')[-1]
-        # print to check what module is being updated
-        # print(f"current_module: {current_module}")
-        current_manchester_axioms = get_manchester_axioms(module_path)
-        graph_path = module_path + '/graph.ttl'
+        if(module_path != os.getcwd() + '/modules/AllModule'):
+            current_module = module_path.split('/')[-1]
+            # print to check what module is being updated
+            # print(f"current_module: {current_module}")
+            current_manchester_axioms = get_manchester_axioms(module_path)
+            graph_path = module_path + '/graph.ttl'
 
-        required_update = required_updates(graph_path, current_module, current_manchester_axioms)
+            required_update = required_updates(graph_path, current_module, current_manchester_axioms)
 
-        with open(graph_path, 'w') as f:
-            f.writelines(required_update)
-            f.close()
+            with open(graph_path, 'w') as f:
+                f.writelines(required_update)
+                f.close()
 
 
 if __name__ == "__main__":

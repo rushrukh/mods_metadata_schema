@@ -16,8 +16,8 @@
                                                                 opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
                                                                                             "cq2"^^xsd:string ;
                                                                 opla-sd:hasConnections """Thing hasLanguageAttributes LanguageAttributes r uie f if st
-LanguageAttributes hasLang lang.txt d ie if st
-LanguageAttributes hasXMLLang xml:lang.txt d ie if st
+LanguageAttributes hasLanguage language.txt d ie if st
+LanguageAttributes hasXMLLanguage XMLLanguage:lang.txt d ie if st
 LanguageAttributes hasScript script.txt d ie if st
 LanguageAttributes hasTransliterationTechnique xsd:string d ie if st"""^^xsd:string ;
                                                                 opla-sd:hasSchemaDiagramFileName "M_Language_Attributes.png"^^xsd:string ;
@@ -34,44 +34,36 @@ kastle-ont:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasLanguageAttributes ] .
 
 kastle-ont:LanguageAttributes rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLang ] ;
-            owl:someValuesFrom kastle-ont:lang.txt ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasTransliterationTechnique ] ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasXMLLanguage ] ;
+            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/XMLLanguage:lang.txt> ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguage ] ;
+            owl:someValuesFrom kastle-ont:language.txt ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:lang.txt ;
-            owl:onProperty kastle-ont:hasLang ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xml:lang.txt> ;
-            owl:onProperty kastle-ont:hasXMLLang ],
+            owl:onClass kastle-ont:language.txt ;
+            owl:onProperty kastle-ont:hasLanguage ],
         [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasScript ] ;
             owl:someValuesFrom kastle-ont:script.txt ],
         [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasXMLLang ] ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xml:lang.txt> ],
-        [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:script.txt ;
-            owl:onProperty kastle-ont:hasScript ],
+            owl:onClass <https://kastle-labl.org/lod/ontology/XMLLanguage:lang.txt> ;
+            owl:onProperty kastle-ont:hasXMLLanguage ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasTransliterationTechnique ],
         [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasTransliterationTechnique ] ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ] .
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:script.txt ;
+            owl:onProperty kastle-ont:hasScript ] .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasScript ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -80,20 +72,23 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasTransliterationTechnique ] ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLang ] ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguage ] ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasXMLLang ] ] .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:LanguageAttributes ;
-    owl:onProperty kastle-ont:hasXMLLang ;
-    owl:someValuesFrom owl:Thing .
+            owl:onProperty [ owl:inverseOf kastle-ont:hasScript ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasXMLLanguage ] ] .
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:LanguageAttributes ;
@@ -102,11 +97,16 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:LanguageAttributes ;
-    owl:onProperty kastle-ont:hasLang ;
+    owl:onProperty kastle-ont:hasXMLLanguage ;
     owl:someValuesFrom owl:Thing .
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:LanguageAttributes ;
     owl:onProperty kastle-ont:hasTransliterationTechnique ;
+    owl:someValuesFrom owl:Thing .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:LanguageAttributes ;
+    owl:onProperty kastle-ont:hasLanguage ;
     owl:someValuesFrom owl:Thing .
 

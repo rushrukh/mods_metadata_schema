@@ -1,6 +1,6 @@
 Thing hasLanguageAttributes LanguageAttributes r uie f if st
 
-LanguageAttributes hasLang lang.txt d ie if st
-LanguageAttributes hasXMLLang xml:lang.txt d ie if st
+LanguageAttributes hasLanguage language.txt d ie if st
+LanguageAttributes hasXMLLanguage XMLLanguage:lang.txt d ie if st
 LanguageAttributes hasScript script.txt d ie if st
 LanguageAttributes hasTransliterationTechnique xsd:string d ie if st

@@ -15,7 +15,7 @@
                                                                 Use Case Description"""^^xsd:string ;
                                                                 opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
                                                                                             "cq2"^^xsd:string ;
-                                                                opla-sd:hasConnections """Item hasLanguage Language r uie if st
+                                                                opla-sd:hasConnections """MODSItem hasLanguage Language r uie if st
 Language isAssociatedWithResourcePart xsd:string r st
 Language hasLanguageTerm Term r e uie if st
 Language hasScriptTerm Term r uie if st
@@ -29,7 +29,7 @@ Language sco ElementInfo"""^^xsd:string ;
                                                                         "Pascal Hitzler" ,
                                                                         "Rushrukh Rayan" .
 
-kastle-ont:Item rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Language ;
             owl:onProperty kastle-ont:hasLanguage ] .
@@ -39,16 +39,16 @@ kastle-ont:Language rdfs:subClassOf [ a owl:Restriction ;
             owl:someValuesFrom kastle-ont:Term ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Usage.txt ;
-            owl:onProperty kastle-ont:isPrimaryInstance ],
+            owl:onClass kastle-ont:Term ;
+            owl:onProperty kastle-ont:hasLanguageTerm ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:isAssociatedWithResourcePart ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Term ;
-            owl:onProperty kastle-ont:hasLanguageTerm ],
+            owl:onClass kastle-ont:Usage.txt ;
+            owl:onProperty kastle-ont:isPrimaryInstance ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Term ;
@@ -63,23 +63,23 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasScriptTerm ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Term ;
-            owl:onProperty kastle-ont:hasScriptTerm ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguage ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Usage.txt ;
-            owl:onProperty kastle-ont:isPrimaryInstance ],
-        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Language ;
             owl:onProperty kastle-ont:hasLanguage ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageTerm ] ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguage ] ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:isAssociatedWithResourcePart ] .
+            owl:onProperty kastle-ont:isAssociatedWithResourcePart ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Term ;
+            owl:onProperty kastle-ont:hasScriptTerm ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageTerm ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Usage.txt ;
+            owl:onProperty kastle-ont:isPrimaryInstance ] .
 

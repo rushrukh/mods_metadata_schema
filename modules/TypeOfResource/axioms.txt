@@ -1,10 +1,10 @@
-Item hasTypeOfResource TypeOfResource r uie if st
+MODSItem hasTypeOfResource TypeOfResource r uie if st
 
 TypeOfResource hasAuthorityInfo AuthorityInfo r uie f if st
 TypeOfResource isPrimaryInstance Usage.txt r st
 TypeOfResource isCollection xsd:boolean r st
 TypeOfResource isManuscript xsd:boolean r st
-TypeOfResource hasValue xsd:string r e st
+TypeOfResource hasResourceTypeValue xsd:string r e st
 
 TypeOfResource sco ElementInfo
 # TypeOfResource sco not (ex hasLinkAttributes. ex hasXlink.Top)

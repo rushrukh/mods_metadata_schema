@@ -1,40 +1,40 @@
-Item hasSubject Subject r uie if st
+MODSItem hasPrimaryTopic PrimaryTopic r uie if st
 
-Subject hasTopic Topic d r ie if st
+PrimaryTopic hasTopic Topic d r ie if st
 Topic hasAuthorityInfo AuthorityInfo r uie f if st
 Topic hasLanguageAttributes LanguageAttributes r uie f if st
-Topic hasValue xsd:string r e st
+Topic hasTopicValue xsd:string r e st
 
-Subject hasTemporalReference TemporalReference d r ie if st
+PrimaryTopic hasTemporalReference TemporalReference d r ie if st
 TemporalReference hasDateATtribute DateAttributes r uie f if st
 TemporalReference hasAuthorityInfo AuthorityInfo r uie f if st
 TemporalReference hasLanguageAttributes LanguageAttributes r uie f if st
-TemporalReference hasValue xsd:string r e st
+TemporalReference hasTemporalValue xsd:string r e st
 
-Subject isAssociatedWithOccupation Occupation d r ie if st
-Occupation hasValue xsd:string r e st
+PrimaryTopic isAssociatedWithOccupation Occupation d r ie if st
+Occupation hasOccupationValue xsd:string r e st
 Occupation hasAuthorityInfo AuthorityInfo r uie f if st
 Occupation hasLanguageAttributes LanguageAttributes r uie f if st
 
-Subject hasAuthorityInfo AuthorityInfo r uie f if st
+PrimaryTopic hasAuthorityInfo AuthorityInfo r uie f if st
 
-Subject hasTitleInfo TitleInfo d r ie if st
+PrimaryTopic hasTitleInfo TitleInfo d r ie if st
 # TitleInfo sco not (ex isPrimaryInstance.Top)
 # TitleInfo sco not (ex isContentSuppliedExternally.Top)
 # TitleInfo sco not (ex hasLinkAttributes. ex hasAltRepGroup.Top)
 # TitleInfo sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
 
-Subject hasName Name r uie if st
+PrimaryTopic hasName Name r uie if st
 # Name sco not (ex hasAssociatedName.Top)
 # Name sco not (ex hasEtal.Top)
 
-Subject hasGenre Genre r uie if st
+PrimaryTopic hasGenre Genre r uie if st
 
-Subject hasGeographicSubject GeographicSubject r uie if st
+PrimaryTopic hasGeographicSubject GeographicSubject r uie if st
 
-Subject hasCartographicSpecifications Carographics r uie if st
+PrimaryTopic hasCartographicSpecifications Carographics r uie if st
 
-Subject isPrimaryInstance Usage.txt r st
+PrimaryTopic isPrimaryInstance Usage.txt r st
 
-Subject sco ElementInfo
+PrimaryTopic sco ElementInfo
 # Subject sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)

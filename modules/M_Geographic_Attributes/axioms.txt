@@ -1,7 +1,6 @@
 Thing hasGeographicAttributes GeographicAttributes r uie if st
-
 GeographicAttributes hasAuthorityInfo AuthorityInfo r uie f if st
 GeographicAttributes hasLanguageAttributes LanguageAttributes r uie f if st
 GeographicAttributes hasLevelInHierarchy xsd:int r st 
 GeographicAttributes hasExistencePeriod xsd:string r st 
-GeographicAttributes hasType xsd:string r st
+GeographicAttributes hasGeographicType xsd:string r st

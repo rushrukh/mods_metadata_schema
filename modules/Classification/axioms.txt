@@ -1,11 +1,9 @@
-Item hasClassfication Classification r uie if st
-
+MODSItem hasClassfication Classification r uie if st
 Classification hasAuthorityInfo AuthorityInfo r uie f if st
 Classification isPrimaryInstance Usage.txt r st
-Classification hasEdition xsd:string r st 
-Classification hasValue xsd:string r e st
+Classification hasEditionAsString xsd:string r st 
+Classification hasValueAsString xsd:string r e st
 Classification hasClassificationValueGenerator xsd:string r st
-
 Classification sco ElementInfo
 # Classification sco not (ex hasLinkAttributes. ex hasXlink.Top)
 # Classification sco not (ex hasLinkAttributes. ex hasNameTitleGroup.Top)
