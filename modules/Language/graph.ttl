@@ -39,11 +39,7 @@ kastle-ont:Language rdfs:subClassOf [ a owl:Restriction ;
             owl:someValuesFrom kastle-ont:Term ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Term ;
-            owl:onProperty kastle-ont:hasLanguageTerm ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onClass xsd:string ;
             owl:onProperty kastle-ont:isAssociatedWithResourcePart ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
@@ -52,16 +48,24 @@ kastle-ont:Language rdfs:subClassOf [ a owl:Restriction ;
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Term ;
+            owl:onProperty kastle-ont:hasLanguageTerm ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Term ;
             owl:onProperty kastle-ont:hasScriptTerm ],
         kastle-ont:ElementInfo .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Term ;
-            owl:onProperty kastle-ont:hasLanguageTerm ],
+            owl:onProperty kastle-ont:hasScriptTerm ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasScriptTerm ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageTerm ] ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Language ;
             owl:onProperty kastle-ont:hasLanguage ],
@@ -70,16 +74,12 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasLanguage ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:isAssociatedWithResourcePart ],
+            owl:allValuesFrom kastle-ont:Usage.txt ;
+            owl:onProperty kastle-ont:isPrimaryInstance ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Term ;
-            owl:onProperty kastle-ont:hasScriptTerm ],
+            owl:onProperty kastle-ont:hasLanguageTerm ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageTerm ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Usage.txt ;
-            owl:onProperty kastle-ont:isPrimaryInstance ] .
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:isAssociatedWithResourcePart ] .
 

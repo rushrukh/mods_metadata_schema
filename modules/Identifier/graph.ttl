@@ -35,11 +35,8 @@ kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasIdentifier ] .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasIdentifierTypeURI ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:hasValidity ],
+            owl:allValuesFrom kastle-ont:IdentifierType.txt ;
+            owl:onProperty kastle-ont:hasIdentifierType ],
         [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasIdentifierValue ],
@@ -48,30 +45,33 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasIdentifier ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:IdentifierType.txt ;
-            owl:onProperty kastle-ont:hasIdentifierType ],
-        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Identifier ;
-            owl:onProperty kastle-ont:hasIdentifier ] .
+            owl:onProperty kastle-ont:hasIdentifier ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
+            owl:onProperty kastle-ont:hasIdentifierTypeURI ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
+            owl:onProperty kastle-ont:hasValidity ] .
 
 kastle-ont:Identifier rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasIdentifierTypeURI ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasIdentifierValue ],
+            owl:onClass xsd:boolean ;
+            owl:onProperty kastle-ont:hasValidity ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:IdentifierType.txt ;
             owl:onProperty kastle-ont:hasIdentifierType ],
         [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass xsd:anyURI ;
+            owl:onProperty kastle-ont:hasIdentifierTypeURI ],
+        [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasIdentifierValue ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:hasValidity ],
+            owl:onClass xsd:string ;
+            owl:onProperty kastle-ont:hasIdentifierValue ],
         kastle-ont:ElementInfo .
 

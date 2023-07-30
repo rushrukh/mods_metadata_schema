@@ -33,29 +33,29 @@ kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasMODSExtension ] .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:MODSExtension ;
-            owl:onProperty kastle-ont:hasMODSExtension ],
-        [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasMODSExtensionInfo ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasTypeOfMODSExtension ],
+            owl:allValuesFrom kastle-ont:MODSExtension ;
+            owl:onProperty kastle-ont:hasMODSExtension ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasMODSExtension ] ] .
+            owl:onProperty [ owl:inverseOf kastle-ont:hasMODSExtension ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasTypeOfMODSExtension ] .
 
 kastle-ont:MODSExtension rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onClass xsd:string ;
+            owl:onProperty kastle-ont:hasMODSExtensionInfo ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass xsd:string ;
             owl:onProperty kastle-ont:hasTypeOfMODSExtension ],
         [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasMODSExtensionInfo ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasMODSExtensionInfo ],
         kastle-ont:ElementInfo .
 

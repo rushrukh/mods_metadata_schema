@@ -30,31 +30,46 @@ RelatedItem hasLinkAttributes LinkAttributes r uie f if st"""^^xsd:string ;
 
 kastle-ont:RelatedItem rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:OtherTypeInfo ;
-            owl:onProperty kastle-ont:hasRelatedItemType ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:RelatedItemType.txt ;
-            owl:onProperty kastle-ont:hasRelatedItemType ],
+            owl:onClass kastle-ont:LinkAttributes ;
+            owl:onProperty kastle-ont:hasLinkAttributes ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:MODSItem ;
             owl:onProperty kastle-ont:isRelatedTo ],
         [ a owl:Restriction ;
-            owl:onProperty kastle-ont:isRelatedTo ;
-            owl:someValuesFrom kastle-ont:MODSItem ],
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:OtherTypeInfo ;
+            owl:onProperty kastle-ont:hasRelatedItemType ],
         [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:isRelatedTo ] ;
             owl:someValuesFrom kastle-ont:MODSItem ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:LinkAttributes ;
-            owl:onProperty kastle-ont:hasLinkAttributes ] .
+            owl:onClass kastle-ont:RelatedItemType.txt ;
+            owl:onProperty kastle-ont:hasRelatedItemType ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:isRelatedTo ;
+            owl:someValuesFrom kastle-ont:MODSItem ] .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:isRelatedTo ] ],
+            owl:onProperty kastle-ont:hasLinkAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LinkAttributes ;
+            owl:onProperty kastle-ont:hasLinkAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:MODSItem ;
+            owl:onProperty kastle-ont:isRelatedTo ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:RelatedItemType.txt ;
+            owl:onProperty kastle-ont:hasRelatedItemType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:RelatedItem ;
+            owl:onProperty kastle-ont:hasRelatedItem ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:OtherTypeInfo ;
+            owl:onProperty kastle-ont:hasRelatedItemType ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
@@ -66,22 +81,7 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasLinkAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:RelatedItem ;
-            owl:onProperty kastle-ont:hasRelatedItem ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:LinkAttributes ;
-            owl:onProperty kastle-ont:hasLinkAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:RelatedItemType.txt ;
-            owl:onProperty kastle-ont:hasRelatedItemType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:OtherTypeInfo ;
-            owl:onProperty kastle-ont:hasRelatedItemType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:MODSItem ;
-            owl:onProperty kastle-ont:isRelatedTo ] .
+            owl:onProperty [ owl:inverseOf kastle-ont:isRelatedTo ] ] .
 
 kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;

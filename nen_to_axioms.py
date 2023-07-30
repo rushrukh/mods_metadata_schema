@@ -8,19 +8,20 @@ from rdflib import OWL, RDF, RDFS, XSD, TIME
 base_prefix = "kastle"
 name_space = "https://kastle-labl.org/"
 pfs = {
-f"{base_prefix}r": Namespace(f"{name_space}lod/resource/"),
-f"{base_prefix}-ont": Namespace(f"{name_space}lod/ontology/"),
-"geo": Namespace("http://www.opengis.net/ont/geosparql#"),
-"geof": Namespace("http://www.opengis.net/def/function/geosparql/"),
-"sf": Namespace("http://www.opengis.net/ont/sf#"),
-"wd": Namespace("http://www.wikidata.org/entity/"),
-"wdt": Namespace("http://www.wikidata.org/prop/direct/"),
-"dbo": Namespace("http://dbpedia.org/ontology/"),
-"time": Namespace("http://www.w3.org/2006/time#"),
-"ssn": Namespace("http://www.w3.org/ns/ssn/"),
-"sosa": Namespace("http://www.w3.org/ns/sosa/"),
-"cdt": Namespace("http://w3id.org/lindt/custom_datatypes#"),
-"ex": Namespace("https://example.com/")
+    f"{base_prefix}r": Namespace(f"{name_space}lod/resource/"),
+    f"{base_prefix}-ont": Namespace(f"{name_space}lod/ontology/"),
+    "geo": Namespace("http://www.opengis.net/ont/geosparql#"),
+    "geof": Namespace("http://www.opengis.net/def/function/geosparql/"),
+    "sf": Namespace("http://www.opengis.net/ont/sf#"),
+    "wd": Namespace("http://www.wikidata.org/entity/"),
+    "wdt": Namespace("http://www.wikidata.org/prop/direct/"),
+    "dbo": Namespace("http://dbpedia.org/ontology/"),
+    "time": Namespace("http://www.w3.org/2006/time#"),
+    "ssn": Namespace("http://www.w3.org/ns/ssn/"),
+    "sosa": Namespace("http://www.w3.org/ns/sosa/"),
+    "cdt": Namespace("http://w3id.org/lindt/custom_datatypes#"),
+    "ex": Namespace("https://example.com/"),
+    "xsd": Namespace("http://www.w3.org/2001/XMLSchema#")
 }
 
 # Initialization shortcut
@@ -63,18 +64,26 @@ def create_inverse_prop(pred, g):
 	return iprop
 
 def create_cardinality_node(pred, card_type, cardinality, ont_o, g):
-	# create the blank node which shall act as the restriction
-	restriction_node = BNode()
-	# declare its type (i.e., it's a restriction -- the point of this function)
-	g.add( (restriction_node, a, OWL.Restriction) )
-	# which property its acting on
-	g.add( (restriction_node, OWL.onProperty, pred) )
-	# Add the cardinality value
-	g.add( (restriction_node, card_types[card_type], Literal(cardinality, datatype=XSD.nonNegativeInteger)) )
-	# What is being restricted?
-	g.add( (restriction_node, OWL.onClass, ont_o) )
-
-	return restriction_node
+        
+        # create the blank node which shall act as the restriction
+        restriction_node = BNode()
+        # declare its type (i.e., it's a restriction -- the point of this function)
+        g.add( (restriction_node, a, OWL.Restriction) )
+        # which property its acting on
+        g.add( (restriction_node, OWL.onProperty, pred) )
+        # Add the cardinality value
+        g.add( (restriction_node, card_types[card_type], Literal(cardinality, datatype=XSD.nonNegativeInteger)) )
+            
+        # What is being restricted?
+        print(f"ont_o: {ont_o}")
+        if(ont_o.find('xsd') == -1):
+            g.add( (restriction_node, OWL.onClass, ont_o) )
+        else:
+            lhs = ont_o.split("/")[-1].split(":")[0]
+            rhs = ont_o.split("/")[-1].split(":")[1]
+            g.add( (restriction_node, OWL.onClass, pfs[lhs][rhs]) )
+            
+        return restriction_node
 
 
 def nen_to_axioms(input_dir):

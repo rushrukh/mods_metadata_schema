@@ -37,33 +37,33 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
             owl:onProperty kastle-ont:hasNoteType ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasNote ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasNoteTypeURI ],
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onProperty kastle-ont:hasValueAsString ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Note ;
             owl:onProperty kastle-ont:hasNote ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValueAsString ] .
+            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
+            owl:onProperty kastle-ont:hasNoteTypeURI ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasNote ] ] .
 
 kastle-ont:Note rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasValueAsString ;
             owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasNoteType ],
+            owl:onClass xsd:anyURI ;
+            owl:onProperty kastle-ont:hasNoteTypeURI ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:onClass xsd:string ;
             owl:onProperty kastle-ont:hasValueAsString ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasNoteTypeURI ],
+            owl:onClass xsd:string ;
+            owl:onProperty kastle-ont:hasNoteType ],
         kastle-ont:ElementInfo .
 
