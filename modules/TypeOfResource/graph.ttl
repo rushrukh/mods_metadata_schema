@@ -1,86 +1,174 @@
-@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
+@base <http://www.w3.org/2002/07/owl#> .
 
-kastle-ont:MODSItem a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:TypeOfResource ;
-            owl:onProperty kastle-ont:hasTypeOfResource ] .
+[ rdf:type owl:Ontology
+ ] .
 
-kastle-ont:ElementInfo a owl:Class .
+#################################################################
+#    Object Properties
+#################################################################
 
-kastle-ont:AuthorityInfo a owl:Class .
+###  http://kastle-labl.org/lod/ontology/hasLinkAttributes
+<http://kastle-labl.org/lod/ontology/hasLinkAttributes> rdf:type owl:ObjectProperty .
 
-kastle-ont:TypeOfResource a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:string ;
-            owl:onProperty kastle-ont:hasResourceTypeValue ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Usage.txt ;
-            owl:onProperty kastle-ont:isPrimaryInstance ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasResourceTypeValue ;
-            owl:someValuesFrom xsd:string ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:boolean ;
-            owl:onProperty kastle-ont:isManuscript ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:boolean ;
-            owl:onProperty kastle-ont:isCollection ],
-        kastle-ont:ElementInfo .
 
-kastle-ont:Usage.txt a owl:Class .
+###  https://kastle-labl.org/lod/ontology/hasAuthorityInfo
+kastle-ont:hasAuthorityInfo rdf:type owl:ObjectProperty .
 
-kastle-ont:isCollection a owl:DatatypeProperty .
 
-kastle-ont:isManuscript a owl:DatatypeProperty .
+###  https://kastle-labl.org/lod/ontology/hasTypeOfResource
+kastle-ont:hasTypeOfResource rdf:type owl:ObjectProperty .
 
-kastle-ont:isPrimaryInstance a owl:ObjectProperty .
 
-owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty kastle-ont:hasResourceTypeValue ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasTypeOfResource ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:TypeOfResource ;
-            owl:onProperty kastle-ont:hasTypeOfResource ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:boolean ;
-            owl:onProperty kastle-ont:isCollection ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:boolean ;
-            owl:onProperty kastle-ont:isManuscript ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Usage.txt ;
-            owl:onProperty kastle-ont:isPrimaryInstance ] .
+###  https://kastle-labl.org/lod/ontology/isPrimaryInstance
+kastle-ont:isPrimaryInstance rdf:type owl:ObjectProperty .
 
-kastle-ont:hasResourceTypeValue a owl:DatatypeProperty .
 
-kastle-ont:hasTypeOfResource a owl:ObjectProperty .
+#################################################################
+#    Data properties
+#################################################################
 
-kastle-ont:hasAuthorityInfo a owl:ObjectProperty .
+###  http://kastle-labl.org/lod/ontology/hasNameTitleGroup
+<http://kastle-labl.org/lod/ontology/hasNameTitleGroup> rdf:type owl:DatatypeProperty .
 
+
+###  http://kastle-labl.org/lod/ontology/hasXlink
+<http://kastle-labl.org/lod/ontology/hasXlink> rdf:type owl:DatatypeProperty .
+
+
+###  https://kastle-labl.org/lod/ontology/hasResourceTypeValue
+kastle-ont:hasResourceTypeValue rdf:type owl:DatatypeProperty .
+
+
+###  https://kastle-labl.org/lod/ontology/isCollection
+kastle-ont:isCollection rdf:type owl:DatatypeProperty .
+
+
+###  https://kastle-labl.org/lod/ontology/isManuscript
+kastle-ont:isManuscript rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasAuthorityInfo ;
+                            owl:allValuesFrom kastle-ont:AuthorityInfo
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasTypeOfResource ;
+                            owl:allValuesFrom kastle-ont:TypeOfResource
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:isPrimaryInstance ;
+                            owl:allValuesFrom kastle-ont:Usage.txt
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasAuthorityInfo ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasTypeOfResource
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasResourceTypeValue ;
+                            owl:allValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:isCollection ;
+                            owl:allValuesFrom xsd:boolean
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:isManuscript ;
+                            owl:allValuesFrom xsd:boolean
+                          ] .
+
+
+###  https://kastle-labl.org/lod/ontology/AuthorityInfo
+kastle-ont:AuthorityInfo rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/ElementInfo
+kastle-ont:ElementInfo rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/MODSItem
+kastle-ont:MODSItem rdf:type owl:Class ;
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty kastle-ont:hasTypeOfResource ;
+                                      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                      owl:onClass kastle-ont:TypeOfResource
+                                    ] .
+
+
+###  https://kastle-labl.org/lod/ontology/TypeOfResource
+kastle-ont:TypeOfResource rdf:type owl:Class ;
+                          rdfs:subClassOf kastle-ont:ElementInfo ,
+                                          [ rdf:type owl:Class ;
+                                            owl:complementOf [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://kastle-labl.org/lod/ontology/hasLinkAttributes> ;
+                                                               owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://kastle-labl.org/lod/ontology/hasNameTitleGroup> ;
+                                                                                    owl:someValuesFrom xsd:string
+                                                                                  ]
+                                                             ]
+                                          ] ,
+                                          [ rdf:type owl:Class ;
+                                            owl:complementOf [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://kastle-labl.org/lod/ontology/hasLinkAttributes> ;
+                                                               owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://kastle-labl.org/lod/ontology/hasXlink> ;
+                                                                                    owl:someValuesFrom xsd:string
+                                                                                  ]
+                                                             ]
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:hasAuthorityInfo ;
+                                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                            owl:onClass kastle-ont:AuthorityInfo
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:isPrimaryInstance ;
+                                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                            owl:onClass kastle-ont:Usage.txt
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:hasResourceTypeValue ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:hasResourceTypeValue ;
+                                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                            owl:onDataRange xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:isCollection ;
+                                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                            owl:onDataRange xsd:boolean
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:isManuscript ;
+                                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                            owl:onDataRange xsd:boolean
+                                          ] .
+
+
+###  https://kastle-labl.org/lod/ontology/Usage.txt
+kastle-ont:Usage.txt rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

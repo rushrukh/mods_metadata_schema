@@ -1,47 +1,141 @@
-@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
+@base <http://www.w3.org/2002/07/owl#> .
 
-kastle-ont:MODSItem a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:MODSExtension ;
-            owl:onProperty kastle-ont:hasMODSExtension ] .
+[ rdf:type owl:Ontology
+ ] .
 
-owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty kastle-ont:hasTypeOfMODSExtension ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:MODSExtension ;
-            owl:onProperty kastle-ont:hasMODSExtension ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty kastle-ont:hasMODSExtensionInfo ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasMODSExtension ] ] .
+#################################################################
+#    Object Properties
+#################################################################
 
-kastle-ont:ElementInfo a owl:Class .
+###  http://kastle-labl.org/lod/ontology/hasLanguageAttributes
+<http://kastle-labl.org/lod/ontology/hasLanguageAttributes> rdf:type owl:ObjectProperty .
 
-kastle-ont:MODSExtension a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:string ;
-            owl:onProperty kastle-ont:hasTypeOfMODSExtension ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasMODSExtensionInfo ;
-            owl:someValuesFrom xsd:string ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:string ;
-            owl:onProperty kastle-ont:hasMODSExtensionInfo ],
-        kastle-ont:ElementInfo .
 
-kastle-ont:hasTypeOfMODSExtension a owl:DatatypeProperty .
+###  http://kastle-labl.org/lod/ontology/hasLinkAttributes
+<http://kastle-labl.org/lod/ontology/hasLinkAttributes> rdf:type owl:ObjectProperty .
 
-kastle-ont:hasMODSExtension a owl:ObjectProperty .
 
-kastle-ont:hasMODSExtensionInfo a owl:DatatypeProperty .
+###  https://kastle-labl.org/lod/ontology/hasMODSExtension
+kastle-ont:hasMODSExtension rdf:type owl:ObjectProperty .
 
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://kastle-labl.org/lod/ontology/hasAltRepGroup
+<http://kastle-labl.org/lod/ontology/hasAltRepGroup> rdf:type owl:DatatypeProperty .
+
+
+###  http://kastle-labl.org/lod/ontology/hasNameTitleGroup
+<http://kastle-labl.org/lod/ontology/hasNameTitleGroup> rdf:type owl:DatatypeProperty .
+
+
+###  http://kastle-labl.org/lod/ontology/hasXlink
+<http://kastle-labl.org/lod/ontology/hasXlink> rdf:type owl:DatatypeProperty .
+
+
+###  https://kastle-labl.org/lod/ontology/hasMODSExtensionInfo
+kastle-ont:hasMODSExtensionInfo rdf:type owl:DatatypeProperty .
+
+
+###  https://kastle-labl.org/lod/ontology/hasTypeOfMODSExtension
+kastle-ont:hasTypeOfMODSExtension rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasMODSExtension ;
+                            owl:allValuesFrom kastle-ont:MODSExtension
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasMODSExtension
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasMODSExtensionInfo ;
+                            owl:allValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasTypeOfMODSExtension ;
+                            owl:allValuesFrom xsd:string
+                          ] .
+
+
+###  https://kastle-labl.org/lod/ontology/ElementInfo
+kastle-ont:ElementInfo rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/MODSExtension
+kastle-ont:MODSExtension rdf:type owl:Class ;
+                         rdfs:subClassOf kastle-ont:ElementInfo ,
+                                         [ rdf:type owl:Class ;
+                                           owl:complementOf [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <http://kastle-labl.org/lod/ontology/hasLanguageAttributes> ;
+                                                              owl:someValuesFrom owl:Thing
+                                                            ]
+                                         ] ,
+                                         [ rdf:type owl:Class ;
+                                           owl:complementOf [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <http://kastle-labl.org/lod/ontology/hasLinkAttributes> ;
+                                                              owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://kastle-labl.org/lod/ontology/hasAltRepGroup> ;
+                                                                                   owl:someValuesFrom xsd:string
+                                                                                 ]
+                                                            ]
+                                         ] ,
+                                         [ rdf:type owl:Class ;
+                                           owl:complementOf [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <http://kastle-labl.org/lod/ontology/hasLinkAttributes> ;
+                                                              owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://kastle-labl.org/lod/ontology/hasNameTitleGroup> ;
+                                                                                   owl:someValuesFrom xsd:string
+                                                                                 ]
+                                                            ]
+                                         ] ,
+                                         [ rdf:type owl:Class ;
+                                           owl:complementOf [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <http://kastle-labl.org/lod/ontology/hasLinkAttributes> ;
+                                                              owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty <http://kastle-labl.org/lod/ontology/hasXlink> ;
+                                                                                   owl:someValuesFrom xsd:string
+                                                                                 ]
+                                                            ]
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty kastle-ont:hasMODSExtensionInfo ;
+                                           owl:someValuesFrom xsd:string
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty kastle-ont:hasMODSExtensionInfo ;
+                                           owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                           owl:onDataRange xsd:string
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty kastle-ont:hasTypeOfMODSExtension ;
+                                           owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                           owl:onDataRange xsd:string
+                                         ] .
+
+
+###  https://kastle-labl.org/lod/ontology/MODSItem
+kastle-ont:MODSItem rdf:type owl:Class ;
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty kastle-ont:hasMODSExtension ;
+                                      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                      owl:onClass kastle-ont:MODSExtension
+                                    ] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

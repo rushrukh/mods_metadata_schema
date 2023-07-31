@@ -1,259 +1,387 @@
-@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
+@base <http://www.w3.org/2002/07/owl#> .
 
-kastle-ont:MODSItem a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:ResourcePhysicalDescription ;
-            owl:onProperty kastle-ont:hasPhysicalDescription ] .
+[ rdf:type owl:Ontology
+ ] .
 
-kastle-ont:ElementInfo a owl:Class .
+#################################################################
+#    Object Properties
+#################################################################
 
-kastle-ont:FormType.txt a owl:Class .
+###  http://kastle-labl.org/lod/ontology/hasLinkAttributes
+<http://kastle-labl.org/lod/ontology/hasLinkAttributes> rdf:type owl:ObjectProperty .
 
-kastle-ont:AuthorityInfo a owl:Class .
 
-kastle-ont:DigitalOrigin.txt a owl:Class .
+###  https://kastle-labl.org/lod/ontology/hasAmountDescription
+kastle-ont:hasAmountDescription rdf:type owl:ObjectProperty .
 
-kastle-ont:PhysicalExtent a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:boolean ;
-            owl:onProperty kastle-ont:isContentSuppliedExternally ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasExtentValue ;
-            owl:someValuesFrom xsd:string ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Unit.txt ;
-            owl:onProperty kastle-ont:hasExtentUnit ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:string ;
-            owl:onProperty kastle-ont:hasExtentValue ] .
 
-kastle-ont:ReformattingQuality.txt a owl:Class .
+###  https://kastle-labl.org/lod/ontology/hasAuthorityInfo
+kastle-ont:hasAuthorityInfo rdf:type owl:ObjectProperty .
 
-kastle-ont:Unit.txt a owl:Class .
 
-kastle-ont:hasDigitalOriginMethod a owl:ObjectProperty .
+###  https://kastle-labl.org/lod/ontology/hasDigitalOriginMethod
+kastle-ont:hasDigitalOriginMethod rdf:type owl:ObjectProperty .
 
-kastle-ont:hasExtentUnit a owl:ObjectProperty .
 
-kastle-ont:hasFormType a owl:ObjectProperty .
+###  https://kastle-labl.org/lod/ontology/hasDigitalRepresentationOfType
+kastle-ont:hasDigitalRepresentationOfType rdf:type owl:ObjectProperty .
 
-kastle-ont:hasReformattingQuality a owl:ObjectProperty .
 
-kastle-ont:isContentSuppliedExternally a owl:DatatypeProperty .
+###  https://kastle-labl.org/lod/ontology/hasExtentUnit
+kastle-ont:hasExtentUnit rdf:type owl:ObjectProperty .
 
-kastle-ont:InternetMediaType a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasMediaType ;
-            owl:someValuesFrom kastle-ont:InternetMediaType.txt ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:InternetMediaType.txt ;
-            owl:onProperty kastle-ont:hasMediaType ] .
 
-kastle-ont:InternetMediaType.txt a owl:Class .
+###  https://kastle-labl.org/lod/ontology/hasFormType
+kastle-ont:hasFormType rdf:type owl:ObjectProperty .
 
-kastle-ont:Note a owl:Class .
 
-kastle-ont:hasAmountDescription a owl:ObjectProperty .
+###  https://kastle-labl.org/lod/ontology/hasGeneralInformation
+kastle-ont:hasGeneralInformation rdf:type owl:ObjectProperty .
 
-kastle-ont:hasExtentValue a owl:DatatypeProperty .
 
-kastle-ont:hasMediaType a owl:ObjectProperty .
+###  https://kastle-labl.org/lod/ontology/hasLanguageAttributes
+kastle-ont:hasLanguageAttributes rdf:type owl:ObjectProperty .
 
-kastle-ont:hasPhysicalDescription a owl:ObjectProperty .
 
-kastle-ont:PhysicalForm a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:FormType.txt ;
-            owl:onProperty kastle-ont:hasFormType ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ] .
+###  https://kastle-labl.org/lod/ontology/hasMediaType
+kastle-ont:hasMediaType rdf:type owl:ObjectProperty .
 
-kastle-ont:hasAuthorityInfo a owl:ObjectProperty .
 
-kastle-ont:ResourcePhysicalDescription a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:PhysicalForm ;
-            owl:onProperty kastle-ont:hasPhysicalRepresentationOf ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:PhysicalExtent ;
-            owl:onProperty kastle-ont:hasAmountDescription ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasPhysicalRepresentationOf ] ;
-            owl:someValuesFrom kastle-ont:PhysicalForm ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Note ;
-            owl:onProperty kastle-ont:hasGeneralInformation ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeneralInformation ] ;
-            owl:someValuesFrom kastle-ont:Note ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:ReformattingQuality.txt ;
-            owl:onProperty kastle-ont:hasReformattingQuality ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:DigitalOrigin.txt ;
-            owl:onProperty kastle-ont:hasDigitalOriginMethod ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:InternetMediaType ;
-            owl:onProperty kastle-ont:hasDigitalRepresentationOfType ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasDigitalRepresentationOfType ] ;
-            owl:someValuesFrom kastle-ont:InternetMediaType ],
-        kastle-ont:ElementInfo .
+###  https://kastle-labl.org/lod/ontology/hasPhysicalDescription
+kastle-ont:hasPhysicalDescription rdf:type owl:ObjectProperty .
 
-kastle-ont:hasDigitalRepresentationOfType a owl:ObjectProperty .
 
-kastle-ont:hasGeneralInformation a owl:ObjectProperty .
+###  https://kastle-labl.org/lod/ontology/hasPhysicalRepresentationOf
+kastle-ont:hasPhysicalRepresentationOf rdf:type owl:ObjectProperty .
 
-kastle-ont:hasPhysicalRepresentationOf a owl:ObjectProperty .
 
-kastle-ont:LanguageAttributes a owl:Class .
+###  https://kastle-labl.org/lod/ontology/hasReformattingQuality
+kastle-ont:hasReformattingQuality rdf:type owl:ObjectProperty .
 
-kastle-ont:hasLanguageAttributes a owl:ObjectProperty .
 
-owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:ReformattingQuality.txt ;
-            owl:onProperty kastle-ont:hasReformattingQuality ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasPhysicalDescription ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Note ;
-            owl:onProperty kastle-ont:hasGeneralInformation ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Unit.txt ;
-            owl:onProperty kastle-ont:hasExtentUnit ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasPhysicalRepresentationOf ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:ResourcePhysicalDescription ;
-            owl:onProperty kastle-ont:hasPhysicalDescription ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasDigitalRepresentationOfType ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:InternetMediaType ;
-            owl:onProperty kastle-ont:hasDigitalRepresentationOfType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:boolean ;
-            owl:onProperty kastle-ont:isContentSuppliedExternally ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:PhysicalForm ;
-            owl:onProperty kastle-ont:hasPhysicalRepresentationOf ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:InternetMediaType.txt ;
-            owl:onProperty kastle-ont:hasMediaType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty kastle-ont:hasExtentValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:DigitalOrigin.txt ;
-            owl:onProperty kastle-ont:hasDigitalOriginMethod ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAmountDescription ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:PhysicalExtent ;
-            owl:onProperty kastle-ont:hasAmountDescription ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeneralInformation ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ] .
+#################################################################
+#    Data properties
+#################################################################
 
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:ResourcePhysicalDescription ;
-    owl:onProperty kastle-ont:hasDigitalRepresentationOfType ;
-    owl:someValuesFrom owl:Thing .
+###  http://kastle-labl.org/lod/ontology/hasNameTitleGroup
+<http://kastle-labl.org/lod/ontology/hasNameTitleGroup> rdf:type owl:DatatypeProperty .
 
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:ResourcePhysicalDescription ;
-    owl:onProperty kastle-ont:hasPhysicalRepresentationOf ;
-    owl:someValuesFrom owl:Thing .
 
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:PhysicalForm ;
-    owl:onProperty kastle-ont:hasFormType ;
-    owl:someValuesFrom owl:Thing .
+###  https://kastle-labl.org/lod/ontology/hasExtentValue
+kastle-ont:hasExtentValue rdf:type owl:DatatypeProperty .
 
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:ResourcePhysicalDescription ;
-    owl:onProperty kastle-ont:hasGeneralInformation ;
-    owl:someValuesFrom owl:Thing .
 
+###  https://kastle-labl.org/lod/ontology/isContentSuppliedExternally
+kastle-ont:isContentSuppliedExternally rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasAmountDescription ;
+                            owl:allValuesFrom kastle-ont:PhysicalExtent
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasAuthorityInfo ;
+                            owl:allValuesFrom kastle-ont:AuthorityInfo
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasDigitalOriginMethod ;
+                            owl:allValuesFrom kastle-ont:DigitalOrigin.txt
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasDigitalRepresentationOfType ;
+                            owl:allValuesFrom kastle-ont:InternetMediaType
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasExtentUnit ;
+                            owl:allValuesFrom kastle-ont:Unit.txt
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasGeneralInformation ;
+                            owl:allValuesFrom kastle-ont:Note
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasLanguageAttributes ;
+                            owl:allValuesFrom kastle-ont:LanguageAttributes
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasMediaType ;
+                            owl:allValuesFrom kastle-ont:InternetMediaType.txt
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasPhysicalDescription ;
+                            owl:allValuesFrom kastle-ont:ResourcePhysicalDescription
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasPhysicalRepresentationOf ;
+                            owl:allValuesFrom kastle-ont:PhysicalForm
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasReformattingQuality ;
+                            owl:allValuesFrom kastle-ont:ReformattingQuality.txt
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasAuthorityInfo ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasLanguageAttributes ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasAmountDescription
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasDigitalRepresentationOfType
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasGeneralInformation
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasPhysicalDescription
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasPhysicalRepresentationOf
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasExtentValue ;
+                            owl:allValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:isContentSuppliedExternally ;
+                            owl:allValuesFrom xsd:boolean
+                          ] .
+
+
+###  https://kastle-labl.org/lod/ontology/AuthorityInfo
+kastle-ont:AuthorityInfo rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/DigitalOrigin.txt
+kastle-ont:DigitalOrigin.txt rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/ElementInfo
+kastle-ont:ElementInfo rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/FormType.txt
+kastle-ont:FormType.txt rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/InternetMediaType
+kastle-ont:InternetMediaType rdf:type owl:Class ;
+                             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                               owl:onProperty kastle-ont:hasMediaType ;
+                                               owl:someValuesFrom kastle-ont:InternetMediaType.txt
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty kastle-ont:hasLanguageAttributes ;
+                                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                               owl:onClass kastle-ont:LanguageAttributes
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty kastle-ont:hasMediaType ;
+                                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                               owl:onClass kastle-ont:InternetMediaType.txt
+                                             ] .
+
+
+###  https://kastle-labl.org/lod/ontology/InternetMediaType.txt
+kastle-ont:InternetMediaType.txt rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/LanguageAttributes
+kastle-ont:LanguageAttributes rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/MODSItem
+kastle-ont:MODSItem rdf:type owl:Class ;
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty kastle-ont:hasPhysicalDescription ;
+                                      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                      owl:onClass kastle-ont:ResourcePhysicalDescription
+                                    ] .
+
+
+###  https://kastle-labl.org/lod/ontology/Note
+kastle-ont:Note rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/PhysicalExtent
+kastle-ont:PhysicalExtent rdf:type owl:Class ;
+                          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:hasExtentUnit ;
+                                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                            owl:onClass kastle-ont:Unit.txt
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:hasLanguageAttributes ;
+                                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                            owl:onClass kastle-ont:LanguageAttributes
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:hasExtentValue ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:hasExtentValue ;
+                                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                            owl:onDataRange xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty kastle-ont:isContentSuppliedExternally ;
+                                            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                            owl:onDataRange xsd:boolean
+                                          ] .
+
+
+###  https://kastle-labl.org/lod/ontology/PhysicalForm
+kastle-ont:PhysicalForm rdf:type owl:Class ;
+                        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          owl:onProperty kastle-ont:hasAuthorityInfo ;
+                                          owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                          owl:onClass kastle-ont:AuthorityInfo
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty kastle-ont:hasFormType ;
+                                          owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                          owl:onClass kastle-ont:FormType.txt
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty kastle-ont:hasLanguageAttributes ;
+                                          owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                          owl:onClass kastle-ont:LanguageAttributes
+                                        ] .
+
+
+###  https://kastle-labl.org/lod/ontology/ReformattingQuality.txt
+kastle-ont:ReformattingQuality.txt rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/ResourcePhysicalDescription
+kastle-ont:ResourcePhysicalDescription rdf:type owl:Class ;
+                                       rdfs:subClassOf kastle-ont:ElementInfo ,
+                                                       [ rdf:type owl:Class ;
+                                                         owl:complementOf [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://kastle-labl.org/lod/ontology/hasLinkAttributes> ;
+                                                                            owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <http://kastle-labl.org/lod/ontology/hasNameTitleGroup> ;
+                                                                                                 owl:someValuesFrom xsd:string
+                                                                                               ]
+                                                                          ]
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty [ owl:inverseOf kastle-ont:hasDigitalRepresentationOfType
+                                                                        ] ;
+                                                         owl:someValuesFrom kastle-ont:InternetMediaType
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty [ owl:inverseOf kastle-ont:hasGeneralInformation
+                                                                        ] ;
+                                                         owl:someValuesFrom kastle-ont:Note
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty [ owl:inverseOf kastle-ont:hasPhysicalRepresentationOf
+                                                                        ] ;
+                                                         owl:someValuesFrom kastle-ont:PhysicalForm
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty kastle-ont:hasAmountDescription ;
+                                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass kastle-ont:PhysicalExtent
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty kastle-ont:hasDigitalOriginMethod ;
+                                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass kastle-ont:DigitalOrigin.txt
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty kastle-ont:hasDigitalRepresentationOfType ;
+                                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass kastle-ont:InternetMediaType
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty kastle-ont:hasGeneralInformation ;
+                                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass kastle-ont:Note
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty kastle-ont:hasPhysicalRepresentationOf ;
+                                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass kastle-ont:PhysicalForm
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty kastle-ont:hasReformattingQuality ;
+                                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass kastle-ont:ReformattingQuality.txt
+                                                       ] .
+
+
+###  https://kastle-labl.org/lod/ontology/Unit.txt
+kastle-ont:Unit.txt rdf:type owl:Class .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:Restriction ;
+  owl:onProperty kastle-ont:hasDigitalRepresentationOfType ;
+  owl:someValuesFrom owl:Thing ;
+  rdfs:subClassOf kastle-ont:ResourcePhysicalDescription
+] .
+
+
+[ rdf:type owl:Restriction ;
+  owl:onProperty kastle-ont:hasFormType ;
+  owl:someValuesFrom owl:Thing ;
+  rdfs:subClassOf kastle-ont:PhysicalForm
+] .
+
+
+[ rdf:type owl:Restriction ;
+  owl:onProperty kastle-ont:hasGeneralInformation ;
+  owl:someValuesFrom owl:Thing ;
+  rdfs:subClassOf kastle-ont:ResourcePhysicalDescription
+] .
+
+
+[ rdf:type owl:Restriction ;
+  owl:onProperty kastle-ont:hasPhysicalRepresentationOf ;
+  owl:someValuesFrom owl:Thing ;
+  rdfs:subClassOf kastle-ont:ResourcePhysicalDescription
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

@@ -1,67 +1,148 @@
-@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix kastle-ont: <https://kastle-labl.org/lod/ontology/> .
+@base <http://www.w3.org/2002/07/owl#> .
 
-kastle-ont:MODSItem a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Identifier ;
-            owl:onProperty kastle-ont:hasIdentifier ] .
+[ rdf:type owl:Ontology
+ ] .
 
-owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasIdentifier ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:boolean ;
-            owl:onProperty kastle-ont:hasValidity ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Identifier ;
-            owl:onProperty kastle-ont:hasIdentifier ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty kastle-ont:hasIdentifierValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
-            owl:onProperty kastle-ont:hasIdentifierTypeURI ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:IdentifierType.txt ;
-            owl:onProperty kastle-ont:hasIdentifierType ] .
+#################################################################
+#    Object Properties
+#################################################################
 
-kastle-ont:ElementInfo a owl:Class .
+###  http://kastle-labl.org/lod/ontology/hasLinkAttributes
+<http://kastle-labl.org/lod/ontology/hasLinkAttributes> rdf:type owl:ObjectProperty .
 
-kastle-ont:Identifier a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:IdentifierType.txt ;
-            owl:onProperty kastle-ont:hasIdentifierType ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:anyURI ;
-            owl:onProperty kastle-ont:hasIdentifierTypeURI ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:string ;
-            owl:onProperty kastle-ont:hasIdentifierValue ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasIdentifierValue ;
-            owl:someValuesFrom xsd:string ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onDataRange xsd:boolean ;
-            owl:onProperty kastle-ont:hasValidity ],
-        kastle-ont:ElementInfo .
 
-kastle-ont:IdentifierType.txt a owl:Class .
+###  https://kastle-labl.org/lod/ontology/hasIdentifier
+kastle-ont:hasIdentifier rdf:type owl:ObjectProperty .
 
-kastle-ont:hasIdentifierType a owl:ObjectProperty .
 
-kastle-ont:hasIdentifierTypeURI a owl:DatatypeProperty .
+###  https://kastle-labl.org/lod/ontology/hasIdentifierType
+kastle-ont:hasIdentifierType rdf:type owl:ObjectProperty .
 
-kastle-ont:hasValidity a owl:DatatypeProperty .
 
-kastle-ont:hasIdentifier a owl:ObjectProperty .
+#################################################################
+#    Data properties
+#################################################################
 
-kastle-ont:hasIdentifierValue a owl:DatatypeProperty .
+###  http://kastle-labl.org/lod/ontology/hasNameTitleGroup
+<http://kastle-labl.org/lod/ontology/hasNameTitleGroup> rdf:type owl:DatatypeProperty .
 
+
+###  http://kastle-labl.org/lod/ontology/hasXlink
+<http://kastle-labl.org/lod/ontology/hasXlink> rdf:type owl:DatatypeProperty .
+
+
+###  https://kastle-labl.org/lod/ontology/hasIdentifierTypeURI
+kastle-ont:hasIdentifierTypeURI rdf:type owl:DatatypeProperty .
+
+
+###  https://kastle-labl.org/lod/ontology/hasIdentifierValue
+kastle-ont:hasIdentifierValue rdf:type owl:DatatypeProperty .
+
+
+###  https://kastle-labl.org/lod/ontology/hasValidity
+kastle-ont:hasValidity rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasIdentifier ;
+                            owl:allValuesFrom kastle-ont:Identifier
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasIdentifierType ;
+                            owl:allValuesFrom kastle-ont:IdentifierType.txt
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf kastle-ont:hasIdentifier
+                                           ] ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasIdentifierTypeURI ;
+                            owl:allValuesFrom xsd:anyURI
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasIdentifierValue ;
+                            owl:allValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty kastle-ont:hasValidity ;
+                            owl:allValuesFrom xsd:boolean
+                          ] .
+
+
+###  https://kastle-labl.org/lod/ontology/ElementInfo
+kastle-ont:ElementInfo rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/Identifier
+kastle-ont:Identifier rdf:type owl:Class ;
+                      rdfs:subClassOf kastle-ont:ElementInfo ,
+                                      [ rdf:type owl:Class ;
+                                        owl:complementOf [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://kastle-labl.org/lod/ontology/hasLinkAttributes> ;
+                                                           owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://kastle-labl.org/lod/ontology/hasNameTitleGroup> ;
+                                                                                owl:someValuesFrom xsd:string
+                                                                              ]
+                                                         ]
+                                      ] ,
+                                      [ rdf:type owl:Class ;
+                                        owl:complementOf [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <http://kastle-labl.org/lod/ontology/hasLinkAttributes> ;
+                                                           owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://kastle-labl.org/lod/ontology/hasXlink> ;
+                                                                                owl:someValuesFrom xsd:string
+                                                                              ]
+                                                         ]
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty kastle-ont:hasIdentifierType ;
+                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                        owl:onClass kastle-ont:IdentifierType.txt
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty kastle-ont:hasIdentifierValue ;
+                                        owl:someValuesFrom xsd:string
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty kastle-ont:hasIdentifierTypeURI ;
+                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                        owl:onDataRange xsd:anyURI
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty kastle-ont:hasIdentifierValue ;
+                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                        owl:onDataRange xsd:string
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty kastle-ont:hasValidity ;
+                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                        owl:onDataRange xsd:boolean
+                                      ] .
+
+
+###  https://kastle-labl.org/lod/ontology/IdentifierType.txt
+kastle-ont:IdentifierType.txt rdf:type owl:Class .
+
+
+###  https://kastle-labl.org/lod/ontology/MODSItem
+kastle-ont:MODSItem rdf:type owl:Class ;
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty kastle-ont:hasIdentifier ;
+                                      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                      owl:onClass kastle-ont:Identifier
+                                    ] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
