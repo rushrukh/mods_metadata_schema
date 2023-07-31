@@ -2,72 +2,44 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-                    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-                    @prefix xml: <http://www.w3.org/XML/1998/namespace> .
-                    @prefix modl: <https://archive.org/services/purl/domain/modular_ontology_design_library> .
-                    @prefix opla-cp: <http://ontologydesignpatterns.org/opla-cp#> .
-                    @prefix opla-sd: <http://ontologydesignpatterns.org/opla-sd#> .
-                    @prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> . 
-<https://kastle-labl.org/lod/ontology/> rdf:type owl:Ontology ;
-                                                                opla-core:hasPatternName "Origin Info Pattern" ;
-                                                                opla-cp:addressesScenario """Use Case
-                                                                Use Case Description"""^^xsd:string ;
-                                                                opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
-                                                                                            "cq2"^^xsd:string ;
-                                                                opla-sd:hasConnections """MODSItem hasOriginInfo OriginInfo r uie if st
-OriginInfo hasEdition Edition r ie f if st
-Edition hasEditionValue xsd:string r e st
-Edition hasLanguageAttributes LanguageAttributes r uie f if st
-Edition isContentSuppliedExternally xsd:boolean r st
-OriginInfo hasPublicationFrequency Frequency r ie if st
-Frequency hasAuthorityInfo AuthorityInfo r uie f if st
-Frequency hasLanguageAttributes LanguageAttributes r uie f if st
-Frequency hasFrequencyValue xsd:string r e st
-OriginInfo hasDisplayDate DisplayDate r uie f if st
-DisplayDate hasDateValue xsd:string r e st
-DisplayDate isContentSuppliedExternally xsd:boolean r st
-DisplayDate hasLanguageAttributes LanguageAttributes r uie f if st
-OriginInfo hasAssoicatedPlace Place r ie if st
-OriginInfo hasAssociatedAgentRole AgentRole r uie if st
-OriginInfo hasDateInfo DateInfo r uie if st
-OriginInfo hasEventType xsd:string r st
-OriginInfo hasEventTypeURI xsd:anyURI r st
-OriginInfo hasIssuanceMethod IssuanceType.txt r st
-OriginInfo sco ElementInfo"""^^xsd:string ;
-                                                                opla-sd:hasSchemaDiagramFileName "OriginInfo.png"^^xsd:string ;
-                                                                dc:contributor "Cogan Shimizu" ,
-                                                                            "Pascal Hitzler" ,
-                                                                            "Rushrukh Rayan" ;
-                                                                dc:creator "Cogan Shimizu" ,
-                                                                        "Pascal Hitzler" ,
-                                                                        "Rushrukh Rayan" .
 
-kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:MODSItem a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:OriginInfo ;
             owl:onProperty kastle-ont:hasOriginInfo ] .
 
-kastle-ont:DisplayDate rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
-            owl:onProperty kastle-ont:hasDateValue ],
-        [ a owl:Restriction ;
+kastle-ont:ElementInfo a owl:Class .
+
+kastle-ont:AgentRole a owl:Class .
+
+kastle-ont:AuthorityInfo a owl:Class .
+
+kastle-ont:DateInfo a owl:Class .
+
+kastle-ont:DisplayDate a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
         [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasDateValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+            owl:someValuesFrom xsd:string ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:boolean ;
+            owl:onDataRange xsd:string ;
+            owl:onProperty kastle-ont:hasDateValue ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:boolean ;
             owl:onProperty kastle-ont:isContentSuppliedExternally ] .
 
-kastle-ont:OriginInfo rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Place ;
-            owl:onProperty kastle-ont:hasAssoicatedPlace ],
+kastle-ont:IssuanceType.txt a owl:Class .
+
+kastle-ont:OriginInfo a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasPublicationFrequency ] ;
+            owl:someValuesFrom kastle-ont:Frequency ],
         [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasAssoicatedPlace ] ;
             owl:someValuesFrom kastle-ont:Place ],
@@ -75,6 +47,26 @@ kastle-ont:OriginInfo rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Frequency ;
             owl:onProperty kastle-ont:hasPublicationFrequency ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Place ;
+            owl:onProperty kastle-ont:hasAssoicatedPlace ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:DisplayDate ;
+            owl:onProperty kastle-ont:hasDisplayDate ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:anyURI ;
+            owl:onProperty kastle-ont:hasEventTypeURI ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:string ;
+            owl:onProperty kastle-ont:hasEventType ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:DateInfo ;
+            owl:onProperty kastle-ont:hasDateInfo ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:IssuanceType.txt ;
@@ -85,121 +77,151 @@ kastle-ont:OriginInfo rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasEdition ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:DateInfo ;
-            owl:onProperty kastle-ont:hasDateInfo ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
-            owl:onProperty kastle-ont:hasEventType ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:anyURI ;
-            owl:onProperty kastle-ont:hasEventTypeURI ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasEdition ] ;
-            owl:someValuesFrom kastle-ont:Edition ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:DisplayDate ;
-            owl:onProperty kastle-ont:hasDisplayDate ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:AgentRole ;
             owl:onProperty kastle-ont:hasAssociatedAgentRole ],
         [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasPublicationFrequency ] ;
-            owl:someValuesFrom kastle-ont:Frequency ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasEdition ] ;
+            owl:someValuesFrom kastle-ont:Edition ],
         kastle-ont:ElementInfo .
 
-kastle-ont:Edition rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasEditionValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+kastle-ont:hasEventType a owl:DatatypeProperty .
+
+kastle-ont:hasEventTypeURI a owl:DatatypeProperty .
+
+kastle-ont:hasIssuanceMethod a owl:ObjectProperty .
+
+kastle-ont:Edition a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:boolean ;
-            owl:onProperty kastle-ont:isContentSuppliedExternally ],
+            owl:onDataRange xsd:string ;
+            owl:onProperty kastle-ont:hasEditionValue ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasEditionValue ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:boolean ;
+            owl:onProperty kastle-ont:isContentSuppliedExternally ] .
+
+kastle-ont:Frequency a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:AuthorityInfo ;
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
-            owl:onProperty kastle-ont:hasEditionValue ] .
-
-kastle-ont:Frequency rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
+            owl:onDataRange xsd:string ;
             owl:onProperty kastle-ont:hasFrequencyValue ],
         [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
-        [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasFrequencyValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ] .
+            owl:someValuesFrom xsd:string ] .
+
+kastle-ont:Place a owl:Class .
+
+kastle-ont:hasAssociatedAgentRole a owl:ObjectProperty .
+
+kastle-ont:hasDateInfo a owl:ObjectProperty .
+
+kastle-ont:hasDateValue a owl:DatatypeProperty .
+
+kastle-ont:hasEditionValue a owl:DatatypeProperty .
+
+kastle-ont:hasFrequencyValue a owl:DatatypeProperty .
+
+kastle-ont:hasOriginInfo a owl:ObjectProperty .
+
+kastle-ont:hasAssoicatedPlace a owl:ObjectProperty .
+
+kastle-ont:hasAuthorityInfo a owl:ObjectProperty .
+
+kastle-ont:hasDisplayDate a owl:ObjectProperty .
+
+kastle-ont:hasPublicationFrequency a owl:ObjectProperty .
+
+kastle-ont:isContentSuppliedExternally a owl:DatatypeProperty .
+
+kastle-ont:hasEdition a owl:ObjectProperty .
+
+kastle-ont:LanguageAttributes a owl:Class .
+
+kastle-ont:hasLanguageAttributes a owl:ObjectProperty .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty kastle-ont:isContentSuppliedExternally ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasEventType ],
+        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty kastle-ont:isContentSuppliedExternally ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasDisplayDate ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Frequency ;
-            owl:onProperty kastle-ont:hasPublicationFrequency ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:DateInfo ;
-            owl:onProperty kastle-ont:hasDateInfo ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasEventType ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Place ;
-            owl:onProperty kastle-ont:hasAssoicatedPlace ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasPublicationFrequency ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:OriginInfo ;
-            owl:onProperty kastle-ont:hasOriginInfo ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:DisplayDate ;
-            owl:onProperty kastle-ont:hasDisplayDate ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasEventTypeURI ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:isContentSuppliedExternally ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:isContentSuppliedExternally ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasEdition ] ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:AgentRole ;
             owl:onProperty kastle-ont:hasAssociatedAgentRole ],
         [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:DisplayDate ;
+            owl:onProperty kastle-ont:hasDisplayDate ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasFrequencyValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Place ;
+            owl:onProperty kastle-ont:hasAssoicatedPlace ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasDateValue ],
+        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAssoicatedPlace ] ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasDateInfo ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:OriginInfo ;
+            owl:onProperty kastle-ont:hasOriginInfo ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasDisplayDate ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:DateInfo ;
+            owl:onProperty kastle-ont:hasDateInfo ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:IssuanceType.txt ;
             owl:onProperty kastle-ont:hasIssuanceMethod ],
@@ -210,62 +232,51 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasAssociatedAgentRole ] ],
+            owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty kastle-ont:hasEventTypeURI ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAssoicatedPlace ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty kastle-ont:hasEdition ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasPublicationFrequency ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasFrequencyValue ],
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasAssociatedAgentRole ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty kastle-ont:hasEditionValue ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasOriginInfo ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasDisplayDate ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasDateInfo ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:LanguageAttributes ;
             owl:onProperty kastle-ont:hasLanguageAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Edition ;
+            owl:onProperty kastle-ont:hasEdition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Frequency ;
+            owl:onProperty kastle-ont:hasPublicationFrequency ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:AuthorityInfo ;
             owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasEdition ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
             owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Edition ;
-            owl:onProperty kastle-ont:hasEdition ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasEdition ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:LanguageAttributes ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasLanguageAttributes ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty kastle-ont:hasLanguageAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasDateValue ] .
+            owl:onProperty [ owl:inverseOf kastle-ont:hasOriginInfo ] ] .
 

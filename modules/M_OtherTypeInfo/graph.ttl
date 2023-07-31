@@ -2,74 +2,61 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-                    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-                    @prefix xml: <http://www.w3.org/XML/1998/namespace> .
-                    @prefix modl: <https://archive.org/services/purl/domain/modular_ontology_design_library> .
-                    @prefix opla-cp: <http://ontologydesignpatterns.org/opla-cp#> .
-                    @prefix opla-sd: <http://ontologydesignpatterns.org/opla-sd#> .
-                    @prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> . 
-<https://kastle-labl.org/lod/ontology/> rdf:type owl:Ontology ;
-                                                                opla-core:hasPatternName "Other Type Info Module Pattern" ;
-                                                                opla-cp:addressesScenario """Use Case
-                                                                Use Case Description"""^^xsd:string ;
-                                                                opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
-                                                                                            "cq2"^^xsd:string ;
-                                                                opla-sd:hasConnections """Thing hasOtherTypeInfo OtherTypeInfo r uie if st
-OtherTypeInfo hasTypeAsString xsd:string r e st
-OtherTypeInfo hasTypeAuthority xsd:string r st
-OtherTypeInfo hasTypeAuthorityURI xsd:anyURI r st
-OtherTypeInfo hasTypeURI xsd:anyURI r st"""^^xsd:string ;
-                                                                opla-sd:hasSchemaDiagramFileName "M_OtherTypeInfo.png"^^xsd:string ;
-                                                                dc:contributor "Cogan Shimizu" ,
-                                                                            "Pascal Hitzler" ,
-                                                                            "Rushrukh Rayan" ;
-                                                                dc:creator "Cogan Shimizu" ,
-                                                                        "Pascal Hitzler" ,
-                                                                        "Rushrukh Rayan" .
 
-kastle-ont:Thing rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:Thing a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:OtherTypeInfo ;
             owl:onProperty kastle-ont:hasOtherTypeInfo ] .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasTypeURI ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty kastle-ont:hasTypeAsString ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:OtherTypeInfo ;
             owl:onProperty kastle-ont:hasOtherTypeInfo ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
-            owl:onProperty kastle-ont:hasTypeAuthorityURI ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasOtherTypeInfo ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasTypeAuthority ] .
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasTypeAuthority ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty kastle-ont:hasTypeURI ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty kastle-ont:hasTypeAuthorityURI ] .
 
-kastle-ont:OtherTypeInfo rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:OtherTypeInfo a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasTypeAsString ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:anyURI ;
+            owl:onDataRange xsd:anyURI ;
             owl:onProperty kastle-ont:hasTypeURI ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:anyURI ;
-            owl:onProperty kastle-ont:hasTypeAuthorityURI ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasTypeAsString ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
+            owl:onDataRange xsd:string ;
             owl:onProperty kastle-ont:hasTypeAsString ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
+            owl:onDataRange xsd:anyURI ;
+            owl:onProperty kastle-ont:hasTypeAuthorityURI ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:string ;
             owl:onProperty kastle-ont:hasTypeAuthority ] .
+
+kastle-ont:hasTypeAuthority a owl:DatatypeProperty .
+
+kastle-ont:hasTypeAuthorityURI a owl:DatatypeProperty .
+
+kastle-ont:hasTypeURI a owl:DatatypeProperty .
+
+kastle-ont:hasOtherTypeInfo a owl:ObjectProperty .
+
+kastle-ont:hasTypeAsString a owl:DatatypeProperty .
 

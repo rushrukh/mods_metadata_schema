@@ -2,76 +2,66 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-                    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-                    @prefix xml: <http://www.w3.org/XML/1998/namespace> .
-                    @prefix modl: <https://archive.org/services/purl/domain/modular_ontology_design_library> .
-                    @prefix opla-cp: <http://ontologydesignpatterns.org/opla-cp#> .
-                    @prefix opla-sd: <http://ontologydesignpatterns.org/opla-sd#> .
-                    @prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> . 
-<https://kastle-labl.org/lod/ontology/> rdf:type owl:Ontology ;
-                                                                opla-core:hasPatternName "Identifier Pattern" ;
-                                                                opla-cp:addressesScenario """Use Case
-                                                                Use Case Description"""^^xsd:string ;
-                                                                opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
-                                                                                            "cq2"^^xsd:string ;
-                                                                opla-sd:hasConnections """MODSItem hasIdentifier Identifier r uie if st
-Identifier hasIdentifierTypeURI xsd:anyURI r st
-Identifier hasIdentifierType IdentifierType.txt r st
-Identifier hasValidity xsd:boolean r st
-Identifier hasIdentifierValue xsd:string r e st
-Identifier sco ElementInfo"""^^xsd:string ;
-                                                                opla-sd:hasSchemaDiagramFileName "Identifier.png"^^xsd:string ;
-                                                                dc:contributor "Cogan Shimizu" ,
-                                                                            "Pascal Hitzler" ,
-                                                                            "Rushrukh Rayan" ;
-                                                                dc:creator "Cogan Shimizu" ,
-                                                                        "Pascal Hitzler" ,
-                                                                        "Rushrukh Rayan" .
 
-kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:MODSItem a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Identifier ;
             owl:onProperty kastle-ont:hasIdentifier ] .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:IdentifierType.txt ;
-            owl:onProperty kastle-ont:hasIdentifierType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasIdentifierValue ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasIdentifier ] ],
         [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty kastle-ont:hasValidity ],
+        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Identifier ;
             owl:onProperty kastle-ont:hasIdentifier ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:anyURI> ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasIdentifierValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
             owl:onProperty kastle-ont:hasIdentifierTypeURI ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:boolean> ;
-            owl:onProperty kastle-ont:hasValidity ] .
+            owl:allValuesFrom kastle-ont:IdentifierType.txt ;
+            owl:onProperty kastle-ont:hasIdentifierType ] .
 
-kastle-ont:Identifier rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:boolean ;
-            owl:onProperty kastle-ont:hasValidity ],
-        [ a owl:Restriction ;
+kastle-ont:ElementInfo a owl:Class .
+
+kastle-ont:Identifier a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:IdentifierType.txt ;
             owl:onProperty kastle-ont:hasIdentifierType ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:anyURI ;
+            owl:onDataRange xsd:anyURI ;
             owl:onProperty kastle-ont:hasIdentifierTypeURI ],
         [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:string ;
+            owl:onProperty kastle-ont:hasIdentifierValue ],
+        [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasIdentifierValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+            owl:someValuesFrom xsd:string ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
-            owl:onProperty kastle-ont:hasIdentifierValue ],
+            owl:onDataRange xsd:boolean ;
+            owl:onProperty kastle-ont:hasValidity ],
         kastle-ont:ElementInfo .
+
+kastle-ont:IdentifierType.txt a owl:Class .
+
+kastle-ont:hasIdentifierType a owl:ObjectProperty .
+
+kastle-ont:hasIdentifierTypeURI a owl:DatatypeProperty .
+
+kastle-ont:hasValidity a owl:DatatypeProperty .
+
+kastle-ont:hasIdentifier a owl:ObjectProperty .
+
+kastle-ont:hasIdentifierValue a owl:DatatypeProperty .
 

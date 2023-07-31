@@ -2,92 +2,85 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-                    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-                    @prefix xml: <http://www.w3.org/XML/1998/namespace> .
-                    @prefix modl: <https://archive.org/services/purl/domain/modular_ontology_design_library> .
-                    @prefix opla-cp: <http://ontologydesignpatterns.org/opla-cp#> .
-                    @prefix opla-sd: <http://ontologydesignpatterns.org/opla-sd#> .
-                    @prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> . 
-<https://kastle-labl.org/lod/ontology/> rdf:type owl:Ontology ;
-                                                                opla-core:hasPatternName "Classification Pattern" ;
-                                                                opla-cp:addressesScenario """Use Case
-                                                                Use Case Description"""^^xsd:string ;
-                                                                opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
-                                                                                            "cq2"^^xsd:string ;
-                                                                opla-sd:hasConnections """MODSItem hasClassfication Classification r uie if st
-Classification hasAuthorityInfo AuthorityInfo r uie f if st
-Classification isPrimaryInstance Usage.txt r st
-Classification hasEditionAsString xsd:string r st
-Classification hasValueAsString xsd:string r e st
-Classification hasClassificationValueGenerator xsd:string r st
-Classification sco ElementInfo"""^^xsd:string ;
-                                                                opla-sd:hasSchemaDiagramFileName "Classification.png"^^xsd:string ;
-                                                                dc:contributor "Cogan Shimizu" ,
-                                                                            "Pascal Hitzler" ,
-                                                                            "Rushrukh Rayan" ;
-                                                                dc:creator "Cogan Shimizu" ,
-                                                                        "Pascal Hitzler" ,
-                                                                        "Rushrukh Rayan" .
 
-kastle-ont:MODSItem rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:MODSItem a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Classification ;
             owl:onProperty kastle-ont:hasClassfication ] .
 
-kastle-ont:Classification rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:ElementInfo a owl:Class .
+
+kastle-ont:AuthorityInfo a owl:Class .
+
+kastle-ont:Classification a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
+            owl:onDataRange xsd:string ;
             owl:onProperty kastle-ont:hasClassificationValueGenerator ],
         [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasValueAsString ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
+            owl:someValuesFrom xsd:string ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
+            owl:onDataRange xsd:string ;
+            owl:onProperty kastle-ont:hasValueAsString ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Usage.txt ;
             owl:onProperty kastle-ont:isPrimaryInstance ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
-            owl:onProperty kastle-ont:hasValueAsString ],
+            owl:onClass kastle-ont:AuthorityInfo ;
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
+            owl:onDataRange xsd:string ;
             owl:onProperty kastle-ont:hasEditionAsString ],
         kastle-ont:ElementInfo .
 
+kastle-ont:Usage.txt a owl:Class .
+
+kastle-ont:hasClassificationValueGenerator a owl:DatatypeProperty .
+
+kastle-ont:hasEditionAsString a owl:DatatypeProperty .
+
+kastle-ont:isPrimaryInstance a owl:ObjectProperty .
+
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasValueAsString ],
+        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasEditionAsString ],
+            owl:allValuesFrom kastle-ont:AuthorityInfo ;
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasClassfication ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Classification ;
-            owl:onProperty kastle-ont:hasClassfication ],
-        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Usage.txt ;
             owl:onProperty kastle-ont:isPrimaryInstance ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasClassificationValueGenerator ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasAuthorityInfo ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
+            owl:allValuesFrom kastle-ont:Classification ;
+            owl:onProperty kastle-ont:hasClassfication ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasValueAsString ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasClassificationValueGenerator ] .
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasEditionAsString ] .
+
+kastle-ont:hasClassfication a owl:ObjectProperty .
+
+kastle-ont:hasValueAsString a owl:DatatypeProperty .
+
+kastle-ont:hasAuthorityInfo a owl:ObjectProperty .
 

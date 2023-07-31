@@ -44,19 +44,24 @@ quant_types = {"exists": OWL.someValuesFrom, "forall": OWL.allValuesFrom}
 card_types  = {"min": OWL.minQualifiedCardinality, "max": OWL.maxQualifiedCardinality, "exact": OWL.qualifiedCardinality}
 
 def create_restriction_node(pred, target, quant, g):
-	# create the blank node which shall act as the restriction
-	restriction_node = BNode()
-	# declare its type (i.e., it's a restriction -- the point of this function)
-	g.add( (restriction_node, a, OWL.Restriction) )
-	# which property its acting on
-	g.add( (restriction_node, OWL.onProperty, pred) )
-	# the nature of the restriction
-	try:
-		g.add( (restriction_node, quant_types[quant], target) )
-	except KeyError as e:
-		raise Exception(f"Illegal restriction type: {quant}")
+        # create the blank node which shall act as the restriction
+        restriction_node = BNode()
+        # declare its type (i.e., it's a restriction -- the point of this function)
+        g.add( (restriction_node, a, OWL.Restriction) )
+        # which property its acting on
+        g.add( (restriction_node, OWL.onProperty, pred) )
+        # the nature of the restriction
+        try:
+            if(target.find('xsd') == -1):
+                g.add( (restriction_node, quant_types[quant], target) )
+            else:
+                lhs = target.split("/")[-1].split(":")[0]
+                rhs = target.split("/")[-1].split(":")[1]
+                g.add( (restriction_node, quant_types[quant], pfs[lhs][rhs]) )
+        except KeyError as e:
+            raise Exception(f"Illegal restriction type: {quant}")
 
-	return restriction_node
+        return restriction_node
 
 def create_inverse_prop(pred, g):
 	iprop = BNode()
@@ -81,7 +86,7 @@ def create_cardinality_node(pred, card_type, cardinality, ont_o, g):
         else:
             lhs = ont_o.split("/")[-1].split(":")[0]
             rhs = ont_o.split("/")[-1].split(":")[1]
-            g.add( (restriction_node, OWL.onClass, pfs[lhs][rhs]) )
+            g.add( (restriction_node, OWL.onDataRange, pfs[lhs][rhs]) )
             
         return restriction_node
 
@@ -106,6 +111,15 @@ def nen_to_axioms(input_dir):
             ## create uris
             ont_s = ont_ns[s]
             ont_o = ont_ns[o]
+
+            g.add( (ont_s, a, OWL.Class))
+
+            if(o.find('xsd') != -1):
+                g.add( ( ont_ns[p], a, OWL.DatatypeProperty ) )
+            else:
+                if(p != "sco"):
+                    g.add( (ont_ns[p], a, OWL.ObjectProperty) )
+                g.add( (ont_o, a, OWL.Class) )
 
             if p == "sco": 
                 g.add( (ont_s, sco, ont_o) )

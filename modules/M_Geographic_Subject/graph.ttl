@@ -2,81 +2,23 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-                    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-                    @prefix xml: <http://www.w3.org/XML/1998/namespace> .
-                    @prefix modl: <https://archive.org/services/purl/domain/modular_ontology_design_library> .
-                    @prefix opla-cp: <http://ontologydesignpatterns.org/opla-cp#> .
-                    @prefix opla-sd: <http://ontologydesignpatterns.org/opla-sd#> .
-                    @prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> . 
-<https://kastle-labl.org/lod/ontology/> rdf:type owl:Ontology ;
-                                                                opla-core:hasPatternName "Geographic Subject Module Pattern" ;
-                                                                opla-cp:addressesScenario """Use Case
-                                                                Use Case Description"""^^xsd:string ;
-                                                                opla-cp:hasCompetencyQuestion "cq1"^^xsd:string ,
-                                                                                            "cq2"^^xsd:string ;
-                                                                opla-sd:hasConnections """Thing hasGeographicSubject GeographicSubject r uie if st
-GeographicSubject hasContinent Continent d r ie if st
-Continent hasContinentValue Continent.txt r e st
-Continent hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasCountry Country d r ie if st
-Country hasCountryValue Country.txt r e st
-Country hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasProvince Province d r ie if st
-Province hasProvinceValue Province.txt r e st
-Province hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasRegions Regions d r ie if st
-Regions hasRegionsValue Regions.txt r e st
-Regions hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasState State d r ie if st
-State hasStateValue State.txt r e st
-State hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasTerritory Territory d r ie if st
-Territory hasTerritoryValue Territory.txt r e st
-Territory hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasCountry County d r ie if st
-County hasCountyValue County.txt r e st
-County hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasCity City d r ie if st
-City hasCityValue City.txt r e st
-City hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasCitySection CitySection d r ie if st
-CitySection hasCitySectionValue CitySection.txt r e st
-CitySection hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasIsland Island d r ie if st
-Island hasIslandValue Island.txt r e st
-Island hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasArea Area d r ie if st
-Area hasAreaValue Area.txt r e st
-Area hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasExtraTerrestrialArea ExtraTerrestrialArea d r ie if st
-ExtraTerrestrialArea hasExtraTerrestrialAreaValue ExtraTerrestrialArea.txt r e st
-ExtraTerrestrialArea hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasGeographicCode GeographicCode d r ie if st
-GeographicCode hasGeographicCodeValue xsd:string r e st
-GeographicCode hasGeographicAttributes GeographicAttributes r ie if st
-GeographicSubject hasGeographicSubjectValue xsd:string r e st
-GeographicSubject hasAuthorityInfo AuthorityInfo r uie if st"""^^xsd:string ;
-                                                                opla-sd:hasSchemaDiagramFileName "M_Geographic_Subject.png"^^xsd:string ;
-                                                                dc:contributor "Cogan Shimizu" ,
-                                                                            "Pascal Hitzler" ,
-                                                                            "Rushrukh Rayan" ;
-                                                                dc:creator "Cogan Shimizu" ,
-                                                                        "Pascal Hitzler" ,
-                                                                        "Rushrukh Rayan" .
 
-kastle-ont:Thing rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:Thing a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:GeographicSubject ;
             owl:onProperty kastle-ont:hasGeographicSubject ] .
 
-kastle-ont:Area rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
-            owl:someValuesFrom kastle-ont:GeographicAttributes ],
-        [ a owl:Restriction ;
+kastle-ont:AuthorityInfo a owl:Class .
+
+kastle-ont:Area a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
+            owl:someValuesFrom kastle-ont:GeographicAttributes ],
         [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasAreaValue ;
             owl:someValuesFrom kastle-ont:Area.txt ],
@@ -85,7 +27,10 @@ kastle-ont:Area rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass kastle-ont:Area.txt ;
             owl:onProperty kastle-ont:hasAreaValue ] .
 
-kastle-ont:City rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:Area.txt a owl:Class .
+
+kastle-ont:City a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasCityValue ;
             owl:someValuesFrom kastle-ont:City.txt ],
         [ a owl:Restriction ;
@@ -100,9 +45,13 @@ kastle-ont:City rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ] .
 
-kastle-ont:CitySection rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasCitySectionValue ;
-            owl:someValuesFrom kastle-ont:CitySection.txt ],
+kastle-ont:City.txt a owl:Class .
+
+kastle-ont:CitySection a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:CitySection.txt ;
+            owl:onProperty kastle-ont:hasCitySectionValue ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:GeographicAttributes ;
@@ -111,11 +60,13 @@ kastle-ont:CitySection rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
             owl:someValuesFrom kastle-ont:GeographicAttributes ],
         [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:CitySection.txt ;
-            owl:onProperty kastle-ont:hasCitySectionValue ] .
+            owl:onProperty kastle-ont:hasCitySectionValue ;
+            owl:someValuesFrom kastle-ont:CitySection.txt ] .
 
-kastle-ont:Continent rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:CitySection.txt a owl:Class .
+
+kastle-ont:Continent a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
             owl:someValuesFrom kastle-ont:GeographicAttributes ],
         [ a owl:Restriction ;
@@ -130,7 +81,13 @@ kastle-ont:Continent rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasContinentValue ;
             owl:someValuesFrom kastle-ont:Continent.txt ] .
 
-kastle-ont:Country rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:Continent.txt a owl:Class .
+
+kastle-ont:Country a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
+            owl:someValuesFrom kastle-ont:GeographicAttributes ],
+        [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ],
@@ -139,50 +96,56 @@ kastle-ont:Country rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass kastle-ont:Country.txt ;
             owl:onProperty kastle-ont:hasCountryValue ],
         [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
-            owl:someValuesFrom kastle-ont:GeographicAttributes ],
-        [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasCountryValue ;
             owl:someValuesFrom kastle-ont:Country.txt ] .
 
-kastle-ont:County rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasCountyValue ;
-            owl:someValuesFrom kastle-ont:County.txt ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
+kastle-ont:Country.txt a owl:Class .
+
+kastle-ont:County a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
+            owl:someValuesFrom kastle-ont:GeographicAttributes ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:County.txt ;
             owl:onProperty kastle-ont:hasCountyValue ],
         [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
-            owl:someValuesFrom kastle-ont:GeographicAttributes ] .
+            owl:onProperty kastle-ont:hasCountyValue ;
+            owl:someValuesFrom kastle-ont:County.txt ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ] .
 
-kastle-ont:ExtraTerrestrialArea rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:County.txt a owl:Class .
+
+kastle-ont:ExtraTerrestrialArea a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
             owl:someValuesFrom kastle-ont:GeographicAttributes ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
+            owl:onClass kastle-ont:ExtraTerrestrialArea.txt ;
+            owl:onProperty kastle-ont:hasExtraTerrestrialAreaValue ],
         [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasExtraTerrestrialAreaValue ;
             owl:someValuesFrom kastle-ont:ExtraTerrestrialArea.txt ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:ExtraTerrestrialArea.txt ;
-            owl:onProperty kastle-ont:hasExtraTerrestrialAreaValue ] .
+            owl:onClass kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ] .
 
-kastle-ont:GeographicCode rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasGeographicCodeValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
-        [ a owl:Restriction ;
+kastle-ont:ExtraTerrestrialArea.txt a owl:Class .
+
+kastle-ont:GeographicCode a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
+            owl:onDataRange xsd:string ;
             owl:onProperty kastle-ont:hasGeographicCodeValue ],
         [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasGeographicCodeValue ;
+            owl:someValuesFrom xsd:string ],
+        [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ],
@@ -190,137 +153,179 @@ kastle-ont:GeographicCode rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
             owl:someValuesFrom kastle-ont:GeographicAttributes ] .
 
-kastle-ont:Island rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Island.txt ;
-            owl:onProperty kastle-ont:hasIslandValue ],
-        [ a owl:Restriction ;
+kastle-ont:Island a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasIslandValue ;
             owl:someValuesFrom kastle-ont:Island.txt ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
-            owl:someValuesFrom kastle-ont:GeographicAttributes ] .
-
-kastle-ont:Province rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Province.txt ;
-            owl:onProperty kastle-ont:hasProvinceValue ],
         [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
             owl:someValuesFrom kastle-ont:GeographicAttributes ],
         [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Island.txt ;
+            owl:onProperty kastle-ont:hasIslandValue ] .
+
+kastle-ont:Island.txt a owl:Class .
+
+kastle-ont:Province a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty kastle-ont:hasProvinceValue ;
             owl:someValuesFrom kastle-ont:Province.txt ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Province.txt ;
+            owl:onProperty kastle-ont:hasProvinceValue ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ] .
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
+            owl:someValuesFrom kastle-ont:GeographicAttributes ] .
 
-kastle-ont:Regions rdfs:subClassOf [ a owl:Restriction ;
+kastle-ont:Province.txt a owl:Class .
+
+kastle-ont:Regions a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasRegionsValue ;
+            owl:someValuesFrom kastle-ont:Regions.txt ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
+            owl:someValuesFrom kastle-ont:GeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Regions.txt ;
+            owl:onProperty kastle-ont:hasRegionsValue ] .
+
+kastle-ont:Regions.txt a owl:Class .
+
+kastle-ont:State a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasStateValue ;
+            owl:someValuesFrom kastle-ont:State.txt ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
+            owl:someValuesFrom kastle-ont:GeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:State.txt ;
+            owl:onProperty kastle-ont:hasStateValue ] .
+
+kastle-ont:State.txt a owl:Class .
+
+kastle-ont:Territory a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasTerritoryValue ;
+            owl:someValuesFrom kastle-ont:Territory.txt ],
+        [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Regions.txt ;
-            owl:onProperty kastle-ont:hasRegionsValue ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
-            owl:someValuesFrom kastle-ont:GeographicAttributes ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasRegionsValue ;
-            owl:someValuesFrom kastle-ont:Regions.txt ] .
-
-kastle-ont:State rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
-            owl:someValuesFrom kastle-ont:GeographicAttributes ],
-        [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasStateValue ;
-            owl:someValuesFrom kastle-ont:State.txt ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:State.txt ;
-            owl:onProperty kastle-ont:hasStateValue ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ] .
-
-kastle-ont:Territory rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Territory.txt ;
             owl:onProperty kastle-ont:hasTerritoryValue ],
         [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasTerritoryValue ;
-            owl:someValuesFrom kastle-ont:Territory.txt ],
-        [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ;
-            owl:someValuesFrom kastle-ont:GeographicAttributes ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ] .
+            owl:someValuesFrom kastle-ont:GeographicAttributes ] .
 
-kastle-ont:GeographicSubject rdfs:subClassOf [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Province ;
-            owl:onProperty kastle-ont:hasProvince ],
+kastle-ont:Territory.txt a owl:Class .
+
+kastle-ont:hasAreaValue a owl:ObjectProperty .
+
+kastle-ont:hasAuthorityInfo a owl:ObjectProperty .
+
+kastle-ont:hasCitySectionValue a owl:ObjectProperty .
+
+kastle-ont:hasCityValue a owl:ObjectProperty .
+
+kastle-ont:hasContinentValue a owl:ObjectProperty .
+
+kastle-ont:hasCountryValue a owl:ObjectProperty .
+
+kastle-ont:hasCountyValue a owl:ObjectProperty .
+
+kastle-ont:hasExtraTerrestrialAreaValue a owl:ObjectProperty .
+
+kastle-ont:hasGeographicCodeValue a owl:DatatypeProperty .
+
+kastle-ont:hasGeographicSubject a owl:ObjectProperty .
+
+kastle-ont:hasGeographicSubjectValue a owl:DatatypeProperty .
+
+kastle-ont:hasIslandValue a owl:ObjectProperty .
+
+kastle-ont:hasProvinceValue a owl:ObjectProperty .
+
+kastle-ont:hasRegionsValue a owl:ObjectProperty .
+
+kastle-ont:hasStateValue a owl:ObjectProperty .
+
+kastle-ont:hasTerritoryValue a owl:ObjectProperty .
+
+kastle-ont:hasArea a owl:ObjectProperty .
+
+kastle-ont:hasCity a owl:ObjectProperty .
+
+kastle-ont:hasCitySection a owl:ObjectProperty .
+
+kastle-ont:hasContinent a owl:ObjectProperty .
+
+kastle-ont:hasExtraTerrestrialArea a owl:ObjectProperty .
+
+kastle-ont:hasGeographicCode a owl:ObjectProperty .
+
+kastle-ont:hasIsland a owl:ObjectProperty .
+
+kastle-ont:hasProvince a owl:ObjectProperty .
+
+kastle-ont:hasRegions a owl:ObjectProperty .
+
+kastle-ont:hasState a owl:ObjectProperty .
+
+kastle-ont:hasTerritory a owl:ObjectProperty .
+
+kastle-ont:hasCountry a owl:ObjectProperty .
+
+kastle-ont:GeographicSubject a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasState ] ;
+            owl:someValuesFrom kastle-ont:State ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasCountry ] ;
+            owl:someValuesFrom kastle-ont:Country ],
         [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasContinent ] ;
             owl:someValuesFrom kastle-ont:Continent ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass xsd:string ;
-            owl:onProperty kastle-ont:hasGeographicSubjectValue ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:GeographicCode ;
             owl:onProperty kastle-ont:hasGeographicCode ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasState ] ;
-            owl:someValuesFrom kastle-ont:State ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasIsland ] ;
-            owl:someValuesFrom kastle-ont:Island ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasRegions ] ;
-            owl:someValuesFrom kastle-ont:Regions ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:CitySection ;
-            owl:onProperty kastle-ont:hasCitySection ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasArea ] ;
-            owl:someValuesFrom kastle-ont:Area ],
         [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasExtraTerrestrialArea ] ;
             owl:someValuesFrom kastle-ont:ExtraTerrestrialArea ],
         [ a owl:Restriction ;
-            owl:onProperty kastle-ont:hasGeographicSubjectValue ;
-            owl:someValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ],
-        [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Continent ;
-            owl:onProperty kastle-ont:hasContinent ],
+            owl:onDataRange xsd:string ;
+            owl:onProperty kastle-ont:hasGeographicSubjectValue ],
         [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:AuthorityInfo ;
-            owl:onProperty kastle-ont:hasAuthorityInfo ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasCitySection ] ;
+            owl:someValuesFrom kastle-ont:CitySection ],
         [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:County ;
-            owl:onProperty kastle-ont:hasCountry ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicCode ] ;
-            owl:someValuesFrom kastle-ont:GeographicCode ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Island ;
-            owl:onProperty kastle-ont:hasIsland ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasCity ] ;
+            owl:someValuesFrom kastle-ont:City ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:ExtraTerrestrialArea ;
@@ -330,54 +335,103 @@ kastle-ont:GeographicSubject rdfs:subClassOf [ a owl:Restriction ;
             owl:someValuesFrom kastle-ont:County ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Territory ;
-            owl:onProperty kastle-ont:hasTerritory ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasTerritory ] ;
-            owl:someValuesFrom kastle-ont:Territory ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasCity ] ;
-            owl:someValuesFrom kastle-ont:City ],
-        [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasCountry ] ;
-            owl:someValuesFrom kastle-ont:Country ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:State ;
-            owl:onProperty kastle-ont:hasState ],
-        [ a owl:Restriction ;
-            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:City ;
             owl:onProperty kastle-ont:hasCity ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:AuthorityInfo ;
+            owl:onProperty kastle-ont:hasAuthorityInfo ],
+        [ a owl:Restriction ;
+            owl:onProperty kastle-ont:hasGeographicSubjectValue ;
+            owl:someValuesFrom xsd:string ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Area ;
             owl:onProperty kastle-ont:hasArea ],
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:State ;
+            owl:onProperty kastle-ont:hasState ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Regions ;
+            owl:onProperty kastle-ont:hasRegions ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Island ;
+            owl:onProperty kastle-ont:hasIsland ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasRegions ] ;
+            owl:someValuesFrom kastle-ont:Regions ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasIsland ] ;
+            owl:someValuesFrom kastle-ont:Island ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:County ;
+            owl:onProperty kastle-ont:hasCountry ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasTerritory ] ;
+            owl:someValuesFrom kastle-ont:Territory ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Province ;
+            owl:onProperty kastle-ont:hasProvince ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicCode ] ;
+            owl:someValuesFrom kastle-ont:GeographicCode ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
             owl:onClass kastle-ont:Country ;
             owl:onProperty kastle-ont:hasCountry ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasArea ] ;
+            owl:someValuesFrom kastle-ont:Area ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Territory ;
+            owl:onProperty kastle-ont:hasTerritory ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass kastle-ont:Continent ;
+            owl:onProperty kastle-ont:hasContinent ],
         [ a owl:Restriction ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasProvince ] ;
             owl:someValuesFrom kastle-ont:Province ],
         [ a owl:Restriction ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasCitySection ] ;
-            owl:someValuesFrom kastle-ont:CitySection ],
-        [ a owl:Restriction ;
             owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-            owl:onClass kastle-ont:Regions ;
-            owl:onProperty kastle-ont:hasRegions ] .
+            owl:onClass kastle-ont:CitySection ;
+            owl:onProperty kastle-ont:hasCitySection ] .
+
+kastle-ont:GeographicAttributes a owl:Class .
 
 owl:Thing rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:ExtraTerrestrialArea.txt ;
-            owl:onProperty kastle-ont:hasExtraTerrestrialAreaValue ],
+            owl:allValuesFrom kastle-ont:Country.txt ;
+            owl:onProperty kastle-ont:hasCountryValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasGeographicCodeValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicSubject ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicCode ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:CitySection.txt ;
-            owl:onProperty kastle-ont:hasCitySectionValue ],
+            owl:allValuesFrom kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:County.txt ;
+            owl:onProperty kastle-ont:hasCountyValue ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
@@ -387,35 +441,71 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+            owl:allValuesFrom kastle-ont:GeographicCode ;
+            owl:onProperty kastle-ont:hasGeographicCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Area ;
+            owl:onProperty kastle-ont:hasArea ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:CitySection.txt ;
+            owl:onProperty kastle-ont:hasCitySectionValue ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Province.txt ;
-            owl:onProperty kastle-ont:hasProvinceValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Country ;
-            owl:onProperty kastle-ont:hasCountry ],
+            owl:allValuesFrom kastle-ont:Regions ;
+            owl:onProperty kastle-ont:hasRegions ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasCity ] ],
         [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Province.txt ;
+            owl:onProperty kastle-ont:hasProvinceValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Territory ;
+            owl:onProperty kastle-ont:hasTerritory ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasExtraTerrestrialArea ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:GeographicSubject ;
+            owl:onProperty kastle-ont:hasGeographicSubject ],
+        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Area ;
-            owl:onProperty kastle-ont:hasArea ],
+            owl:allValuesFrom kastle-ont:ExtraTerrestrialArea ;
+            owl:onProperty kastle-ont:hasExtraTerrestrialArea ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:City.txt ;
-            owl:onProperty kastle-ont:hasCityValue ],
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasArea ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:County.txt ;
-            owl:onProperty kastle-ont:hasCountyValue ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty kastle-ont:hasGeographicSubjectValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:CitySection ;
+            owl:onProperty kastle-ont:hasCitySection ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ],
@@ -423,116 +513,44 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:City ;
             owl:onProperty kastle-ont:hasCity ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Territory.txt ;
-            owl:onProperty kastle-ont:hasTerritoryValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:State.txt ;
-            owl:onProperty kastle-ont:hasStateValue ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicCode ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasTerritory ] ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:County ;
             owl:onProperty kastle-ont:hasCountry ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasArea ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicCode ;
-            owl:onProperty kastle-ont:hasGeographicCode ],
-        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Regions ;
-            owl:onProperty kastle-ont:hasRegions ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasExtraTerrestrialArea ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:State ;
-            owl:onProperty kastle-ont:hasState ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicSubject ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Regions.txt ;
-            owl:onProperty kastle-ont:hasRegionsValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasRegions ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasIsland ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasGeographicCodeValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ],
+            owl:allValuesFrom kastle-ont:ExtraTerrestrialArea.txt ;
+            owl:onProperty kastle-ont:hasExtraTerrestrialAreaValue ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Province ;
             owl:onProperty kastle-ont:hasProvince ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasState ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:State.txt ;
+            owl:onProperty kastle-ont:hasStateValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Country ;
+            owl:onProperty kastle-ont:hasCountry ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Island.txt ;
+            owl:onProperty kastle-ont:hasIslandValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
@@ -541,44 +559,28 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ],
         [ a owl:Restriction ;
-            owl:allValuesFrom <https://kastle-labl.org/lod/ontology/xsd:string> ;
-            owl:onProperty kastle-ont:hasGeographicSubjectValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Area.txt ;
-            owl:onProperty kastle-ont:hasAreaValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Continent ;
-            owl:onProperty kastle-ont:hasContinent ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:ExtraTerrestrialArea ;
-            owl:onProperty kastle-ont:hasExtraTerrestrialArea ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Country.txt ;
-            owl:onProperty kastle-ont:hasCountryValue ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicSubject ;
-            owl:onProperty kastle-ont:hasGeographicSubject ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Island.txt ;
-            owl:onProperty kastle-ont:hasIslandValue ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasProvince ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:CitySection ;
-            owl:onProperty kastle-ont:hasCitySection ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasState ] ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Territory ;
-            owl:onProperty kastle-ont:hasTerritory ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Island ;
+            owl:onProperty kastle-ont:hasIsland ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasCountry ] ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:GeographicAttributes ;
             owl:onProperty kastle-ont:hasGeographicAttributes ],
@@ -587,39 +589,66 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasCountry ] ],
         [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Territory.txt ;
+            owl:onProperty kastle-ont:hasTerritoryValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:State ;
+            owl:onProperty kastle-ont:hasState ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasIsland ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:GeographicAttributes ;
+            owl:onProperty kastle-ont:hasGeographicAttributes ],
+        [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:Continent.txt ;
             owl:onProperty kastle-ont:hasContinentValue ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
-            owl:onProperty [ owl:inverseOf kastle-ont:hasCountry ] ],
+            owl:onProperty [ owl:inverseOf kastle-ont:hasGeographicAttributes ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Regions.txt ;
+            owl:onProperty kastle-ont:hasRegionsValue ],
         [ a owl:Restriction ;
             owl:allValuesFrom kastle-ont:AuthorityInfo ;
             owl:onProperty kastle-ont:hasAuthorityInfo ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasProvince ] ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasRegions ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:Area.txt ;
+            owl:onProperty kastle-ont:hasAreaValue ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
             owl:onProperty [ owl:inverseOf kastle-ont:hasCitySection ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:Island ;
-            owl:onProperty kastle-ont:hasIsland ],
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass owl:Thing ;
+            owl:onProperty [ owl:inverseOf kastle-ont:hasTerritory ] ],
         [ a owl:Restriction ;
-            owl:allValuesFrom kastle-ont:GeographicAttributes ;
-            owl:onProperty kastle-ont:hasGeographicAttributes ] .
+            owl:allValuesFrom kastle-ont:Continent ;
+            owl:onProperty kastle-ont:hasContinent ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom kastle-ont:City.txt ;
+            owl:onProperty kastle-ont:hasCityValue ] .
+
+kastle-ont:hasGeographicAttributes a owl:ObjectProperty .
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:GeographicSubject ;
-    owl:onProperty kastle-ont:hasCity ;
-    owl:someValuesFrom owl:Thing .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:GeographicSubject ;
-    owl:onProperty kastle-ont:hasState ;
-    owl:someValuesFrom owl:Thing .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:GeographicSubject ;
-    owl:onProperty kastle-ont:hasExtraTerrestrialArea ;
+    owl:onProperty kastle-ont:hasCountry ;
     owl:someValuesFrom owl:Thing .
 
 [] a owl:Restriction ;
@@ -629,7 +658,7 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:GeographicSubject ;
-    owl:onProperty kastle-ont:hasRegions ;
+    owl:onProperty kastle-ont:hasIsland ;
     owl:someValuesFrom owl:Thing .
 
 [] a owl:Restriction ;
@@ -639,7 +668,7 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:GeographicSubject ;
-    owl:onProperty kastle-ont:hasArea ;
+    owl:onProperty kastle-ont:hasRegions ;
     owl:someValuesFrom owl:Thing .
 
 [] a owl:Restriction ;
@@ -654,21 +683,31 @@ owl:Thing rdfs:subClassOf [ a owl:Restriction ;
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:GeographicSubject ;
-    owl:onProperty kastle-ont:hasCountry ;
-    owl:someValuesFrom owl:Thing .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:GeographicSubject ;
-    owl:onProperty kastle-ont:hasIsland ;
-    owl:someValuesFrom owl:Thing .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf kastle-ont:GeographicSubject ;
     owl:onProperty kastle-ont:hasContinent ;
     owl:someValuesFrom owl:Thing .
 
 [] a owl:Restriction ;
     rdfs:subClassOf kastle-ont:GeographicSubject ;
+    owl:onProperty kastle-ont:hasCity ;
+    owl:someValuesFrom owl:Thing .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:GeographicSubject ;
+    owl:onProperty kastle-ont:hasExtraTerrestrialArea ;
+    owl:someValuesFrom owl:Thing .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:GeographicSubject ;
     owl:onProperty kastle-ont:hasProvince ;
+    owl:someValuesFrom owl:Thing .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:GeographicSubject ;
+    owl:onProperty kastle-ont:hasArea ;
+    owl:someValuesFrom owl:Thing .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf kastle-ont:GeographicSubject ;
+    owl:onProperty kastle-ont:hasState ;
     owl:someValuesFrom owl:Thing .
 
